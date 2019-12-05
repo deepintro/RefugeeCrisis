@@ -136,10 +136,11 @@ d3.csv("asylum.csv", function (data) {
     new scroll('div7', '75%', scrollYear2017, scrollYear2016);
     new scroll('div8', '75%', scrollYear2018, scrollYear2017);
     new scroll('div9', '75%', showBlock, scrollYear2018);
-    new scroll ('div10', '75%', showOtherCountryPersons,showBlock);
-    new scroll ('div11', '75%', splitResettled,showOtherCountryPersons);
-    new scroll ('div12', '75%', resettlementVis,splitResettled);
-    
+    new scroll('div10', '75%', showOtherCountryPersons, showBlock);
+    new scroll('div11', '75%', changeColor, showOtherCountryPersons);
+    new scroll('div12', '75%', splitResettled, changeColor);
+    new scroll('div13', '75%', resettlementVis, splitResettled);
+
 
 
 })
@@ -158,7 +159,7 @@ function createUnitVis(currYear) {
     svg.append('g')
         .attr('transform', 'translate(0,' + (+height + 10) + ')')
         .call(xAxis)
-        .attr('class','xaxis')
+        .attr('class', 'xaxis')
         .selectAll("text")
         .style("text-anchor", "end")
         .attr("dx", "-.8em")
@@ -166,8 +167,8 @@ function createUnitVis(currYear) {
         .attr("transform", "rotate(-65)")
         .style("font-size", "10px");
 
-    
-    if(currYear > 2018)
+
+    if (currYear > 2018)
         return;
     var currYearPersons = persons.filter(p => {
         if (p.year <= currYear)
@@ -183,9 +184,7 @@ function createUnitVis(currYear) {
     var unitsEnter = units
         .enter()
         .append('rect')
-        .attr('class', function(d,i){
-            'year' + d.year
-        })
+
         .attr('height', function (d) {
             return d.size;
         })
@@ -193,28 +192,35 @@ function createUnitVis(currYear) {
             return d.size;
         })
         .style("fill", function (d) {
-            return colorScale(d.year % 2011) 
+            return colorScale(d.year % 2011)
         })
 
     units = units.merge(unitsEnter);
 
-    units.transition()
+    units
+        .attr('class', function (d, i) {
+            return ('year' + d.year);
+        })
+        .transition()
         .duration(1000)
-        .attr('x', function (d,i) {
+        .attr('x', function (d, i) {
             return d.xpos;
         })
         .attr('y', function (d) {
             return d.ypos - size;
         })
-        
+        .style("fill", function (d) {
+            return colorScale(d.year % 2011)
+        })
+
     units
-        .on("mouseover", function(d){
+        .on("mouseover", function (d) {
             var className = d3.select(this).attr("class");
             d3.selectAll('.' + className)
                 .style('fill', 'black');
-            
+
         })
-        .on("mouseout", function(d){
+        .on("mouseout", function (d) {
             var className = d3.select(this).attr("class");
             d3.selectAll('.' + className)
                 .style('fill', function (d) { return colorScale(d.year % 2011) });
@@ -240,19 +246,19 @@ function getYear(node, cumulative) {
 
 
 //waypoints scroll constructor
-function scroll(n, offset, func1, func2){
+function scroll(n, offset, func1, func2) {
     return new Waypoint({
-      element: document.getElementById(n),
-      handler: function(direction) {
-         direction == 'down' ? func1() : func2();
-      },
-      //start 75% from the top of the div
-      offset: offset
+        element: document.getElementById(n),
+        handler: function (direction) {
+            direction == 'down' ? func1() : func2();
+        },
+        //start 75% from the top of the div
+        offset: offset
     });
-  };
+};
 
 
-function scrollYear2011(){
+function scrollYear2011() {
     // var xAxis = d3.axisBottom()
     //     .scale(xScale)
     // svg.append('g')
@@ -268,25 +274,25 @@ function scrollYear2011(){
     // console.log("lalalalalalala")
     createUnitVis(2011);
 }
-function scrollYear2012(){
+function scrollYear2012() {
     createUnitVis(2012);
 }
-function scrollYear2013(){
+function scrollYear2013() {
     createUnitVis(2013);
 }
-function scrollYear2014(){
+function scrollYear2014() {
     createUnitVis(2014);
 }
-function scrollYear2015(){
+function scrollYear2015() {
     createUnitVis(2015);
 }
-function scrollYear2016(){
+function scrollYear2016() {
     createUnitVis(2016);
 }
-function scrollYear2017(){
+function scrollYear2017() {
     createUnitVis(2017);
 }
-function scrollYear2018(){
+function scrollYear2018() {
     createUnitVis(2018);
 }
 
