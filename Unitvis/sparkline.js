@@ -2,6 +2,8 @@ var chartG;
 var yearTotal;
 var xScale;
 var yScale;
+var parseDate = d3.timeParse('%Y');
+var g = 0;
 function createSparkline(){
     yearTotal = d3.nest()
         .key(function(d){
@@ -19,8 +21,8 @@ function createSparkline(){
     var positionX = width/1.5
     var positionY = 50
 
-    xScale = d3.scaleLinear()
-        .domain([2011,2018])
+    xScale = d3.scaleTime()
+        .domain([parseDate(2011),parseDate(2018)])
         .range([0, chartWidth]);
 
     yScale = d3.scaleLinear()        
@@ -29,9 +31,18 @@ function createSparkline(){
         })])
         .range([chartHeight,0]);
 
+    var xAxis = d3.axisBottom()
+        .scale(xScale)
+
+
     chartG = d3.select('svg')
         .append('g')
-        .attr('transform', 'translate('+[positionX,positionY]+')');    
+        .attr('transform', 'translate('+[positionX,positionY]+')'); 
+
+    chartG
+    .append('g')
+    .attr('transform', 'translate(0,' + (+chartHeight) + ')')
+        .call(xAxis)   
 
 }
 
@@ -39,26 +50,32 @@ function buildSparkline(year){
     var currYearTotal = yearTotal.filter(function(d){
         return d.key <= year;
     })
-    //console.log("Hi")
-    //console.log(currYearTotal)
     var lineInterpolate = d3.line()
-        .x(function(d) {return xScale(d.value.year); })
+        .x(function(d) {return xScale(parseDate(d.value.year)); })
         .y(function(d) {return yScale(d.value.totalAsylumSeekers); })
-    .curve(d3.curveMonotoneX);
-
 
     var line = chartG
     .selectAll('.line-plot')    
     .data([currYearTotal])
 
+    if(chartG.select('path').node()!=null){
+       // console.log(g);
+    }
+    
     line.exit().remove();
-    //console.log("Before exit")
-    //console.log(lineExit)
+    
     var lineEnter = line
     .enter()
     .append("path")
 
-    lineEnter.merge(line)
+    console.log("Nodes")
+
+    var mergedLine = lineEnter.merge(line)
+    len = mergedLine.node().getTotalLength()
+    g = len;
+    console.log(len)
+
+    mergedLine
     .attr('d', lineInterpolate)
     .attr("fill", function(d){
         return "none"
@@ -66,13 +83,23 @@ function buildSparkline(year){
     .attr("stroke", "steelblue")
     .attr("stroke-width", 1.5)    
     .attr('class', 'line-plot')
+
+    // d3.select(mergedLine.node())
+    // .attr("stroke-dasharray",len+" "+len)
+    // .attr("stroke-dashoffset",len)
+    // .transition()
+    // .duration(1000)
+    // .attr("stroke-dashoffset",0)
     
-    console.log(chartG.selectAll('.sparklineCircle'))
+    //createSparklineCircles(currYearTotal)
+
+}
+function createSparklineCircles(currYearTotal){
     var circle = chartG
-    .selectAll(".sparklineCircle")
-    .data(currYearTotal)
-    console.log("Please work")
-    console.log(circle)
+    .selectAll('circle')
+    .data(currYearTotal)    
+
+    circle.exit().remove();
     
     var circleEnter = circle
     .enter()
@@ -86,7 +113,11 @@ function buildSparkline(year){
         return yScale(d.value.totalAsylumSeekers);
     })
     .attr('r',"5px")
-    .attr('çlass',"sparklineCircle")
-    .style('fill', "steelblue");
+    .style("fill", "none")
+    .transition()
+    .ease(d3.easeLinear)
+    
+    .style('fill', "steelblue")
+    .attr('çlass','sparklineCircle');
 }
 
