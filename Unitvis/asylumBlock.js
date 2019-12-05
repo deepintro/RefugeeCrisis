@@ -1,16 +1,14 @@
 var blockCols;
+// blockCols = Math.ceil(Math.sqrt(persons.length));
 var otherCountryPersons;
 function showBlock() {
+    
     blockCols = Math.ceil(Math.sqrt(persons.length));
-
     otherCountryPersons = [];
-    console.log("all countries: ", allCountriesData);
 
     var otherCountryData = [];
     Object.assign(otherCountryData, allCountriesData);
     otherCountryData = otherCountryData.splice(20, allCountriesData.length);
-    console.log(otherCountryData);
-
     var otherPersonCount = 0
     otherCountryData.forEach((c, idx) => {
         var total = Math.round(c.total / ratio);
@@ -54,6 +52,7 @@ function showBlock() {
 }
 
 function showOtherCountryPersons() {
+    blockCols = Math.ceil(Math.sqrt(persons.length));
     var personsCopy = [];
     Object.assign(personsCopy, persons);
     personsCopy = personsCopy.concat(otherCountryPersons);
@@ -84,7 +83,7 @@ function showOtherCountryPersons() {
         // })
 
     units = units.merge(unitsEnter);
-
+    
     units
         .transition()
         .duration(1000)
