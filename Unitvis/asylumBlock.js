@@ -1,16 +1,14 @@
 var blockCols;
+// blockCols = Math.ceil(Math.sqrt(persons.length));
 var otherCountryPersons;
 function showBlock() {
+    
     blockCols = Math.ceil(Math.sqrt(persons.length));
-
     otherCountryPersons = [];
-    console.log("all countries: ", allCountriesData);
 
     var otherCountryData = [];
     Object.assign(otherCountryData, allCountriesData);
     otherCountryData = otherCountryData.splice(20, allCountriesData.length);
-    console.log(otherCountryData);
-
     var otherPersonCount = 0
     otherCountryData.forEach((c, idx) => {
         var total = Math.round(c.total / ratio);
@@ -54,6 +52,10 @@ function showBlock() {
 }
 
 function showOtherCountryPersons() {
+
+    console.log("+ other countries")
+
+    blockCols = Math.ceil(Math.sqrt(persons.length));
     var personsCopy = [];
     Object.assign(personsCopy, persons);
     personsCopy = personsCopy.concat(otherCountryPersons);
@@ -67,7 +69,7 @@ function showOtherCountryPersons() {
     var unitsEnter = units
         .enter()
         .append('rect')
-        .attr('class', function(d,i){
+        .attr('class', function (d, i) {
             'year' + d.year
         })
         .attr('height', function (d) {
@@ -76,46 +78,84 @@ function showOtherCountryPersons() {
         .attr('width', function (d) {
             return d.size;
         })
-        .style("fill", function (d) {
-            return colorScale(d.year % 2011) 
-        })
-        // .style("fill", function (d) {
-        //     return "red";
-        // })
+
 
     units = units.merge(unitsEnter);
-
+    
     units
-        .transition()
-        .duration(1000)
-        .attr('x', function (d, i) {
-            return ((i) % blockCols) * size;
-        }) 
-        .attr('y', function (d, i) {
-            return height - (Math.floor((( i) / blockCols)) * size);
+        .style("fill", function (d) {
+            return colorScale(d.year % 2011)
         })
-
-}
-
-
-function splitResettled() {
-    d3.selectAll("rect")
         .attr("class", function (d, i) {
             if (i < 2154)
                 return "resettled";
             else
                 return "not_resettled"
         })
-
-    d3.selectAll(".not_resettled")
         .transition()
-        .duration(1000)        
+        .duration(1000)
         .attr('x', function (d, i) {
-            return (i % blockCols) * size;
+            return ((i) % blockCols) * size;
         })
         .attr('y', function (d, i) {
-            return height - (Math.floor((i / blockCols)) * size) - 400;
+            return height - (Math.floor(((i) / blockCols)) * size);
         })
+
+}
+//show same color for all asylum seeksers
+function changeColor() {
+
+    var personsCopy = [];
+    Object.assign(personsCopy, persons);
+    personsCopy = personsCopy.concat(otherCountryPersons);
+
+    var units = svg
+        .selectAll('rect')
+        .data(personsCopy)
+
+    units.exit().remove();
+
+    var unitsEnter = units
+        .enter()
+        .append('rect')
+        .attr('class', function (d, i) {
+            'year' + d.year
+        })
+        .attr('height', function (d) {
+            return d.size;
+        })
+        .attr('width', function (d) {
+            return d.size;
+        })
+
+
+    units = units.merge(unitsEnter);
+
+    units
+        .style("fill", "red")
+        .transition()
+        .duration(1000)
+        .attr('x', function (d, i) {
+            return ((i) % blockCols) * size;
+        })
+        .attr('y', function (d, i) {
+            return height - (Math.floor(((i) / blockCols)) * size);
+        })
+
+
+}
+
+function splitResettled() {
+    d3.selectAll(".not_resettled")
+        .transition()
+        .duration(1000)
+        .attr('x', function (d, i) {
+            return ((2154 + i) % blockCols) * size;
+        })
+        .attr('y', function (d, i) {
+            return height - (Math.floor(((2154 + i) / blockCols)) * size) - 250;
+        })
+        
 
     d3.selectAll(".resettled")
         .transition()
@@ -126,4 +166,5 @@ function splitResettled() {
         .attr('y', function (d, i) {
             return height - (Math.floor((i / blockCols)) * size) - 200;
         })
+        .style("fill", "green")
 }
