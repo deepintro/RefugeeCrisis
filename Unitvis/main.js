@@ -150,7 +150,7 @@ function createUnitVis(currYear) {
     console.log("create unit vis is being called")
     svg.selectAll('.resettlementaxis').remove()
     svg.selectAll('.xaxis').remove()
-    svg.selectAll('rect').remove()
+    //svg.selectAll('rect').remove()
 
     var xAxis = d3.axisBottom()
         .scale(xScale)
