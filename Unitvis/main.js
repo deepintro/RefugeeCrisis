@@ -1,6 +1,6 @@
 var margin = { top: 20, right: 50, bottom: 150, left: 50 },
-    width = 1500 - margin.left - margin.right,
-    height = 800 - margin.top - margin.bottom;
+    width = window.innerWidth - margin.left - margin.right,
+    height = window.innerHeight - margin.top - margin.bottom;
 
 var xScale = d3.scaleBand().range([0, width]);
 var yScale = d3.scaleLinear().range([height, 0]);
@@ -63,6 +63,7 @@ d3.csv("asylum.csv", function (data) {
     svg.append('g')
         .attr('transform', 'translate(0,' + (+height + 10) + ')')
         .call(xAxis)
+        .attr('class','xaxis')
         .selectAll("text")
         .style("text-anchor", "end")
         .attr("dx", "-.8em")
@@ -81,7 +82,7 @@ d3.csv("asylum.csv", function (data) {
 
     var year = 2011;
 
-    cols = 20;
+    cols = 24;
     barMargin = 5;
     bandwidth = xScale.bandwidth() - (2 * barMargin);
     size = bandwidth / cols;
@@ -133,7 +134,10 @@ d3.csv("asylum.csv", function (data) {
     new scroll('div8', '75%', scrollYear2018, scrollYear2017);
     new scroll('div9', '75%', showBlock, scrollYear2018);
     new scroll ('div10', '75%', showOtherCountryPersons,showBlock);
-    new scroll ('div11', '75%', resettlementVis,showOtherCountryPersons);
+    new scroll ('div11', '75%', splitResettled,showOtherCountryPersons);
+    new scroll ('div12', '75%', resettlementVis,splitResettled);
+    
+
 
 })
 

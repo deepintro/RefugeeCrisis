@@ -9,7 +9,7 @@
 // var barMargin
 // var bandwidth
 // var size
-// var persons
+// var rpersons
 // var ratio
 // var numOfCountries = 20;
 // var unitsEnter
@@ -20,7 +20,7 @@
 //     .append("g")
 //     .attr("transform",
 //         "translate(" + margin.left + "," + margin.top + ")");
-
+var rpersons =[];
 function resettlementVis()
 {
     d3.csv("resettlementdata.csv", function (data) {
@@ -53,6 +53,8 @@ function resettlementVis()
 
         var countries = yearData.map(function (d) { return d.name })
 
+        svg.selectAll('.xaxis').remove()
+
         xScale.domain(countries);
 
         var xAxis = d3.axisBottom()
@@ -70,7 +72,7 @@ function resettlementVis()
             .style("font-size", "10px");
 
 
-        cols = 12;
+        cols = 24;
         barMargin = 5;
         bandwidth = xScale.bandwidth() - (2 * barMargin);
         size = bandwidth / cols;
@@ -83,101 +85,94 @@ function resettlementVis()
             //console.log("prevyear ------ ", prevEnd)
             var total = Math.round(c.total / ratio);
             var xStart = xScale(c.name) + barMargin;
-            var cumulative = { 2011: c.years[2011], 2012: 0, 2013: 0, 2014: 0, 2015: 0, 2016: 0, 2017: 0, 2018: 0 };
-
-            for (i = 2012; i <= 2018; i++) {
-                cumulative[i] = cumulative[i - 1] + c.years[i];
-            }
 
             var resettlementNodes = d3.range(total).map(function (d, i) {
                 return {
                     size: size,
                     x: (i % cols) * size + xStart,
                     y: height - (Math.floor((i / cols)) * size),
-                    color: colorScale(idx),
-                    year: getYear(i, cumulative),
+                    // color: colorScale(idx),
+                    // year: getYear(i, cumulative),
                     country: c.name
                 }
 
             })
             // console.log("nodes ",nodes)
             // prevEnd = prevEnd + ((Math.floor(total/rows) + 3) * size)
-            persons = persons.concat(nodes);
+            rpersons = rpersons.concat(resettlementNodes);
 
         })
-        console.log("persons",persons);
+        console.log("persons",rpersons);
 
 
-        persons.sort(function (a, b) {
-            return a.year - b.year;
-        })
-        console.log(persons.length);
+        
 
-        for(y = 2011; y<=2018; y++){
-            createUnitVis11(y);
-        }    
+        //for(y = 2011; y<=2018; y++){
+            createUnitVis11(2018);
+        //}    
     })
 }
 
 
 function createUnitVis11(currYear) {
     console.log("bla bla bla")
-    if(currYear > 2018)
-        return;
-    var curr_YearPersons = persons.filter(p => {
-        if (p.year == currYear)
-            return true;
-    })
+    // if(currYear > 2018)
+    //     return;
+    // var curr_YearPersons = rpersons.filter(p => {
+    //     if (p.year == currYear)
+    //         return true;
+    // })
 
 
-    var units = svg
-        .selectAll('.year' + currYear)
-        .data(curr_YearPersons)
+    nr = svg.selectAll('.not_resettled')
+    console.log("--------------------",nr)
 
-        .enter()
-        .append('rect')
-        .attr('class','year' + currYear)
-        .attr('height', function (d) {
-            return d.size;
+    nr.remove()
+
+    units2 = svg.selectAll('.resettled')   
+    console.log(rpersons.length) 
+    console.log("=====================",units2)   
+        units2
+        .attr('width', function (d,i) {
+            return size
         })
-        .attr('width', function (d) {
-            return d.size;
+        .attr('height', function (d,i) {
+            return size
         })
-        .attr('x', function (d) {
-            return d.x;
+        .attr('x', function (d,i) {
+            if(i==0){
+                console.log(i)
+                console.log(rpersons[i])
+            }
+            
+            return rpersons[i].x;
         })
-        .attr('y', function (d) {
-            return d.y - size;
+        .attr('y', function (d,i) {
+            if(i==0){
+                console.log(i)
+                console.log(rpersons[i])
+            }
+            return rpersons[i].y-size;
         })
         .style("fill", function (d) {
             //return "white"
-            return colorScale(d.year % 2011) 
+            return "red"
         })
 
-        //.merge(units)
-        // .attr('x', function (d) {
-        //     return d.x;
-        // })
-        // .attr('y', function (d) {
-        //     return d.y - size;
-        // })
         
-    units.transition()
-        .duration(500)
-        .style("fill", function (d) { return colorScale(d.year % 2011) })
         
 
-    units
+    units2
     .on("mouseover", function(d){
         var className = d3.select(this).attr("class");
         d3.selectAll('.' + className)
-            .style('fill', 'black');
+            .style('fill', 'red');
         
     })
     .on("mouseout", function(d){
         var className = d3.select(this).attr("class");
         d3.selectAll('.' + className)
-            .style('fill', function (d) { return colorScale(d.year % 2011) });
+            .style('fill', 'red');
     })
 
 }

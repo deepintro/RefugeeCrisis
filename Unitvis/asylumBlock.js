@@ -77,5 +77,27 @@ function showOtherCountryPersons() {
         .attr('y', function (d, i) {
             return height - (Math.floor(((persons.length +i) / blockCols)) * size) ;
         })
-       
+       //splitResettled();
+}
+
+
+function splitResettled(){
+    d3.selectAll("rect")
+    .attr("class", function(d,i){
+        if(i < 2154)
+            return "resettled";
+        else
+            return "not_resettled"
+    })
+    console.log("{{{{{{{{{{}}}}}}}}}}}}}}}",d3.selectAll(".resettled"));
+
+    // var cols = 50;
+
+    // d3.selectAll(".resettled")
+    //     .attr("x", function(d,i){
+    //         return (i % cols) * size + 500;
+    //     })
+    //     .attr("y", function(d,i){
+    //         return height - (Math.floor((i / cols)) * size);
+    //     })
 }
