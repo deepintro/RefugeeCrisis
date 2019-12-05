@@ -1,15 +1,16 @@
 var rpersons = [];
+var xResettlementScale = d3.scaleBand().range([0, width]);
 function resettlementVis() {
-    d3.csv("resettlementdata.csv", function (data) {
-
-        var yearData = d3.nest()
+    console.log("persons5", persons)
+    d3.csv("resettlementdata.csv", function (rdata) {
+        var resettlementYearData = d3.nest()
             .key(function (d) {
                 return d["Country of Resettlement (ISO)"];
             })
             .key(function (d) {
                 return d["Year"];
             })
-            .entries(data)
+            .entries(rdata)
             .map(function (d) {
                 var years = {};
                 var total = 0;
@@ -20,26 +21,25 @@ function resettlementVis() {
                 })
                 return { 'country': d.key, 'years': years, 'total': total, 'name': d.values[0].values[0]['Country of Resettlement'] };
             })
-
-        yearData.sort(function (a, b) {
+            
+        resettlementYearData.sort(function (a, b) {
             return b.total - a.total;
         })
-        yearData = yearData.splice(0, numOfCountries);
+        resettlementYearData = resettlementYearData.splice(0, numOfCountries);
 
-
-        var countries = yearData.map(function (d) { return d.name })
+        var countries = resettlementYearData.map(function (d) { return d.name })
 
         svg.selectAll('.xaxis').remove()
 
-        xScale.domain(countries);
+        xResettlementScale.domain(countries);
 
         var xAxis = d3.axisBottom()
-            .scale(xScale)
-
+            .scale(xResettlementScale)
         //x axis
         svg.append('g')
             .attr('transform', 'translate(0,' + (+height + 10) + ')')
             .call(xAxis)
+            .attr('class','resettlementaxis')
             .selectAll("text")
             .style("text-anchor", "end")
             .attr("dx", "-.8em")
@@ -50,14 +50,14 @@ function resettlementVis() {
 
         cols = 24;
         barMargin = 5;
-        bandwidth = xScale.bandwidth() - (2 * barMargin);
+        bandwidth = xResettlementScale.bandwidth() - (2 * barMargin);
         size = bandwidth / cols;
         ratio = 100;
 
         //cumulative
-        yearData.forEach((c, idx) => {
+        resettlementYearData.forEach((c, idx) => {
             var total = Math.round(c.total / ratio);
-            var xStart = xScale(c.name) + barMargin;
+            var xStart = xResettlementScale(c.name) + barMargin;
 
             var resettlementNodes = d3.range(total).map(function (d, i) {
                 return {
@@ -73,9 +73,7 @@ function resettlementVis() {
             rpersons = rpersons.concat(resettlementNodes);
 
         })
-
-        createResettlementViz(2018);
-
+        createResettlementViz();
     })
 }
 
