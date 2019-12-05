@@ -1,25 +1,3 @@
-// var margin = { top: 20, right: 50, bottom: 150, left: 50 },
-// width = 1500 - margin.left - margin.right,
-// height = 1000 - margin.top - margin.bottom;
-
-// var xScale = d3.scaleBand().range([0, width]);
-// var yScale = d3.scaleLinear().range([height, 0]);
-// var colorScale = d3.scaleOrdinal(d3.schemeCategory20c);
-// var cols
-// var barMargin
-// var bandwidth
-// var size
-// var rpersons
-// var ratio
-// var numOfCountries = 20;
-// var unitsEnter
-
-// var svg = d3.select("body").append("svg")
-//     .attr("width", width + margin.left + margin.right)
-//     .attr("height", height + margin.top + margin.bottom)
-//     .append("g")
-//     .attr("transform",
-//         "translate(" + margin.left + "," + margin.top + ")");
 var rpersons = [];
 function resettlementVis() {
     d3.csv("resettlementdata.csv", function (data) {
@@ -74,7 +52,6 @@ function resettlementVis() {
         barMargin = 5;
         bandwidth = xScale.bandwidth() - (2 * barMargin);
         size = bandwidth / cols;
-        persons = [];
         ratio = 100;
 
         //cumulative

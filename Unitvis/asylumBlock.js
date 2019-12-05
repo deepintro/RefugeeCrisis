@@ -54,9 +54,12 @@ function showBlock() {
 }
 
 function showOtherCountryPersons() {
+    console.log("+ other countries")
     var personsCopy = [];
     Object.assign(personsCopy, persons);
     personsCopy = personsCopy.concat(otherCountryPersons);
+
+    console.log(personsCopy);
 
     var units = svg
         .selectAll('rect')
@@ -67,7 +70,7 @@ function showOtherCountryPersons() {
     var unitsEnter = units
         .enter()
         .append('rect')
-        .attr('class', function(d,i){
+        .attr('class', function (d, i) {
             'year' + d.year
         })
         .attr('height', function (d) {
@@ -77,44 +80,39 @@ function showOtherCountryPersons() {
             return d.size;
         })
         .style("fill", function (d) {
-            return colorScale(d.year % 2011) 
+            return colorScale(d.year % 2011)
         })
-        // .style("fill", function (d) {
-        //     return "red";
-        // })
 
     units = units.merge(unitsEnter);
 
     units
-        .transition()
-        .duration(1000)
-        .attr('x', function (d, i) {
-            return ((i) % blockCols) * size;
-        }) 
-        .attr('y', function (d, i) {
-            return height - (Math.floor((( i) / blockCols)) * size);
-        })
-
-}
-
-
-function splitResettled() {
-    d3.selectAll("rect")
         .attr("class", function (d, i) {
             if (i < 2154)
                 return "resettled";
             else
                 return "not_resettled"
         })
-
-    d3.selectAll(".not_resettled")
         .transition()
-        .duration(1000)        
+        .duration(1000)
         .attr('x', function (d, i) {
-            return (i % blockCols) * size;
+            return ((i) % blockCols) * size;
         })
         .attr('y', function (d, i) {
-            return height - (Math.floor((i / blockCols)) * size) - 400;
+            return height - (Math.floor(((i) / blockCols)) * size);
+        })
+
+}
+
+
+function splitResettled() {
+    d3.selectAll(".not_resettled")
+        .transition()
+        .duration(1000)
+        .attr('x', function (d, i) {
+            return ((2154 + i) % blockCols) * size;
+        })
+        .attr('y', function (d, i) {
+            return height - (Math.floor(((2154 + i) / blockCols)) * size) - 400;
         })
 
     d3.selectAll(".resettled")
