@@ -1,11 +1,14 @@
 var blockCols;
 var otherCountryPersons;
 function showBlock() {
-    //TODO: hide axis
     blockCols = Math.ceil(Math.sqrt(persons.length));
-  
+
     otherCountryPersons = [];
-    var otherCountryData = allCountriesData.splice(20, allCountriesData.length);
+    console.log("all countries: ", allCountriesData);
+
+    var otherCountryData = [];
+    Object.assign(otherCountryData, allCountriesData);
+    otherCountryData = otherCountryData.splice(20, allCountriesData.length);
     console.log(otherCountryData);
 
     var otherPersonCount = 0
@@ -32,11 +35,15 @@ function showBlock() {
     console.log(otherCountryPersons);
     console.log(otherPersonCount);
 
-    d3.selectAll("rect")
+    var units = svg
+        .selectAll('rect')
+        .data(persons)
+
+    units.exit().remove();
+
+    units
         .transition()
-        //.delay((d, i) => 10 * i)
         .duration(1000)
-        //.ease(d3.easeElastic)
         .attr('x', function (d, i) {
             return (i % blockCols) * size;
         })
@@ -47,55 +54,76 @@ function showBlock() {
 }
 
 function showOtherCountryPersons() {
+    var personsCopy = [];
+    Object.assign(personsCopy, persons);
+    personsCopy = personsCopy.concat(otherCountryPersons);
+
     var units = svg
-        .selectAll('other')
-        .data(otherCountryPersons)
+        .selectAll('rect')
+        .data(personsCopy)
+
+    units.exit().remove();
+
+    var unitsEnter = units
         .enter()
         .append('rect')
-        .attr('class', 'other')
+        .attr('class', function(d,i){
+            'year' + d.year
+        })
         .attr('height', function (d) {
             return d.size;
         })
         .attr('width', function (d) {
             return d.size;
         })
-        .attr('x', function (d, i) {
-            return ((persons.length +i) % blockCols) * size;
-        })
-        .attr('y', function (d, i) {
-            return height - (Math.floor(((persons.length +i) / blockCols)) * size) - 100 ;
-        })
         .style("fill", function (d) {
-            return "red";
-            //return colorScale(d.year % 2011)
+            return colorScale(d.year % 2011) 
         })
+        // .style("fill", function (d) {
+        //     return "red";
+        // })
+
+    units = units.merge(unitsEnter);
+
+    units
         .transition()
-        .delay((d, i) => 10 * i)
         .duration(1000)
-        //.ease(d3.easeLinear)
-        
+        .attr('x', function (d, i) {
+            return ((i) % blockCols) * size;
+        }) 
         .attr('y', function (d, i) {
-            return height - (Math.floor(((persons.length +i) / blockCols)) * size) ;
+            return height - (Math.floor((( i) / blockCols)) * size);
         })
-       //splitResettled();
+
 }
 
 
-function splitResettled(){
+function splitResettled() {
     d3.selectAll("rect")
-    .attr("class", function(d,i){
-        if(i < 2227)
-            return "resettled";
-    })
-    console.log(d3.selectAll(".resettled"));
+        .attr("class", function (d, i) {
+            if (i < 2154)
+                return "resettled";
+            else
+                return "not_resettled"
+        })
 
-    var cols = 50;
+    d3.selectAll(".not_resettled")
+        .transition()
+        .duration(1000)        
+        .attr('x', function (d, i) {
+            return (i % blockCols) * size;
+        })
+        .attr('y', function (d, i) {
+            return height - (Math.floor((i / blockCols)) * size) - 400;
+        })
 
     d3.selectAll(".resettled")
-        .attr("x", function(d,i){
-            return (i % cols) * size + 500;
+        .transition()
+        .duration(1000)
+        .attr('x', function (d, i) {
+            return (i % blockCols) * size;
         })
-        .attr("y", function(d,i){
-            return height - (Math.floor((i / cols)) * size);
+        .attr('y', function (d, i) {
+            return height - (Math.floor((i / blockCols)) * size) - 200;
         })
 }
