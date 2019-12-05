@@ -226,6 +226,7 @@ function createUnitVis(currYear) {
 }
 
 function dummyfunction() {
+    svg.select('.sparklineVis').select('.xAxisSparkline').remove()
     svg.selectAll('.resettlementaxis').remove()
     svg.selectAll('.xaxis').remove()
     svg.selectAll('rect').remove()

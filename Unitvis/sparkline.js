@@ -1,7 +1,9 @@
 var chartG;
 var yearTotal;
-var xScale;
 var yScale;
+var chartWidth
+var chartHeight
+var xScaleSparkline
 var parseDate = d3.timeParse('%Y');
 var g = 0;
 function createSparkline(){
@@ -16,43 +18,46 @@ function createSparkline(){
             return {year:leaves[0]["Year"],totalAsylumSeekers: total};
         })
         .entries(data);
-    var chartWidth = width/3
-    var chartHeight = height/3
-    var positionX = width/1.5
-    var positionY = 50
+    chartWidth = width/3
+    chartHeight = height/3
+    positionX = width/1.5
+    positionY = 50
 
-    xScale = d3.scaleTime()
+    xScaleSparkline = d3.scaleTime()
         .domain([parseDate(2011),parseDate(2018)])
         .range([0, chartWidth]);
 
-    yScale = d3.scaleLinear()        
+    yScaleSparkline = d3.scaleLinear()        
         .domain([0,d3.max(yearTotal,function(d){
             return +(d.value.totalAsylumSeekers);
         })])
-        .range([chartHeight,0]);
-
-    var xAxis = d3.axisBottom()
-        .scale(xScale)
+        .range([chartHeight,0]); 
 
 
     chartG = d3.select('svg')
         .append('g')
-        .attr('transform', 'translate('+[positionX,positionY]+')'); 
-
-    chartG
-    .append('g')
-    .attr('transform', 'translate(0,' + (+chartHeight) + ')')
-        .call(xAxis)   
-
+        .attr('transform', 'translate('+[positionX,positionY]+')')
+        .attr('class','sparklineVis')
 }
 
 function buildSparkline(year){
+    chartG.selectAll('.xAxisSparkline').remove()
+
+    var xAxisSparkline = d3.axisBottom()
+        .scale(xScaleSparkline)
+
+    chartG
+        .append('g')
+        .attr('transform', 'translate(0,' + (+chartHeight) + ')')
+        .call(xAxisSparkline)
+        .attr('class','xAxisSparkline')
+
     var currYearTotal = yearTotal.filter(function(d){
         return d.key <= year;
     })
     var lineInterpolate = d3.line()
-        .x(function(d) {return xScale(parseDate(d.value.year)); })
-        .y(function(d) {return yScale(d.value.totalAsylumSeekers); })
+        .x(function(d) {return xScaleSparkline(parseDate(d.value.year)); })
+        .y(function(d) {return yScaleSparkline(d.value.totalAsylumSeekers); })
 
     var line = chartG
     .selectAll('.line-plot')    
@@ -107,10 +112,10 @@ function createSparklineCircles(currYearTotal){
 
     circleEnter.merge(circle)
     .attr('cx',function(d){
-        return xScale(d.value.year);
+        return xScaleSparkline(d.value.year);
     })
     .attr('cy',function(d){
-        return yScale(d.value.totalAsylumSeekers);
+        return yScaleSparkline(d.value.totalAsylumSeekers);
     })
     .attr('r',"5px")
     .style("fill", "none")
