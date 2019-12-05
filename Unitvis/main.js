@@ -13,7 +13,7 @@ var persons
 var ratio
 var numOfCountries = 20;
 var unitsEnter
-
+var data
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -22,7 +22,8 @@ var svg = d3.select("body").append("svg")
         "translate(" + margin.left + "," + margin.top + ")");
 
 
-d3.csv("asylum.csv", function (data) {
+d3.csv("asylum.csv", function (dataSet) {
+    data = dataSet;
     console.log(data);
     var yearData = d3.nest()
         .key(function (d) {
@@ -120,7 +121,7 @@ d3.csv("asylum.csv", function (data) {
     for(y = 2011; y<=2018; y++){
         createUnitVis(y);
     }
-    
+    createSparkline();
 
 })
 
