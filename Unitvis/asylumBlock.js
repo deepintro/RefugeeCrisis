@@ -54,12 +54,9 @@ function showBlock() {
 }
 
 function showOtherCountryPersons() {
-    console.log("+ other countries")
     var personsCopy = [];
     Object.assign(personsCopy, persons);
     personsCopy = personsCopy.concat(otherCountryPersons);
-
-    console.log(personsCopy);
 
     var units = svg
         .selectAll('rect')
@@ -79,13 +76,14 @@ function showOtherCountryPersons() {
         .attr('width', function (d) {
             return d.size;
         })
-        .style("fill", function (d) {
-            return colorScale(d.year % 2011)
-        })
+
 
     units = units.merge(unitsEnter);
 
     units
+        .style("fill", function (d) {
+            return colorScale(d.year % 2011)
+        })
         .attr("class", function (d, i) {
             if (i < 2154)
                 return "resettled";
@@ -102,7 +100,48 @@ function showOtherCountryPersons() {
         })
 
 }
+//show same color for all asylum seeksers
+function changeColor() {
 
+    var personsCopy = [];
+    Object.assign(personsCopy, persons);
+    personsCopy = personsCopy.concat(otherCountryPersons);
+
+    var units = svg
+        .selectAll('rect')
+        .data(personsCopy)
+
+    units.exit().remove();
+
+    var unitsEnter = units
+        .enter()
+        .append('rect')
+        .attr('class', function (d, i) {
+            'year' + d.year
+        })
+        .attr('height', function (d) {
+            return d.size;
+        })
+        .attr('width', function (d) {
+            return d.size;
+        })
+
+
+    units = units.merge(unitsEnter);
+
+    units
+        .style("fill", "red")
+        .transition()
+        .duration(1000)
+        .attr('x', function (d, i) {
+            return ((i) % blockCols) * size;
+        })
+        .attr('y', function (d, i) {
+            return height - (Math.floor(((i) / blockCols)) * size);
+        })
+
+
+}
 
 function splitResettled() {
     d3.selectAll(".not_resettled")
@@ -112,8 +151,9 @@ function splitResettled() {
             return ((2154 + i) % blockCols) * size;
         })
         .attr('y', function (d, i) {
-            return height - (Math.floor(((2154 + i) / blockCols)) * size) - 400;
+            return height - (Math.floor(((2154 + i) / blockCols)) * size) - 250;
         })
+        
 
     d3.selectAll(".resettled")
         .transition()
@@ -124,4 +164,5 @@ function splitResettled() {
         .attr('y', function (d, i) {
             return height - (Math.floor((i / blockCols)) * size) - 200;
         })
+        .style("fill", "green")
 }

@@ -136,8 +136,9 @@ d3.csv("asylum.csv", function (data) {
     new scroll('div8', '75%', scrollYear2018, scrollYear2017);
     new scroll('div9', '75%', showBlock, scrollYear2018);
     new scroll ('div10', '75%', showOtherCountryPersons,showBlock);
-    new scroll ('div11', '75%', splitResettled,showOtherCountryPersons);
-    new scroll ('div12', '75%', resettlementVis,splitResettled);
+    new scroll ('div11', '75%', changeColor,showOtherCountryPersons);
+    new scroll ('div12', '75%', splitResettled,changeColor);
+    new scroll ('div13', '75%', resettlementVis,splitResettled);
     
 
 
@@ -183,6 +184,9 @@ function createUnitVis(currYear) {
         })
         .attr('y', function (d) {
             return d.ypos - size;
+        })
+        .style("fill", function (d) {
+            return colorScale(d.year % 2011) 
         })
         
     units
