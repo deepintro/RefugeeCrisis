@@ -20,11 +20,10 @@
 //     .append("g")
 //     .attr("transform",
 //         "translate(" + margin.left + "," + margin.top + ")");
-var rpersons =[];
-function resettlementVis()
-{
+var rpersons = [];
+function resettlementVis() {
     d3.csv("resettlementdata.csv", function (data) {
-        console.log("==============>>>>>>>>>>>",data);
+
         var yearData = d3.nest()
             .key(function (d) {
                 return d["Country of Resettlement (ISO)"];
@@ -34,7 +33,6 @@ function resettlementVis()
             })
             .entries(data)
             .map(function (d) {
-                console.log("ddddddddd",d)
                 var years = {};
                 var total = 0;
                 years = { 2011: 0, 2012: 0, 2013: 0, 2014: 0, 2015: 0, 2016: 0, 2017: 0, 2018: 0 }
@@ -42,14 +40,14 @@ function resettlementVis()
                     years[y.key] = +y.values[0]['Total submissions (persons)'];
                     total += +y.values[0]['Total submissions (persons)'];
                 })
-                return { 'country': d.key, 'years': years, 'total': total, 'name' :  d.values[0].values[0]['Country of Resettlement']};
+                return { 'country': d.key, 'years': years, 'total': total, 'name': d.values[0].values[0]['Country of Resettlement'] };
             })
-        console.log("----------->>>>>>>>>",yearData);
+
         yearData.sort(function (a, b) {
             return b.total - a.total;
         })
         yearData = yearData.splice(0, numOfCountries);
-        console.log("*********",yearData)
+
 
         var countries = yearData.map(function (d) { return d.name })
 
@@ -81,8 +79,6 @@ function resettlementVis()
 
         //cumulative
         yearData.forEach((c, idx) => {
-            //console.log(c,idx)
-            //console.log("prevyear ------ ", prevEnd)
             var total = Math.round(c.total / ratio);
             var xStart = xScale(c.name) + barMargin;
 
@@ -91,89 +87,44 @@ function resettlementVis()
                     size: size,
                     x: (i % cols) * size + xStart,
                     y: height - (Math.floor((i / cols)) * size),
-                    // color: colorScale(idx),
-                    // year: getYear(i, cumulative),
+
                     country: c.name
                 }
 
             })
-            // console.log("nodes ",nodes)
-            // prevEnd = prevEnd + ((Math.floor(total/rows) + 3) * size)
+
             rpersons = rpersons.concat(resettlementNodes);
 
         })
-        console.log("persons",rpersons);
 
+        createResettlementViz(2018);
 
-        
-
-        //for(y = 2011; y<=2018; y++){
-            createUnitVis11(2018);
-        //}    
     })
 }
 
 
-function createUnitVis11(currYear) {
-    console.log("bla bla bla")
-    // if(currYear > 2018)
-    //     return;
-    // var curr_YearPersons = rpersons.filter(p => {
-    //     if (p.year == currYear)
-    //         return true;
-    // })
-
-
-    nr = svg.selectAll('.not_resettled')
-    console.log("--------------------",nr)
-
-    nr.remove()
-
-    units2 = svg.selectAll('.resettled')   
-    console.log(rpersons.length) 
-    console.log("=====================",units2)   
-        units2
-        .attr('width', function (d,i) {
+function createResettlementViz() {
+    units2 = svg.selectAll('.resettled')
+    units2
+        .transition()
+        .duration(2000)
+        .attr('width', function (d, i) {
             return size
         })
-        .attr('height', function (d,i) {
+        .attr('height', function (d, i) {
             return size
         })
-        .attr('x', function (d,i) {
-            if(i==0){
-                console.log(i)
-                console.log(rpersons[i])
-            }
-            
+        .attr('x', function (d, i) {
+
             return rpersons[i].x;
         })
-        .attr('y', function (d,i) {
-            if(i==0){
-                console.log(i)
-                console.log(rpersons[i])
-            }
-            return rpersons[i].y-size;
+        .attr('y', function (d, i) {
+
+            return rpersons[i].y - size;
         })
         .style("fill", function (d) {
-            //return "white"
             return "red"
         })
-
-        
-        
-
-    units2
-    .on("mouseover", function(d){
-        var className = d3.select(this).attr("class");
-        d3.selectAll('.' + className)
-            .style('fill', 'red');
-        
-    })
-    .on("mouseout", function(d){
-        var className = d3.select(this).attr("class");
-        d3.selectAll('.' + className)
-            .style('fill', 'red');
-    })
 
 }
 

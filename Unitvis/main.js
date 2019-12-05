@@ -1,4 +1,4 @@
-var margin = { top: 20, right: 50, bottom: 150, left: 50 },
+var margin = { top: 20, right: 50, bottom: 200, left: 50 },
     width = window.innerWidth - margin.left - margin.right,
     height = window.innerHeight - margin.top - margin.bottom;
 
@@ -26,7 +26,7 @@ var svg = d3.select(".fixed").append("svg")
 
 d3.csv("asylum.csv", function (data) {
     console.log(data);
-    var yearData = d3.nest()
+    allCountriesData = d3.nest()
         .key(function (d) {
             return d["Country of Asylum"];
         })
@@ -45,12 +45,14 @@ d3.csv("asylum.csv", function (data) {
             return { 'country': d.key, 'years': years, 'total': total };
         })
 
-    console.log(yearData);
-    yearData.sort(function (a, b) {
+    console.log(allCountriesData);
+    allCountriesData.sort(function (a, b) {
         return b.total - a.total;
     })
-    allCountriesData = yearData;
+    var yearData = [];
+    Object.assign(yearData, allCountriesData);
     yearData = yearData.splice(0, numOfCountries);
+    console.log(allCountriesData);
 
     var countries = yearData.map(function (d) { return d.country })
 
@@ -103,8 +105,8 @@ d3.csv("asylum.csv", function (data) {
         var nodes = d3.range(total).map(function (d, i) {
             return {
                 size: size,
-                x: (i % cols) * size + xStart,
-                y: height - (Math.floor((i / cols)) * size),
+                xpos: (i % cols) * size + xStart,
+                ypos: height - (Math.floor((i / cols)) * size),
                 color: colorScale(idx),
                 year: getYear(i, cumulative),
                 country: c.country
@@ -146,69 +148,55 @@ function createUnitVis(currYear) {
     if(currYear > 2018)
         return;
     var currYearPersons = persons.filter(p => {
-        if (p.year == currYear)
+        if (p.year <= currYear)
             return true;
     })
 
-
     var units = svg
-        .selectAll('.year' + currYear)
+        .selectAll('rect')
         .data(currYearPersons)
 
+    units.exit().remove();
+
+    var unitsEnter = units
         .enter()
         .append('rect')
-        .attr('class','year' + currYear)
+        .attr('class', function(d,i){
+            'year' + d.year
+        })
         .attr('height', function (d) {
             return d.size;
         })
         .attr('width', function (d) {
             return d.size;
         })
-        .attr('x', function (d) {
-            return d.x;
-        })
-        .attr('y', function (d) {
-            return d.y - size;
-        })
-        // .attr('y', function (d) {
-        //     return 0;
-        // })
         .style("fill", function (d) {
-            //return "white"
             return colorScale(d.year % 2011) 
         })
 
-        //.merge(units)
-        // .attr('x', function (d) {
-        //     return d.x;
-        // })
-        // .attr('y', function (d) {
-        //     return d.y - size;
-        // })
+    units = units.merge(unitsEnter);
+
+    units.transition()
+        .duration(1000)
+        .attr('x', function (d,i) {
+            return d.xpos;
+        })
+        .attr('y', function (d) {
+            return d.ypos - size;
+        })
         
-    // units.transition()
-    //     .duration(500)
-        // .style("fill", function (d) { return colorScale(d.year % 2011) })
-        // .delay(function (d, i) {
-        //     return i * 10;
-        //     //return (d.year%2011)*2000;
-        // })      
-
-
-    //units.exit().remove();
-
     units
-    .on("mouseover", function(d){
-        var className = d3.select(this).attr("class");
-        d3.selectAll('.' + className)
-            .style('fill', 'black');
-        
-    })
-    .on("mouseout", function(d){
-        var className = d3.select(this).attr("class");
-        d3.selectAll('.' + className)
-            .style('fill', function (d) { return colorScale(d.year % 2011) });
-    })
+        .on("mouseover", function(d){
+            var className = d3.select(this).attr("class");
+            d3.selectAll('.' + className)
+                .style('fill', 'black');
+            
+        })
+        .on("mouseout", function(d){
+            var className = d3.select(this).attr("class");
+            d3.selectAll('.' + className)
+                .style('fill', function (d) { return colorScale(d.year % 2011) });
+        })
 
 }
 
