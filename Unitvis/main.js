@@ -115,13 +115,11 @@ d3.csv("asylum.csv", function (dataSet) {
 
     })
 
-
+    createSparkline();
     persons.sort(function (a, b) {
         return a.year - b.year;
     })
     console.log(persons.length);
-
-    createSparkline();
     // for(y = 2011; y<=2018; y++){
     //     createUnitVis(y);
     // }
@@ -237,27 +235,35 @@ function scroll(n, offset, func1, func2){
 
 function scrollYear2011(){
     createUnitVis(2011);
+    buildSparkline(2011);
 }
 function scrollYear2012(){
     createUnitVis(2012);
+    buildSparkline(2012);
 }
 function scrollYear2013(){
     createUnitVis(2013);
+    buildSparkline(2013);
 }
 function scrollYear2014(){
     createUnitVis(2014);
+    buildSparkline(2014);
 }
 function scrollYear2015(){
     createUnitVis(2015);
+    buildSparkline(2015);
 }
 function scrollYear2016(){
     createUnitVis(2016);
+    buildSparkline(2016);
 }
 function scrollYear2017(){
     createUnitVis(2017);
+    buildSparkline(2017);
 }
 function scrollYear2018(){
     createUnitVis(2018);
+    buildSparkline(2018);
 }
 
 
