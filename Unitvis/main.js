@@ -1,6 +1,6 @@
 var margin = { top: 20, right: 50, bottom: 150, left: 50 },
-    width = 1500 - margin.left - margin.right,
-    height = 2000 - margin.top - margin.bottom;
+    width = window.innerWidth - margin.left - margin.right,
+    height = window.innerHeight - margin.top - margin.bottom;
 
 var xScale = d3.scaleBand().range([0, width]);
 var yScale = d3.scaleLinear().range([height, 0]);
@@ -11,10 +11,12 @@ var bandwidth
 var size
 var persons
 var ratio
-var numOfCountries = 20;
-var unitsEnter
-var data
-var svg = d3.select("body").append("svg")
+var numOfCountries = 15;
+var unitsEnter;
+var allCountriesData;
+
+
+var svg = d3.select(".fixed").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
@@ -48,6 +50,7 @@ d3.csv("asylum.csv", function (dataSet) {
     yearData.sort(function (a, b) {
         return b.total - a.total;
     })
+    allCountriesData = yearData;
     yearData = yearData.splice(0, numOfCountries);
 
     var countries = yearData.map(function (d) { return d.country })
@@ -79,7 +82,7 @@ d3.csv("asylum.csv", function (dataSet) {
 
     var year = 2011;
 
-    cols = 12;
+    cols = 24;
     barMargin = 5;
     bandwidth = xScale.bandwidth() - (2 * barMargin);
     size = bandwidth / cols;
@@ -118,10 +121,22 @@ d3.csv("asylum.csv", function (dataSet) {
     })
     console.log(persons.length);
 
-    for(y = 2011; y<=2018; y++){
-        createUnitVis(y);
-    }
     createSparkline();
+    // for(y = 2011; y<=2018; y++){
+    //     createUnitVis(y);
+    // }
+    scrollYear2011();
+    new scroll('div2', '75%', scrollYear2012, scrollYear2011);
+    new scroll('div3', '75%', scrollYear2013, scrollYear2012);
+    new scroll('div4', '75%', scrollYear2014, scrollYear2013);
+    new scroll('div5', '75%', scrollYear2015, scrollYear2014);
+    new scroll('div6', '75%', scrollYear2016, scrollYear2015);
+    new scroll('div7', '75%', scrollYear2017, scrollYear2016);
+    new scroll('div8', '75%', scrollYear2018, scrollYear2017);
+    new scroll('div9', '75%', showBlock, scrollYear2018);
+    new scroll ('div10', '75%', showOtherCountryPersons,showBlock);
+    new scroll ('div11', '75%', splitResettled,showOtherCountryPersons);
+
 
 })
 
@@ -152,29 +167,31 @@ function createUnitVis(currYear) {
             return d.x;
         })
         .attr('y', function (d) {
-            return 0;
+            return d.y - size;
         })
+        // .attr('y', function (d) {
+        //     return 0;
+        // })
         .style("fill", function (d) {
-            return "white"
-            //return colorScale(d.year % 2011) 
+            //return "white"
+            return colorScale(d.year % 2011) 
         })
 
         //.merge(units)
-        .attr('x', function (d) {
-            return d.x;
-        })
-        .attr('y', function (d) {
-            return d.y - size;
-        })
+        // .attr('x', function (d) {
+        //     return d.x;
+        // })
+        // .attr('y', function (d) {
+        //     return d.y - size;
+        // })
         
-    units.transition()
-        .duration(500)
-        .style("fill", function (d) { return colorScale(d.year % 2011) })
+    // units.transition()
+    //     .duration(500)
+        // .style("fill", function (d) { return colorScale(d.year % 2011) })
         // .delay(function (d, i) {
         //     return i * 10;
         //     //return (d.year%2011)*2000;
-        // })
-        
+        // })      
 
 
     //units.exit().remove();
@@ -203,6 +220,47 @@ function getYear(node, cumulative) {
     }
     return 0;
 }
+
+
+//waypoints scroll constructor
+function scroll(n, offset, func1, func2){
+    return new Waypoint({
+      element: document.getElementById(n),
+      handler: function(direction) {
+         direction == 'down' ? func1() : func2();
+      },
+      //start 75% from the top of the div
+      offset: offset
+    });
+  };
+
+
+function scrollYear2011(){
+    createUnitVis(2011);
+}
+function scrollYear2012(){
+    createUnitVis(2012);
+}
+function scrollYear2013(){
+    createUnitVis(2013);
+}
+function scrollYear2014(){
+    createUnitVis(2014);
+}
+function scrollYear2015(){
+    createUnitVis(2015);
+}
+function scrollYear2016(){
+    createUnitVis(2016);
+}
+function scrollYear2017(){
+    createUnitVis(2017);
+}
+function scrollYear2018(){
+    createUnitVis(2018);
+}
+
+
 
 
 
