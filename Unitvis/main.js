@@ -132,6 +132,7 @@ d3.csv("asylum.csv", function (data) {
     new scroll('div7', '75%', scrollYear2017, scrollYear2016);
     new scroll('div8', '75%', scrollYear2018, scrollYear2017);
     new scroll('div9', '75%', showBlock, scrollYear2018);
+    new scroll ('div10', '75%', showOtherCountryPersons,showBlock);
 
 })
 
