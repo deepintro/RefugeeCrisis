@@ -3,96 +3,7 @@ var xStart
 var pixelCols
 var yStart
 
-function showPixelPersonRatio() {
-    initialSize = 20;
-    xStart = 100;
-    pixelCols = Math.sqrt(ratio)
-    yStart = height / 2 - (initialSize * pixelCols / 2);
-
-    var pixels = d3.range(0, ratio);
-    console.log(pixels);
-
-    var images = svg.selectAll('.personImg')
-        .data(pixels)
-
-    images
-        .enter()
-        .append("svg:image")
-
-        .attr("xlink:href", function (d) { return "./person.png" })
-        .attr("class", "personImg")
-        .attr('x', function (d, i) {
-            return (i % pixelCols) * initialSize + xStart
-        })
-        .attr('y', function (d, i) {
-            return (Math.floor((i / pixelCols)) * initialSize) + yStart
-        })
-        .attr("height", 15)
-        .attr("width", 15);
-    // var pixelRects = svg.selectAll('rect')
-    //     .data(pixels)
-
-
-    // pixelRects.enter()
-    //     .append('rect')
-    //     .attr('class', 'pixel')
-
-    //     //show 100 huge pixels 
-    //     .transition()
-    //     .duration(1000)
-    //     .attr('height', initialSize)
-    //     .attr('width', initialSize)
-    //     .attr('x', function (d, i) {
-    //         return (i % pixelCols) * initialSize + xStart
-    //     })
-    //     .attr('y', function (d, i) {
-    //         return (Math.floor((i / pixelCols)) * initialSize) + yStart
-    //     })
-    //     .style('fill', 'red')
-    //     .style("stroke-width", "1px")
-
-    //     //shrink to actual size
-    //     .transition()
-    //     .delay(5000)
-    //     .duration(1000)
-    //     .attr('height', size)
-    //     .attr('width', size)
-    //     .attr('x', function (d, i) {
-    //         return (i % pixelCols) * size + xStart
-    //     })
-    //     .attr('y', function (d, i) {
-    //         return (Math.floor((i / pixelCols)) * size) + yStart
-    //     })
-    //     .style('fill', 'red')
-    //     .style("stroke-width", "0.5px")
-
-    //show as 1 pixel 
-    // .transition()
-    // .delay(5000)
-    // .duration(1000)
-    // .ease(d3.easeLinear)
-    // .style("stroke", "none")
-    // .style("stroke-width", "0px")
-
-}
-
-function showPixelGroup() {
-    d3.selectAll('.pixel').remove()
-
-    svg.append('rect')
-        .attr('height', size * 10)
-        .attr('width', size * 10)
-        .attr('x', function (d, i) {
-            return xStart
-        })
-        .attr('y', function (d, i) {
-            return yStart
-        })
-        .style('fill', 'red')
-        .style("stroke-width", "0.5px")
-}
-
-
+//step 1
 function showPerson() {
     d3.selectAll('.personImg').remove();
     d3.selectAll('.equals').remove();
@@ -116,8 +27,9 @@ function showPerson() {
 
 }
 
+//step 2
 function show100Persons() {
-    d3.selectAll('.personImg').remove();
+    //d3.selectAll('.personImg').remove();
     d3.selectAll('.equals').remove();
     d3.selectAll('.pixel').remove();
 
@@ -151,10 +63,18 @@ function show100Persons() {
             return (Math.floor((i / pixelCols)) * initialSize) + yStart
         })
         .attr("height", initialSize - 5)
-        .attr("width", initialSize - 5);
+        .attr("width", initialSize - 5)
+
 }
 
+
+//step 3
 function shift100Persons() {
+    initialSize = 25;
+    xStart = 100;
+    pixelCols = Math.sqrt(ratio)
+    yStart = height / 2 - (initialSize * pixelCols / 2);
+    var pixelHeight = 15;
     var personData = d3.range(0, ratio);
 
     var images = svg.selectAll('.personImg')
@@ -165,12 +85,33 @@ function shift100Persons() {
         .enter()
         .append("svg:image")
 
-    images = images.merge(imagesEnter)
+    images = images.merge(imagesEnter)       
+        .attr("xlink:href", function (d) { return "./person.png" })
+        .attr("class", "personImg")
+        .attr('y', function (d, i) {
+            return (Math.floor((i / pixelCols)) * initialSize) + yStart
+        })
+        .attr("height", initialSize - 5)
+        .attr("width", initialSize - 5)
+
         .transition()
         .duration(1000)
         .attr('x', function (d, i) {
             return (i % pixelCols) * initialSize + xStart + 100;
         })
+
+        .transition()
+        .duration(1000)
+        .delay(1000)
+        .attr('x', function (d, i) {
+            return 100;
+        })
+        .attr('y', function (d, i) {
+            return (height / 2) - (pixelHeight / 2)
+        })
+        .attr("height", 0)
+        .attr("width", 0)
+        .remove()
 
 
     var pixelData = [1];
@@ -182,10 +123,13 @@ function shift100Persons() {
     var pixelEnter = pixel.enter()
         .append("rect")
 
-    var pixelHeight = 15;
+    
     pixel = pixel.merge(pixelEnter)
         .attr("class", "pixel")
-        .style("fill", "black")
+        .style("fill", "white")
+        .attr('x', 0)
+        .attr('y', (height / 2) - (pixelHeight / 2))
+
         .transition()
         .duration(1000)
         .delay(1000)
@@ -195,22 +139,29 @@ function shift100Persons() {
         .attr('y', (height / 2) - (pixelHeight / 2))
 
 
-    var equals = svg.append('text')
-        .attr('class', 'equals')
-        .text("=")
-        .style("font-size", "15px")
-        .attr("transform", "translate(150," + +height / 2 + ")")
-
-
 }
 
+//step 4
 function hide100Persons() {
+    //remove extra stuff in case scroll back occurs
+    d3.select('.xAxisSparkline').remove()
+    svg.selectAll('.resettlementaxis').remove()
+    svg.selectAll('.xaxis').remove()
+    svg.selectAll('.dataPixel').remove()
+
+
     initialSize = 15;
-    xStart = 100;    
+    xStart = 100;
     yStart = height / 2 - (initialSize * pixelCols / 2);
 
-    d3.selectAll('.personImg').remove();
-    d3.selectAll('.equals').remove();
+    d3.selectAll('.personImg')
+        .transition()
+        .duration(1000)
+        .remove();
+    d3.selectAll('.equals')
+        .transition()
+        .duration(1000)
+        .remove();
 
     var pixelData = d3.range(0, 140);
     pixelCols = 10;
@@ -225,10 +176,10 @@ function hide100Persons() {
     var pixelHeight = 20;
     pixel = pixel.merge(pixelEnter)
         .attr("class", "pixel")
-        .style("fill", "black")
+        .style("fill", "white")
         .transition()
         .duration(1000)
-        .delay(1000)
+        .delay(2000)
         .attr("height", pixelHeight)
         .attr("width", pixelHeight)
         .attr('x', function (d, i) {

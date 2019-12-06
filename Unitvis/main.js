@@ -4,8 +4,10 @@ var margin = { top: 20, right: 50, bottom: 200, left: 50 },
 
 var xScale = d3.scaleBand().range([0, width]);
 var yScale = d3.scaleLinear().range([height, 0]);
-var colorScale = d3.scaleOrdinal(d3.schemeCategory20c);
-var cols
+var colorScale = d3.scaleOrdinal()
+    .domain([0,1,2,3,4,5,6,7])
+    .range(['#ffffcc','#ffeda0','#fed976','#feb24c','#fd8d3c','#fc4e2a','#e31a1c','#b10026'])
+
 var barMargin
 var bandwidth
 var size
@@ -24,7 +26,8 @@ var svg = d3.select(".fixed").append("svg")
         "translate(" + margin.left + "," + margin.top + ")");
 
 
-d3.csv("asylum.csv", function (data) {
+d3.csv("asylum.csv", function (dataSet) {
+    data = dataSet;
     console.log(data);
     allCountriesData = d3.nest()
         .key(function (d) {
@@ -100,7 +103,7 @@ d3.csv("asylum.csv", function (data) {
 
     })
 
-
+    createSparkline();
     persons.sort(function (a, b) {
         return a.year - b.year;
     })
@@ -124,9 +127,8 @@ d3.csv("asylum.csv", function (data) {
     new scroll('div10', '75%', showOtherCountryPersons, showBlock);
     new scroll('div11', '75%', changeColor, showOtherCountryPersons);
     new scroll('div12', '75%', splitResettled, changeColor);
-    new scroll('div13', '75%', resettlementVis, splitResettled);
-
-
+    new scroll('div13', '75%', createOriginDropDown, splitResettled);
+    new scroll('div14', '75%', createOriginDestDropDown, createOriginDropDown);
 
 })
 
@@ -145,11 +147,11 @@ function createUnitVis(currYear) {
         .call(xAxis)
         .attr('class', 'xaxis')
         .selectAll("text")
-        .style("text-anchor", "end")
-        .attr("dx", "-.8em")
+        //.style("text-anchor", "end")
+        .attr("dx", "-.5em")
         .attr("dy", ".15em")
-        .attr("transform", "rotate(-65)")
-        .style("font-size", "10px");
+        // .attr("transform", "rotate(-65)")
+        // .style("font-size", "10px");
 
 
     if (currYear > 2018)
@@ -178,7 +180,7 @@ function createUnitVis(currYear) {
 
     units
         .attr('class', function (d, i) {
-            return ('year' + d.year);
+            return ('dataPixel year' + d.year);
         })
         .transition()
         .duration(1000)
@@ -216,6 +218,8 @@ function createUnitVis(currYear) {
 }
 
 function dummyfunction() {
+    d3.select('.personImg').remove()
+    d3.select('.xAxisSparkline').remove()
     svg.selectAll('.resettlementaxis').remove()
     svg.selectAll('.xaxis').remove()
     svg.selectAll('rect').remove()
@@ -247,27 +251,35 @@ function scroll(n, offset, func1, func2) {
 
 function scrollYear2011() {
     createUnitVis(2011);
+    buildSparkline(2011);
 }
 function scrollYear2012() {
     createUnitVis(2012);
+    buildSparkline(2012);
 }
 function scrollYear2013() {
     createUnitVis(2013);
+    buildSparkline(2013);
 }
 function scrollYear2014() {
     createUnitVis(2014);
+    buildSparkline(2014);
 }
 function scrollYear2015() {
     createUnitVis(2015);
+    buildSparkline(2015);
 }
 function scrollYear2016() {
     createUnitVis(2016);
+    buildSparkline(2016);
 }
 function scrollYear2017() {
     createUnitVis(2017);
+    buildSparkline(2017);
 }
 function scrollYear2018() {
     createUnitVis(2018);
+    buildSparkline(2018);
 }
 
 
