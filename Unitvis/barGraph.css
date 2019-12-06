@@ -72,3 +72,7 @@ html,
   .line-plot{
     opacity:1;
   }
+  .scrollyText
+  {
+    font-size: 17px;
+  }
