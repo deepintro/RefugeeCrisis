@@ -143,8 +143,9 @@ d3.csv("asylum.csv", function (dataSet) {
     new scroll('div10', '75%', showOtherCountryPersons, showBlock);
     new scroll('div11', '75%', changeColor, showOtherCountryPersons);
     new scroll('div12', '75%', splitResettled, changeColor);
-    new scroll('div13', '75%', createOriginCountryViz, splitResettled);
-    new scroll('div14', '75%', createTimeLine, createOriginCountryViz);
+    new scroll('div13', '75%', createOriginDropDown, splitResettled);
+    new scroll('div14', '75%', createOriginDestDropDown, createOriginDropDown);
+
 })
 
 
