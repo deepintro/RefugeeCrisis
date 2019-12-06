@@ -73,12 +73,12 @@ function buildSparkline(year){
     .enter()
     .append("path")
 
-    console.log("Nodes")
+    //console.log("Nodes")
 
     var mergedLine = lineEnter.merge(line)
     len = mergedLine.node().getTotalLength()
     g = len;
-    console.log(len)
+    //console.log(len)
 
     mergedLine
     .attr('d', lineInterpolate)

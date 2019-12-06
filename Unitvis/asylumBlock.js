@@ -1,7 +1,19 @@
 var blockCols;
 // blockCols = Math.ceil(Math.sqrt(persons.length));
 var otherCountryPersons;
+var allPersons 
+
+var tooltipTotal = d3.tip()
+    .attr("class", "d3-tip")
+    .offset([-8, 0])
+    .html(function (d) {
+        return "Year " + d.year + "<br><br>Total Asylum Seekers: " + yearTotalPersons[d.year]
+    });
+
 function showBlock() {
+    svg.call(tooltipTotal)
+    d3.selectAll(".xAxis").remove();
+
     buildSparkline(2018)
     blockCols = Math.ceil(Math.sqrt(persons.length));
     otherCountryPersons = [];
@@ -9,10 +21,9 @@ function showBlock() {
     var otherCountryData = [];
     Object.assign(otherCountryData, allCountriesData);
     otherCountryData = otherCountryData.splice(20, allCountriesData.length);
-    var otherPersonCount = 0
+
     otherCountryData.forEach((c, idx) => {
         var total = Math.round(c.total / ratio);
-        otherPersonCount += c.total;
         var cumulative = { 2011: c.years[2011], 2012: 0, 2013: 0, 2014: 0, 2015: 0, 2016: 0, 2017: 0, 2018: 0 };
 
         for (i = 2012; i <= 2018; i++) {
@@ -31,15 +42,26 @@ function showBlock() {
 
     })
     console.log(otherCountryPersons);
-    console.log(otherPersonCount);
+    allPersons = [];
+    Object.assign(allPersons, persons);
+    allPersons = allPersons.concat(otherCountryPersons);
 
+    allPersons.sort(function (a, b) {
+        return a.year - b.year;
+    })
+
+    console.log(allPersons);
     var units = svg
         .selectAll('rect')
-        .data(persons)
+        .data(allPersons)
 
     units.exit().remove();
 
-    units
+    var unitsEnter = units.enter().append('rect').attr('class','dataPixel')
+
+    units = units.merge(unitsEnter)
+        .on("mouseover", tooltipTotal.show)
+        .on("mouseout", tooltipTotal.hide)
         .transition()
         .duration(1000)
         .attr('x', function (d, i) {
@@ -48,16 +70,23 @@ function showBlock() {
         .attr('y', function (d, i) {
             return height - (Math.floor((i / blockCols)) * size);
         })
+        
 
+    
 }
+
 var personsCopy = []
+
+//not required. showing persons from all countries in total block
 function showOtherCountryPersons() {
     buildSparkline(2018)
-    console.log("+ other countries")
 
     blockCols = Math.ceil(Math.sqrt(persons.length));
     personsCopy = [];
     Object.assign(personsCopy, persons);
+    otherCountryPersons.sort(function(a,b){
+        return a.year - b.year;})
+        
     personsCopy = personsCopy.concat(otherCountryPersons);
 
     var units = svg
@@ -102,12 +131,17 @@ function showOtherCountryPersons() {
         })
 
 }
+
+
 //show same color for all asylum seeksers
 function changeColor() {
     buildSparkline(2018)
     var personsCopy = [];
     Object.assign(personsCopy, persons);
     personsCopy = personsCopy.concat(otherCountryPersons);
+
+    personsCopy.sort(function(a,b){
+        return a.year - b.year;})
 
     var units = svg
         .selectAll('rect')
@@ -146,6 +180,9 @@ function changeColor() {
 }
 
 function splitResettled() {
+
+    var resettled = 246720/ratio;
+
     var line = chartG
     .selectAll('.line-plot')    
     .data([])
@@ -154,7 +191,7 @@ function splitResettled() {
     blockCols = Math.ceil(Math.sqrt(persons.length));
     var units = svg
         .selectAll('rect')
-        .data(personsCopy)
+        .data(allPersons)
 
     units.exit().remove();
 
@@ -176,14 +213,16 @@ function splitResettled() {
     
     units
         .style("fill", function (d) {
-            return colorScale(d.year % 2011)
+            return "red"
         })
         .attr("class", function (d, i) {
-            if (i < 2154)
+            if (i < resettled)
                 return "resettled";
             else
                 return "not_resettled"
         })
+        .on("mouseover", doNothing)
+        .on("mouseout", doNothing)
         .transition()
         .duration(1000)
         .attr('x', function (d, i) {
@@ -192,17 +231,19 @@ function splitResettled() {
         .attr('y', function (d, i) {
             return height - (Math.floor(((i) / blockCols)) * size);
         })
-
+        
+    
 
     d3.selectAll(".not_resettled")
         .transition()
         .duration(1000)
         .attr('x', function (d, i) {
-            return ((2154 + i) % blockCols) * size;
+            return ((resettled + i) % blockCols) * size;
         })
         .attr('y', function (d, i) {
-            return height - (Math.floor(((2154 + i) / blockCols)) * size) - 250;
+            return height - (Math.floor(((resettled + i) / blockCols)) * size) - 300;
         })
+    
         
 
     d3.selectAll(".resettled")
@@ -212,7 +253,11 @@ function splitResettled() {
             return (i % blockCols) * size;
         })
         .attr('y', function (d, i) {
-            return height - (Math.floor((i / blockCols)) * size) - 200;
+            return height - (Math.floor((i / blockCols)) * size) - 100;
         })
         .style("fill", "green")
+}
+
+function doNothing(){
+        
 }

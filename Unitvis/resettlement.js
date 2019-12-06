@@ -93,7 +93,7 @@ function updateTimeOrigin(){
         if(destList.indexOf(d.destination)==-1)
             destList.push(d.destination)
     }) 
-    console.log(destList)
+    //console.log(destList)
     var opts = dropdown3.selectAll("option")
                     .data(destList)
 
@@ -122,7 +122,7 @@ function updateTimeDest(){
         if(oList.indexOf(d.origin)==-1)
             oList.push(d.origin)
     }) 
-    console.log(oList)
+    //console.log(oList)
     var opts = dropdown2.selectAll("option")
                     .data(oList)
 
@@ -145,7 +145,7 @@ function createOriginCountryViz(origin) {
         if(obj["origin"] == origin && obj["destination"]!="all")
             return true
     })
-    console.log(originData)
+    //console.log(originData)
     var resettlementCountrywiseYearData = d3.nest()
         .key(function (d) {
             return d["destination"];
@@ -192,16 +192,16 @@ function createOriginCountryViz(origin) {
         .style("font-size", "10px");
 
 
-    resettlement_cols = 24;
+    resettlement_cols = 12;
     barMargin = 5;
     resettlement_bandwidth = xResettlementScale.bandwidth() - (2 * barMargin);
     resettlement_size = resettlement_bandwidth / resettlement_cols;
-    resettlement_ratio = 10;
+    resettlement_ratio = 100;
 
     //cumulative
     rpersons = []
     resettlementCountrywiseYearData.forEach((c, idx) => {
-        console.log(c)
+        //console.log(c)
         var total = Math.round(c.total / resettlement_ratio);
 
         var xStart = xResettlementScale(c.country) + barMargin;
@@ -230,7 +230,7 @@ function createTimeLine(origin, destination){
             return true
     })
     
-    console.log("resettlementYearwiseCountryData ", yearWiseOriginDestData)
+    //console.log("resettlementYearwiseCountryData ", yearWiseOriginDestData)
             
     yearWiseOriginDestData.sort(function (a, b) {
         return b.year - a.year;
@@ -256,11 +256,11 @@ function createTimeLine(origin, destination){
         .attr("dy", ".15em")
         .style("font-size", "10px");
 
-    resettlement_cols = 24;
+    resettlement_cols = 12;
     barMargin = 5;
     resettlement_bandwidth = xResettlementScale.bandwidth() - (2 * barMargin);
     resettlement_size = resettlement_bandwidth / resettlement_cols;
-    resettlement_ratio = 10;
+    resettlement_ratio = 100;
 
     //cumulative
     rTimeData = []
