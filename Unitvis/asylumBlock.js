@@ -2,7 +2,7 @@ var blockCols;
 // blockCols = Math.ceil(Math.sqrt(persons.length));
 var otherCountryPersons;
 function showBlock() {
-    
+    buildSparkline(2018)
     blockCols = Math.ceil(Math.sqrt(persons.length));
     otherCountryPersons = [];
 
@@ -52,7 +52,7 @@ function showBlock() {
 }
 var personsCopy = []
 function showOtherCountryPersons() {
-
+    buildSparkline(2018)
     console.log("+ other countries")
 
     blockCols = Math.ceil(Math.sqrt(persons.length));
@@ -104,7 +104,7 @@ function showOtherCountryPersons() {
 }
 //show same color for all asylum seeksers
 function changeColor() {
-
+    buildSparkline(2018)
     var personsCopy = [];
     Object.assign(personsCopy, persons);
     personsCopy = personsCopy.concat(otherCountryPersons);
@@ -146,6 +146,10 @@ function changeColor() {
 }
 
 function splitResettled() {
+    var line = chartG
+    .selectAll('.line-plot')    
+    .data([])
+    line.exit().remove();
     
     blockCols = Math.ceil(Math.sqrt(persons.length));
     var units = svg
@@ -188,6 +192,7 @@ function splitResettled() {
         .attr('y', function (d, i) {
             return height - (Math.floor(((i) / blockCols)) * size);
         })
+>>>>>>> upstream/master
 
     d3.selectAll(".not_resettled")
         .transition()

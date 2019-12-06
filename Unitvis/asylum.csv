@@ -53,7 +53,7 @@ Year,Country of Asylum,Origin,Refugees (incl. refugee-like situations),Asylum-se
 2011,Thailand,Syrian Arab Rep.,,8,,,,,,8
 2011,Turkey,Syrian Arab Rep.,19,205,,,,,9270,9494
 2011,Ukraine,Syrian Arab Rep.,43,176,,,,,,219
-2011,United States of America,Syrian Arab Rep.,373,112,,,,,,485
+2011,USA,Syrian Arab Rep.,373,112,,,,,,485
 2011,Yemen,Syrian Arab Rep.,42,24,,,,,,66
 2012,Angola,Syrian Arab Rep.,,1,,,,,,1
 2012,Albania,Syrian Arab Rep.,,3,,,,,,3
@@ -135,7 +135,7 @@ Year,Country of Asylum,Origin,Refugees (incl. refugee-like situations),Asylum-se
 2012,United Rep. of Tanzania,Syrian Arab Rep.,,1,,,,,,1
 2012,Uganda,Syrian Arab Rep.,,1,,,,,,1
 2012,Ukraine,Syrian Arab Rep.,63,453,,,,,,516
-2012,United States of America,Syrian Arab Rep.,1425,367,,,,,,1792
+2012,USA,Syrian Arab Rep.,1425,367,,,,,,1792
 2012,Yemen,Syrian Arab Rep.,42,131,,,,,,173
 2012,South Africa,Syrian Arab Rep.,2,8,,,,,,10
 2013,Angola,Syrian Arab Rep.,,1,,,,,,1
@@ -229,7 +229,7 @@ Year,Country of Asylum,Origin,Refugees (incl. refugee-like situations),Asylum-se
 2013,Uganda,Syrian Arab Rep.,,8,,,,,,8
 2013,Ukraine,Syrian Arab Rep.,167,591,,,,,,758
 2013,Uruguay,Syrian Arab Rep.,,1,,,,,,1
-2013,United States of America,Syrian Arab Rep.,3802,1378,,,,,,5180
+2013,USA,Syrian Arab Rep.,3802,1378,,,,,,5180
 2013,Yemen,Syrian Arab Rep.,54,1761,,,,,,1815
 2013,South Africa,Syrian Arab Rep.,8,11,,,,,,19
 2013,Zambia,Syrian Arab Rep.,,4,,,,,,4
@@ -336,7 +336,7 @@ Year,Country of Asylum,Origin,Refugees (incl. refugee-like situations),Asylum-se
 2014,Uganda,Syrian Arab Rep.,1,13,,,,,,14
 2014,Ukraine,Syrian Arab Rep.,341,594,,,,,,935
 2014,Uruguay,Syrian Arab Rep.,48,11,,,,,,59
-2014,United States of America,Syrian Arab Rep.,4750,2302,,,,,,7052
+2014,USA,Syrian Arab Rep.,4750,2302,,,,,,7052
 2014,Venezuela (Bolivarian Republic of),Syrian Arab Rep.,,1,,,,,,1
 2014,Yemen,Syrian Arab Rep.,2276,1039,,,,,,3315
 2014,South Africa,Syrian Arab Rep.,28,37,,,,,,65
@@ -439,7 +439,7 @@ Year,Country of Asylum,Origin,Refugees (incl. refugee-like situations),Asylum-se
 2015,Uganda,Syrian Arab Rep.,6,11,,,,,,17
 2015,Ukraine,Syrian Arab Rep.,399,566,,,,,,965
 2015,Uruguay,Syrian Arab Rep.,58,9,,,,,,67
-2015,United States of America,Syrian Arab Rep.,5651,3118,,,,,,8769
+2015,USA,Syrian Arab Rep.,5651,3118,,,,,,8769
 2015,Venezuela (Bolivarian Republic of),Syrian Arab Rep.,,2,,,,,,2
 2015,Yemen,Syrian Arab Rep.,3011,615,,,,,,3626
 2015,South Africa,Syrian Arab Rep.,31,57,,,,,,88
@@ -546,7 +546,7 @@ Year,Country of Asylum,Origin,Refugees (incl. refugee-like situations),Asylum-se
 2016,Uganda,Syrian Arab Rep.,7,12,,,,,,19
 2016,Ukraine,Syrian Arab Rep.,446,560,,,,,,1006
 2016,Uruguay,Syrian Arab Rep.,60,3,,,,,,63
-2016,United States of America,Syrian Arab Rep.,6444,3364,,,,,,9808
+2016,USA,Syrian Arab Rep.,6444,3364,,,,,,9808
 2016,Venezuela (Bolivarian Republic of),Syrian Arab Rep.,3,18,,,,,,21
 2016,Yemen,Syrian Arab Rep.,3249,502,,,,,,3751
 2016,South Africa,Syrian Arab Rep.,44,49,,,,,,93
@@ -650,7 +650,7 @@ Year,Country of Asylum,Origin,Refugees (incl. refugee-like situations),Asylum-se
 2017,Uganda,Syrian Arab Rep.,7,12,,,,,,19
 2017,Ukraine,Syrian Arab Rep.,483,520,,,,,,1003
 2017,Uruguay,Syrian Arab Rep.,61,1,,,,,,62
-2017,United States of America,Syrian Arab Rep.,7282,3358,,,,,,10640
+2017,USA,Syrian Arab Rep.,7282,3358,,,,,,10640
 2017,Yemen,Syrian Arab Rep.,3286,496,,,,,,3782
 2017,Zambia,Syrian Arab Rep.,,1,,,,,,1
 2018,Albania,Syrian Arab Rep.,6,44,,,,,,50
@@ -733,7 +733,7 @@ Year,Country of Asylum,Origin,Refugees (incl. refugee-like situations),Asylum-se
 2018,Turkey,Syrian Arab Rep.,3622366,112,,,,,,3622478
 2018,Uganda,Syrian Arab Rep.,*,5,,,,,,9
 2018,Ukraine,Syrian Arab Rep.,457,489,,,,,,946
-2018,United States of America,Syrian Arab Rep.,7998,3057,,,,,,11055
+2018,USA,Syrian Arab Rep.,7998,3057,,,,,,11055
 2018,Yemen,Syrian Arab Rep.,3446,406,,,,,,3852
 2018,South Africa,Syrian Arab Rep.,45,7,,,,,,52
 2018,Zambia,Syrian Arab Rep.,8,9,,,,,,17

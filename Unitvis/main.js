@@ -4,8 +4,10 @@ var margin = { top: 20, right: 50, bottom: 200, left: 50 },
 
 var xScale = d3.scaleBand().range([0, width]);
 var yScale = d3.scaleLinear().range([height, 0]);
-var colorScale = d3.scaleOrdinal(d3.schemeCategory20c);
-var cols
+var colorScale = d3.scaleOrdinal()
+    .domain([0,1,2,3,4,5,6,7])
+    .range(['#ffffcc','#ffeda0','#fed976','#feb24c','#fd8d3c','#fc4e2a','#e31a1c','#b10026'])
+
 var barMargin
 var bandwidth
 var size
@@ -24,7 +26,8 @@ var svg = d3.select(".fixed").append("svg")
         "translate(" + margin.left + "," + margin.top + ")");
 
 
-d3.csv("asylum.csv", function (data) {
+d3.csv("asylum.csv", function (dataSet) {
+    data = dataSet;
     console.log(data);
     allCountriesData = d3.nest()
         .key(function (d) {
@@ -94,6 +97,8 @@ d3.csv("asylum.csv", function (data) {
 
     //cumulative
     yearData.forEach((c, idx) => {
+        console.log("idx")
+        console.log(idx)
         var total = Math.round(c.total / ratio);
         var xStart = xScale(c.country) + barMargin;
         var cumulative = { 2011: c.years[2011], 2012: 0, 2013: 0, 2014: 0, 2015: 0, 2016: 0, 2017: 0, 2018: 0 };
@@ -117,12 +122,11 @@ d3.csv("asylum.csv", function (data) {
 
     })
 
-
+    createSparkline();
     persons.sort(function (a, b) {
         return a.year - b.year;
     })
     console.log(persons.length);
-
     // for(y = 2011; y<=2018; y++){
     //     createUnitVis(y);
     // }
@@ -160,11 +164,11 @@ function createUnitVis(currYear) {
         .call(xAxis)
         .attr('class', 'xaxis')
         .selectAll("text")
-        .style("text-anchor", "end")
-        .attr("dx", "-.8em")
+        //.style("text-anchor", "end")
+        .attr("dx", "-.5em")
         .attr("dy", ".15em")
-        .attr("transform", "rotate(-65)")
-        .style("font-size", "10px");
+        // .attr("transform", "rotate(-65)")
+        // .style("font-size", "10px");
 
 
     if (currYear > 2018)
@@ -228,6 +232,7 @@ function createUnitVis(currYear) {
 }
 
 function dummyfunction() {
+    d3.select('.xAxisSparkline').remove()
     svg.selectAll('.resettlementaxis').remove()
     svg.selectAll('.xaxis').remove()
     svg.selectAll('rect').remove()
@@ -272,27 +277,35 @@ function scrollYear2011() {
     //     .style("font-size", "10px");
     // console.log("lalalalalalala")
     createUnitVis(2011);
+    buildSparkline(2011);
 }
 function scrollYear2012() {
     createUnitVis(2012);
+    buildSparkline(2012);
 }
 function scrollYear2013() {
     createUnitVis(2013);
+    buildSparkline(2013);
 }
 function scrollYear2014() {
     createUnitVis(2014);
+    buildSparkline(2014);
 }
 function scrollYear2015() {
     createUnitVis(2015);
+    buildSparkline(2015);
 }
 function scrollYear2016() {
     createUnitVis(2016);
+    buildSparkline(2016);
 }
 function scrollYear2017() {
     createUnitVis(2017);
+    buildSparkline(2017);
 }
 function scrollYear2018() {
     createUnitVis(2018);
+    buildSparkline(2018);
 }
 
 
