@@ -50,13 +50,13 @@ function showBlock() {
         })
 
 }
-
+var personsCopy = []
 function showOtherCountryPersons() {
     buildSparkline(2018)
     console.log("+ other countries")
 
     blockCols = Math.ceil(Math.sqrt(persons.length));
-    var personsCopy = [];
+    personsCopy = [];
     Object.assign(personsCopy, persons);
     personsCopy = personsCopy.concat(otherCountryPersons);
 
@@ -149,8 +149,50 @@ function splitResettled() {
     var line = chartG
     .selectAll('.line-plot')    
     .data([])
-
     line.exit().remove();
+    
+    blockCols = Math.ceil(Math.sqrt(persons.length));
+    var units = svg
+        .selectAll('rect')
+        .data(personsCopy)
+
+    units.exit().remove();
+
+    var unitsEnter = units
+        .enter()
+        .append('rect')
+        .attr('class', function (d, i) {
+            'year' + d.year
+        })
+        .attr('height', function (d) {
+            return d.size;
+        })
+        .attr('width', function (d) {
+            return d.size;
+        })
+
+
+    units = units.merge(unitsEnter);
+    
+    units
+        .style("fill", function (d) {
+            return colorScale(d.year % 2011)
+        })
+        .attr("class", function (d, i) {
+            if (i < 2154)
+                return "resettled";
+            else
+                return "not_resettled"
+        })
+        .transition()
+        .duration(1000)
+        .attr('x', function (d, i) {
+            return ((i) % blockCols) * size;
+        })
+        .attr('y', function (d, i) {
+            return height - (Math.floor(((i) / blockCols)) * size);
+        })
+>>>>>>> upstream/master
 
     d3.selectAll(".not_resettled")
         .transition()
