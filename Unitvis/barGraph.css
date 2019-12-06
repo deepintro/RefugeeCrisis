@@ -1,5 +1,5 @@
 rect{
-    stroke:white;
+    stroke:black;
     stroke-width: 0.5px;
     fill: rgb(219, 98, 98)
 }
@@ -11,10 +11,10 @@ html,
      height: 100%;
      padding: 0;
      scroll-behavior: smooth;
-     background: #f7f5f2;
-     color: #666;
-     font-family: 'Open Sans', sans-serif;
-     font-weight: 300;
+     background: #000;
+     color: #999;
+     font-family: 'Georgia', sans-serif;
+     font-weight: 400;
   }
   h2{
     line-height: 1.25;
@@ -25,7 +25,7 @@ html,
     padding: 20px;
   }
   text{
-    font-size: 10px;
+    fill: white;
   }
   strong{
     font-weight: 600;
@@ -40,14 +40,14 @@ html,
   }
   .container {
     height: 100%;
-    max-width: 440px;
+    max-width: 600px;
     width: 100%;
     margin: 0;
     padding: 0;
     position: absolute;
     height: 100%;
     line-height: 1.5;
-    left: 500px;
+    left: 400px;
   }
   .container div {
     height: 100%;
@@ -59,4 +59,16 @@ html,
     max-width: 500px;
     height: 500px;
     top: 50px;
+  }
+
+  .xaxis{
+    font-size: 12px;
+  }
+
+  .xAxisSparkline{
+    opacity: 0.3;
+  }
+
+  .line-plot{
+    opacity:1;
   }

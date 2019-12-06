@@ -18,10 +18,10 @@ function createSparkline(){
             return {year:leaves[0]["Year"],totalAsylumSeekers: total};
         })
         .entries(data);
-    chartWidth = width/3
-    chartHeight = height/3
-    positionX = width/1.5
-    positionY = 50
+    chartWidth = width/4
+    chartHeight = height/5
+    positionX = width/1.3
+    positionY = 0
 
     xScaleSparkline = d3.scaleTime()
         .domain([parseDate(2011),parseDate(2018)])
@@ -85,8 +85,8 @@ function buildSparkline(year){
     .attr("fill", function(d){
         return "none"
     })
-    .attr("stroke", "steelblue")
-    .attr("stroke-width", 1.5)    
+    .attr("stroke", "red")
+    .attr("stroke-width", 1)    
     .attr('class', 'line-plot')
 
     // d3.select(mergedLine.node())
