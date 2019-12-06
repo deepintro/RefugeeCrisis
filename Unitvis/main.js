@@ -58,23 +58,6 @@ d3.csv("asylum.csv", function (data) {
 
     xScale.domain(countries);
 
-    // var xAxis = d3.axisBottom()
-    //     .scale(xScale)
-
-    //x axis
-    // svg.append('g')
-    //     .attr('transform', 'translate(0,' + (+height + 10) + ')')
-    //     .call(xAxis)
-    //     .attr('class','xaxis')
-    //     .selectAll("text")
-    //     .style("text-anchor", "end")
-    //     .attr("dx", "-.8em")
-    //     .attr("dy", ".15em")
-    //     .attr("transform", "rotate(-65)")
-    //     .style("font-size", "10px");
-
-
-
     var maxCount = d3.max(yearData.map(function (d) {
         return +d.total;
     }))
@@ -123,11 +106,13 @@ d3.csv("asylum.csv", function (data) {
     })
     console.log(persons.length);
 
-    // for(y = 2011; y<=2018; y++){
-    //     createUnitVis(y);
-    // }
-    //scrollYear2011();
-    new scroll('div1', '75%', scrollYear2011, dummyfunction);
+    // new scroll('pixelPersonRatio', '75%', showPixelPersonRatio, dummyfunction);
+    // new scroll('pixelPersonRatio2', '75%', showPixelGroup, showPixelPersonRatio);
+    new scroll('person', '75%', showPerson, dummyfunction);
+    new scroll('100person', '75%', show100Persons, showPerson);
+    new scroll('personRatio', '75%', shift100Persons, show100Persons);
+    new scroll('2011pixels', '75%', hide100Persons, shift100Persons);
+    new scroll('div1', '75%', scrollYear2011, hide100Persons);
     new scroll('div2', '75%', scrollYear2012, scrollYear2011);
     new scroll('div3', '75%', scrollYear2013, scrollYear2012);
     new scroll('div4', '75%', scrollYear2014, scrollYear2013);
@@ -151,7 +136,6 @@ function createUnitVis(currYear) {
     console.log("create unit vis is being called")
     svg.selectAll('.resettlementaxis').remove()
     svg.selectAll('.xaxis').remove()
-    //svg.selectAll('rect').remove()
 
     var xAxis = d3.axisBottom()
         .scale(xScale)
@@ -175,6 +159,8 @@ function createUnitVis(currYear) {
             return true;
     })
 
+    console.log("currpersons",currYearPersons);
+
     var units = svg
         .selectAll('rect')
         .data(currYearPersons)
@@ -183,14 +169,7 @@ function createUnitVis(currYear) {
 
     var unitsEnter = units
         .enter()
-        .append('rect')
-
-        .attr('height', function (d) {
-            return d.size;
-        })
-        .attr('width', function (d) {
-            return d.size;
-        })
+        .append('rect')        
         .style("fill", function (d) {
             return colorScale(d.year % 2011)
         })
@@ -203,6 +182,14 @@ function createUnitVis(currYear) {
         })
         .transition()
         .duration(1000)
+
+        //very important. Don't discard this change
+        .attr('height', function (d) {
+            return d.size;
+        })
+        .attr('width', function (d) {
+            return d.size;
+        })
         .attr('x', function (d, i) {
             return d.xpos;
         })
@@ -259,19 +246,6 @@ function scroll(n, offset, func1, func2) {
 
 
 function scrollYear2011() {
-    // var xAxis = d3.axisBottom()
-    //     .scale(xScale)
-    // svg.append('g')
-    //     .attr('transform', 'translate(0,' + (+height + 10) + ')')
-    //     .call(xAxis)
-    //     .attr('class','xaxis')
-    //     .selectAll("text")
-    //     .style("text-anchor", "end")
-    //     .attr("dx", "-.8em")
-    //     .attr("dy", ".15em")
-    //     .attr("transform", "rotate(-65)")
-    //     .style("font-size", "10px");
-    // console.log("lalalalalalala")
     createUnitVis(2011);
 }
 function scrollYear2012() {
