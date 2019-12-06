@@ -29,6 +29,7 @@ function showPerson() {
 
 //step 2
 function show100Persons() {
+    console.log("show 100 persons")
     //d3.selectAll('.personImg').remove();
     d3.selectAll('.equals').remove();
     d3.selectAll('.pixel').remove();
@@ -70,6 +71,7 @@ function show100Persons() {
 
 //step 3
 function shift100Persons() {
+    console.log("shift")
     initialSize = 25;
     xStart = 100;
     pixelCols = Math.sqrt(ratio)
@@ -163,7 +165,11 @@ function hide100Persons() {
         .duration(1000)
         .remove();
 
-    var pixelData = d3.range(0, 140);
+    var personData2011 = persons.filter(p => {
+        if (p.year <= 2011)
+            return true;
+    })
+    var pixelData = d3.range(0, personData2011.length);
     pixelCols = 10;
     var pixel = svg.selectAll('.pixel')
         .data(pixelData)
