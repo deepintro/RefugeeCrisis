@@ -230,6 +230,12 @@ function showChildren() {
 }
 
 function splitResettled() {
+    d3.selectAll(".originDropDown").remove()
+    d3.selectAll(".yearDropdownOrigin").remove()
+    d3.select(".yearDropdownDest").remove()
+    d3.selectAll('.xaxis').remove()
+    d3.selectAll('.resettlementaxis').remove()
+    d3.selectAll('.timeaxis').remove()
 
     var resettled = 246720 / ratio;
 
@@ -282,7 +288,6 @@ function splitResettled() {
         .attr('y', function (d, i) {
             return height - (Math.floor(((i) / blockCols)) * size);
         })
-
 
 
     d3.selectAll(".not_resettled")
