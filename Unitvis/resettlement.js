@@ -25,6 +25,7 @@ function createOriginDropDown(){
     svg.selectAll(".originDropDown").remove()
     svg.selectAll(".yearDropdownOrigin").remove()
     svg.select(".yearDropdownDest").remove()
+    svg.selectAll(".not_resettled").remove()
 
     var dropdown = d3.select('.fixed')
                         .insert("select","svg")

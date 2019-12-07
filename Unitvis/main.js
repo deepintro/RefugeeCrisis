@@ -31,7 +31,9 @@ var tool_tip = d3.tip()
     .attr("class", "d3-tip")
     .offset([-8, 0])
     .html(function (d) {
-        return "Country: " + d.country + "<br><br>Year: " + d.year + "<br><br>Asylum Seekers: " + d.yearTotal
+        return "<div class = 'label'>Country </div>" + d.country 
+        + "<br><br><div class = 'label'>Year </div>" + d.year 
+        + "<br><br><div class = 'label'>Asylum Seekers </div>" + d.yearTotal
     });
 
 
@@ -243,8 +245,6 @@ function createUnitVis(currYear) {
     units
         .on("mouseover", function (d) {
             var year = d.year;
-            var otherYears = allYears.filter(y => { if (y != d.year) return true });
-
             d3.selectAll('.dataPixel').style('opacity', function (r) {
                 return (r.year == year) ? 1.0 : 0.5;
             })
