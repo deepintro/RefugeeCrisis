@@ -1,31 +1,52 @@
 var rpersons = [];
 var xResettlementScale = d3.scaleBand().range([0, width]);
+var xTimeScale = d3.scaleBand().range([height, 0]);
 var resettlementCompleteData = []
 var rTimeData = []
 var countryList = []
 var destList = []
 var timeOrigin = "Syrian Arab Rep.";
-var timeDest = "all";
+var timeDest = "USA";
 var dropdown2;
 var dropdown3;
+var submissionData = []
 
 d3.csv("resettlementTimeSeries.csv", function (rdata) {
     resettlementCompleteData = rdata
-    resettlementCompleteData.forEach(d => {
+    // resettlementCompleteData.forEach(d => {
+    //     if(countryList.indexOf(d.origin)==-1)
+    //         countryList.push(d.origin)
+    // }) 
+    // resettlementCompleteData.forEach(d => {
+    //     if(destList.indexOf(d.destination)==-1)
+    //         destList.push(d.destination)
+    // }) 
+})
+d3.csv("resettlementSubmissions.csv", function (sdata) {
+    submissionData = sdata
+    submissionData.forEach(d => {
         if(countryList.indexOf(d.origin)==-1)
             countryList.push(d.origin)
     }) 
-    resettlementCompleteData.forEach(d => {
+    submissionData.forEach(d => {
         if(destList.indexOf(d.destination)==-1)
             destList.push(d.destination)
     }) 
 })
+
+// var rtoolTip = d3.tip()
+//     .attr("class", "d3-tip")
+//     .offset([-8, 0])
+//     .html(function (d) {
+//         return "Submissions " + d.total + "<br><br>Asylum Seekers: " + d.yearTotal
+//     });
 
 function createOriginDropDown(){
     d3.select('.xAxisSparkline').remove()
     svg.selectAll(".originDropDown").remove()
     svg.selectAll(".yearDropdownOrigin").remove()
     svg.select(".yearDropdownDest").remove()
+    d3.selectAll(".not_resettled").remove()
 
     var dropdown = d3.select('.fixed')
                         .insert("select","svg")
@@ -33,14 +54,141 @@ function createOriginDropDown(){
                         .on("change",updateOrigin)
 
     dropdown.selectAll("option")
-    .data(countryList)
-    .enter().append("option")
-    .attr("value", function(d){return d})
-    .text(function(d){
-        return d[0].toUpperCase()+d.slice(1,d.length)
-    })
+            .data(countryList)
+            .enter().append("option")
+            .attr("value", function(d){return d})
+            .text(function(d){
+                return d[0].toUpperCase()+d.slice(1,d.length)
+            })
+
+    dropdown.property('value', "Syrian Arab Rep.");
     //var 
     createOriginCountryViz("Syrian Arab Rep.")
+    
+}
+function createOriginCountryViz(origin) {
+    if(!origin)
+        origin = "Syrian Arab Rep."
+    
+    var originData = resettlementCompleteData.filter(function(obj){
+        if(obj["origin"] == origin && obj["destination"]!="all")
+            return true
+    })
+    console.log("originData",originData)
+    var totalSubmissions = submissionData.filter(function(obj){
+        if(obj["origin"] == origin && obj["destination"]!="all")
+            return true
+    })
+    console.log("totalSubmissions",totalSubmissions)
+    var resettlementCountrywiseYearData = d3.nest()
+        .key(function (d) {
+            return d["destination"];
+        })
+        .key(function (d) {
+            return d["year"];
+        })
+        .entries(totalSubmissions)
+        .map(function (d) {
+            var years = {};
+            var total = 0;
+            years = { 2011: 0, 2012: 0, 2013: 0, 2014: 0, 2015: 0, 2016: 0, 2017: 0, 2018: 0 }
+            d.values.forEach(y => {
+                years[y.key] = +y.values[0]['submissions'];
+                total += +y.values[0]['submissions'];
+            })
+            return { 'country': d.key, 'years': years, 'total': total };
+        })
+
+    var totalDepartures = d3.nest()
+        .key(function (d) {
+            return d["destination"];
+        })
+        .key(function (d) {
+            return d["year"];
+        })
+        .entries(originData)
+        .map(function (d) {
+            var years = {};
+            var total = 0;
+            years = { 2011: 0, 2012: 0, 2013: 0, 2014: 0, 2015: 0, 2016: 0, 2017: 0, 2018: 0 }
+            d.values.forEach(y => {
+                years[y.key] = +y.values[0]['total'];
+                total += +y.values[0]['total'];
+            })
+            return { 'country': d.key, 'years': years, 'total': total };
+        })
+
+    console.log("resettlementYearwiseCountryData ", resettlementCountrywiseYearData)
+    console.log("totalDepartures ", totalDepartures) 
+
+    resettlementCountrywiseYearData.sort(function (a, b) {
+        return b.total - a.total;
+    })
+    totalDepartures.sort(function (a, b) {
+        return b.total - a.total;
+    })
+
+    resettlementCountrywiseYearData = resettlementCountrywiseYearData.splice(0, 10);
+    //totalDepartures = totalDepartures.splice(0, 10);
+
+    var countries = resettlementCountrywiseYearData.map(function (d) { return d.country })
+
+    svg.selectAll('.xaxis').remove()
+    svg.selectAll('.resettlementaxis').remove()
+    svg.selectAll('.timeaxis').remove()
+    xResettlementScale.domain(countries);
+
+    var xAxis = d3.axisBottom()
+        .scale(xResettlementScale)
+    //x axis
+    svg.append('g')
+        .attr('transform', 'translate(0,' + (+height + 10) + ')')
+        .call(xAxis)
+        .attr('class','resettlementaxis')
+        .selectAll("text")
+        //.style("text-anchor", "end")
+        .attr("dx", "-0.5em")
+        .attr("dy", ".15em")
+        // .attr("transform", "rotate(-65)")
+        // .style("font-size", "10px");
+
+
+    resettlement_cols = 12;
+    barMargin = 5;
+    resettlement_bandwidth = xResettlementScale.bandwidth() - (2 * barMargin);
+    resettlement_size = resettlement_bandwidth / resettlement_cols;
+    resettlement_ratio = 100;
+
+    //cumulative
+    rpersons = []
+    safepersons = []
+    resettlementCountrywiseYearData.forEach((c, idx) => {
+        //console.log(c)
+        var total = Math.ceil(c.total / resettlement_ratio);
+
+        var xStart = xResettlementScale(c.country) + barMargin;
+        var accepted = totalDepartures.filter(function(o){
+            return o.country == c.country
+        })
+        console.log(accepted[0].total)
+        var resettlementNodes = d3.range(total).map(function (d, i) {
+            return {
+                size: resettlement_size,
+                x: (i % resettlement_cols) * resettlement_size + xStart,
+                y: height - (Math.floor((i / resettlement_cols)) * resettlement_size),
+                c : c.country,
+                total : c.total,
+                setAccepted : (i < Math.floor(accepted[0].total/resettlement_ratio)) ? true : false,
+                accepted : accepted[0].total,
+                totalCountries : countries,
+                origin : origin
+            }
+
+        })
+        rpersons = rpersons.concat(resettlementNodes);
+
+    })
+    createResettlementViz(rpersons);
 }
 
 function updateOrigin(){
@@ -51,6 +199,9 @@ function updateOrigin(){
 function createOriginDestDropDown(){
     d3.select('.xAxisSparkline').remove()
     d3.selectAll(".originDropDown").remove()
+    d3.selectAll(".yearDropdownOrigin").remove()
+    d3.select(".yearDropdownDest").remove()
+
     dropdown2 = d3.select('.fixed')
                         .insert("select","svg")
                         .attr("class", "yearDropdownOrigin")
@@ -69,15 +220,47 @@ function createOriginDestDropDown(){
                 return d[0].toUpperCase()+d.slice(1,d.length)
             })
 
-    dropdown3.selectAll("option")
-            .data(destList)
-            .enter().append("option")
-            .attr("value", function(d){return d})
-            .text(function(d){
-                return d[0].toUpperCase()+d.slice(1,d.length)
-            })
+    // dropdown3.selectAll("option")
+    //         .data(destList)
+    //         .enter().append("option")
+    //         .attr("value", function(d){return d})
+    //         .text(function(d){
+    //             return d[0].toUpperCase()+d.slice(1,d.length)
+    //         })
+    dropdown2.property('value', timeOrigin);
+
+    var filterOriginBased = submissionData.filter(function(obj)
+    {
+        if(obj.origin == timeOrigin)
+            return true;
+    })
+    destList = []
+    filterOriginBased.forEach(d => {
+        if(destList.indexOf(d.destination)==-1)
+            destList.push(d.destination)
+    }) 
+    //console.log(destList)
+    var opts = dropdown3.selectAll("option")
+                    .data(destList)
+
+    opts.exit().remove()
+
+    var optsEnter = opts.enter().append("option")
+                    .attr("value", function(d){return d})
+                    .text(function(d){
+                        return d[0].toUpperCase()+d.slice(1,d.length)
+                    })
+
+    opts = opts.merge(optsEnter)
+    if(destList.indexOf(timeDest) == -1)
+    {
+        timeDest = destList[0]
+    }
+
+    d3.select('.yearDropdownDest').property('value', timeDest);
     //var 
-    createTimeLine(timeOrigin, timeDest)
+    //updateTimeOrigin()
+    createTimeLine(timeOrigin,timeDest)
 }
 
 function updateTimeOrigin(){
@@ -105,133 +288,61 @@ function updateTimeOrigin(){
                     .text(function(d){
                         return d[0].toUpperCase()+d.slice(1,d.length)
                     })
+
     opts = opts.merge(optsEnter)
-    createTimeLine(timeOrigin, destList[0])
+    if(destList.indexOf(timeDest) == -1)
+    {
+        timeDest = destList[0]
+    }
+    d3.select('.yearDropdownDest').property('value', timeDest);
+    createTimeLine(timeOrigin, timeDest)
 }
 
 function updateTimeDest(){
     console.log("lalalalalalalalala")
     timeDest = d3.select(this).property('value')
-    console.log(timeDest)
-    var filterDestBased = resettlementCompleteData.filter(function(obj)
-    {
-        if(obj.destination == timeDest)
-            return true;
-    })
-    oList = []
-    filterDestBased.forEach(d => {
-        if(oList.indexOf(d.origin)==-1)
-            oList.push(d.origin)
-    }) 
-    //console.log(oList)
-    var opts = dropdown2.selectAll("option")
-                    .data(oList)
+    // console.log(timeDest)
+    // var filterDestBased = resettlementCompleteData.filter(function(obj)
+    // {
+    //     if(obj.destination == timeDest)
+    //         return true;
+    // })
+    // oList = []
+    // filterDestBased.forEach(d => {
+    //     if(oList.indexOf(d.origin)==-1)
+    //         oList.push(d.origin)
+    // }) 
+    // //console.log(oList)
+    // var opts = dropdown2.selectAll("option")
+    //                 .data(oList)
 
-    opts.exit().remove()
+    // opts.exit().remove()
 
-    var optsEnter = opts.enter().append("option")
-                    .attr("value", function(d){return d})
-                    .text(function(d){
-                        return d[0].toUpperCase()+d.slice(1,d.length)
-                    })
-    opts = opts.merge(optsEnter)
-    createTimeLine(oList[0], timeDest)
-}
-
-function createOriginCountryViz(origin) {
-    if(!origin)
-        origin = "Syrian Arab Rep."
-    
-    var originData = resettlementCompleteData.filter(function(obj){
-        if(obj["origin"] == origin && obj["destination"]!="all")
-            return true
-    })
-    //console.log(originData)
-    var resettlementCountrywiseYearData = d3.nest()
-        .key(function (d) {
-            return d["destination"];
-        })
-        .key(function (d) {
-            return d["year"];
-        })
-        .entries(originData)
-        .map(function (d) {
-            var years = {};
-            var total = 0;
-            years = { 2011: 0, 2012: 0, 2013: 0, 2014: 0, 2015: 0, 2016: 0, 2017: 0, 2018: 0 }
-            d.values.forEach(y => {
-                years[y.key] = +y.values[0]['total'];
-                total += +y.values[0]['total'];
-            })
-            return { 'country': d.key, 'years': years, 'total': total };
-        })
-    console.log("resettlementYearwiseCountryData ", resettlementCountrywiseYearData)
-            
-    resettlementCountrywiseYearData.sort(function (a, b) {
-        return b.total - a.total;
-    })
-    resettlementCountrywiseYearData = resettlementCountrywiseYearData.splice(0, 15);
-
-    var countries = resettlementCountrywiseYearData.map(function (d) { return d.country })
-
-    svg.selectAll('.xaxis').remove()
-    svg.selectAll('.resettlementaxis').remove()
-    xResettlementScale.domain(countries);
-
-    var xAxis = d3.axisBottom()
-        .scale(xResettlementScale)
-    //x axis
-    svg.append('g')
-        .attr('transform', 'translate(0,' + (+height + 10) + ')')
-        .call(xAxis)
-        .attr('class','resettlementaxis')
-        .selectAll("text")
-        //.style("text-anchor", "end")
-        .attr("dx", "-0.5em")
-        .attr("dy", ".15em")
-        // .attr("transform", "rotate(-65)")
-        // .style("font-size", "10px");
-
-
-    resettlement_cols = 12;
-    barMargin = 5;
-    resettlement_bandwidth = xResettlementScale.bandwidth() - (2 * barMargin);
-    resettlement_size = resettlement_bandwidth / resettlement_cols;
-    resettlement_ratio = 100;
-
-    //cumulative
-    rpersons = []
-    resettlementCountrywiseYearData.forEach((c, idx) => {
-        //console.log(c)
-        var total = Math.round(c.total / resettlement_ratio);
-
-        var xStart = xResettlementScale(c.country) + barMargin;
-
-        var resettlementNodes = d3.range(total).map(function (d, i) {
-            return {
-                size: resettlement_size,
-                x: (i % resettlement_cols) * resettlement_size + xStart,
-                y: height - (Math.floor((i / resettlement_cols)) * resettlement_size)
-            }
-
-        })
-        rpersons = rpersons.concat(resettlementNodes);
-
-    })
-    createResettlementViz(rpersons);
+    // var optsEnter = opts.enter().append("option")
+    //                 .attr("value", function(d){return d})
+    //                 .text(function(d){
+    //                     return d[0].toUpperCase()+d.slice(1,d.length)
+    //                 })
+    // opts = opts.merge(optsEnter)
+    createTimeLine(timeOrigin, timeDest)
 }
 
 function createTimeLine(origin, destination){
-    if(!origin)
-        origin = "all"
-    if(!destination)
-        destination = "all "
-    var yearWiseOriginDestData = resettlementCompleteData.filter(function(obj){
-        if(obj["origin"] == origin && obj["destination"]==destination)
+    // if(!origin)
+    //     origin = "all"
+    // if(!destination)
+    //     destination = "all "
+    var yearWiseOriginDestData = submissionData.filter(function(obj){
+        if(obj["origin"] == origin && obj["destination"]== destination)
             return true
     })
-    
-    //console.log("resettlementYearwiseCountryData ", yearWiseOriginDestData)
+    var resettledData = resettlementCompleteData.filter(function(obj){
+        if(obj["origin"] == origin && obj["destination"]== destination)
+            return true
+    })
+    console.log(origin,destination)
+    console.log("yearWiseOriginDestData ", yearWiseOriginDestData)
+    console.log("resettledData ", resettledData)
             
     yearWiseOriginDestData.sort(function (a, b) {
         return b.year - a.year;
@@ -239,41 +350,51 @@ function createTimeLine(origin, destination){
     //yearWiseOriginDestData = yearWiseOriginDestData.splice(0, numOfCountries);
 
     var years = yearWiseOriginDestData.map(function (d) { return d.year })
-
+    years.reverse()
     svg.selectAll('.xaxis').remove()
     svg.selectAll('.resettlementaxis').remove()
-    xResettlementScale.domain(years);
+    svg.selectAll('.timeaxis').remove()
 
-    var xAxis = d3.axisBottom()
-        .scale(xResettlementScale)
+    xTimeScale.domain(years);
+
+    var xAxis = d3.axisLeft()
+        .scale(xTimeScale)
     //x axis
     svg.append('g')
-        .attr('transform', 'translate(0,' + (+height + 10) + ')')
         .call(xAxis)
-        .attr('class','resettlementaxis')
+        .attr('class','timeaxis')
         .selectAll("text")
+        .attr("transform", "rotate(0)")
         .style("text-anchor", "end")
-        .attr("dx", "-.8em")
-        .attr("dy", ".15em")
-        .style("font-size", "10px");
+        .attr("x",-10)
+        .attr("dy", "0.5em")
+        .style("font-size", "12px")
+        .style("color", "white");
 
-    resettlement_cols = 12;
+    resettlement_cols = 10;
     barMargin = 5;
-    resettlement_bandwidth = xResettlementScale.bandwidth() - (2 * barMargin);
+    resettlement_bandwidth = xTimeScale.bandwidth() - (2 * barMargin);
     resettlement_size = resettlement_bandwidth / resettlement_cols;
     resettlement_ratio = 100;
 
     //cumulative
     rTimeData = []
     yearWiseOriginDestData.forEach((c, idx) => {
-        var total = Math.round(c.total / resettlement_ratio);
-        var xStart = xResettlementScale(c.year) + barMargin;
-
+        var total = Math.ceil(c.submissions / resettlement_ratio);
+        var xStart = xTimeScale(c.year) + barMargin;
+        var accepted = resettledData.filter(function(o){
+            return o.year == c.year
+        })
         var resettlementNodes = d3.range(total).map(function (d, i) {
             return {
                 size: resettlement_size,
-                x: (i % resettlement_cols) * resettlement_size + xStart,
-                y: height - (Math.floor((i / resettlement_cols)) * resettlement_size)
+                y: ((i % resettlement_cols) * resettlement_size + xStart),
+                x: (Math.floor((i / resettlement_cols)) * resettlement_size),
+                year : c.year,
+                total : c.total,
+                setAccepted : (accepted.length && i < Math.floor(accepted[0].total/resettlement_ratio)) ? true : false,
+                accepted : accepted.length > 0 ? accepted[0].total : 0,
+                origin : origin
             }
         })
         rTimeData = rTimeData.concat(resettlementNodes);
@@ -314,7 +435,27 @@ function createResettlementViz(dataToVisualize) {
         .attr('y', function (d) {
             return d.y - size;
         })
+        .attr('class', function(d,i)
+        {
+            if(d.setAccepted == true){
+                return 'accepted'
+            }
+            else{
+                return 'not_accepted'
+            }
+        })
         .style('fill', function (d) { return 'green'});
+
+    units
+        .on("mouseover", function (d, i) {
+            if(d.setAccepted == true)
+                d3.selectAll('.accepted').style('opacity', 0.5)   
+            // tool_tip.show(d)
+        })
+        .on("mouseout", function (d) {
+            d3.selectAll('.accepted').style('opacity', 1.0)
+            // tool_tip.hide();
+        })
 
 }
 
