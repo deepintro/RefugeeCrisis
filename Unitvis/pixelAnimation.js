@@ -150,6 +150,7 @@ function hide100Persons() {
     svg.selectAll('.resettlementaxis').remove()
     svg.selectAll('.xaxis').remove()
     svg.selectAll('.dataPixel').remove()
+    d3.selectAll('path').remove()
 
 
     initialSize = 15;
