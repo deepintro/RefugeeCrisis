@@ -247,6 +247,8 @@ function createUnitVis(currYear) {
 function dummyfunction() {
     d3.select('.personImg').remove()
     d3.select('.xAxisSparkline').remove()
+    d3.selectAll('.sparklineTextAsylum').remove()
+    d3.selectAll('.sparklineTextNumber').remove()
     svg.selectAll('.resettlementaxis').remove()
     svg.selectAll('.xaxis').remove()
     svg.selectAll('rect').remove()

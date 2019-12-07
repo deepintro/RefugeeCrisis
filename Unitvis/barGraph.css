@@ -63,14 +63,17 @@ html,
 
   .xaxis{
     font-size: 12px;
+    font-family: 'Georgia', sans-serif;
   }
 
   .xAxisSparkline{
-    opacity: 0.3;
+    font-size: 10px;
+    font-family: 'Georgia', sans-serif;
   }
 
   .line-plot{
-    opacity:1;
+    stroke-width: 3;
+    stroke: red;
   }
 
 
@@ -101,4 +104,17 @@ html,
     margin: -2px 0 0 0;
     top: 100%;
     left: 0;
+  }
+
+  .sparklineTextAsylum{
+    fill: white;
+    font-size: 12px;
+    font-family: 'Georgia', sans-serif;
+  }
+
+  .sparklineTextNumber{
+    fill: red;
+    font-size: 12px;
+    font-family: 'Georgia', sans-serif;
+    font-weight: bold;
   }

@@ -13,8 +13,9 @@ var tooltipTotal = d3.tip()
 function showBlock() {
     svg.call(tooltipTotal)
     d3.selectAll(".xAxis").remove();
-
     buildSparkline(2018)
+    d3.selectAll(".sparklineTextAsylum").remove();
+    d3.selectAll(".sparklineTextNumber").remove();
     blockCols = Math.ceil(Math.sqrt(persons.length));
     otherCountryPersons = [];
 
@@ -136,6 +137,8 @@ function showOtherCountryPersons() {
 //show same color for all asylum seeksers
 function changeColor() {
     buildSparkline(2018)
+    d3.selectAll(".sparklineTextAsylum").remove();
+    d3.selectAll(".sparklineTextNumber").remove();
     var personsCopy = [];
     Object.assign(personsCopy, persons);
     personsCopy = personsCopy.concat(otherCountryPersons);
@@ -180,7 +183,7 @@ function changeColor() {
 }
 
 function splitResettled() {
-
+    d3.select('.xAxisSparkline').remove();
     var resettled = 246720/ratio;
 
     var line = chartG

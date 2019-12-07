@@ -22,6 +22,7 @@ d3.csv("resettlementTimeSeries.csv", function (rdata) {
 })
 
 function createOriginDropDown(){
+    d3.select('.xAxisSparkline').remove()
     svg.selectAll(".originDropDown").remove()
     svg.selectAll(".yearDropdownOrigin").remove()
     svg.select(".yearDropdownDest").remove()
@@ -48,7 +49,7 @@ function updateOrigin(){
 }
 
 function createOriginDestDropDown(){
-
+    d3.select('.xAxisSparkline').remove()
     d3.selectAll(".originDropDown").remove()
     dropdown2 = d3.select('.fixed')
                         .insert("select","svg")

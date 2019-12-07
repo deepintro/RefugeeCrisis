@@ -18,9 +18,10 @@ function createSparkline(){
             return {year:leaves[0]["Year"],totalAsylumSeekers: total};
         })
         .entries(data);
-    chartWidth = width/4
-    chartHeight = height/5
-    positionX = width/1.3
+    console.log(yearTotal)
+    chartWidth = width/3
+    chartHeight = height/4
+    positionX = width/1.5
     positionY = 0
 
     xScaleSparkline = d3.scaleTime()
@@ -41,7 +42,9 @@ function createSparkline(){
 }
 
 function buildSparkline(year){
-    chartG.selectAll('.xAxisSparkline').remove()
+    d3.select('.xAxisSparkline').remove()
+    d3.selectAll('.sparklineTextAsylum').remove()
+    d3.selectAll('.sparklineTextNumber').remove()
 
     var xAxisSparkline = d3.axisBottom()
         .scale(xScaleSparkline)
@@ -63,13 +66,10 @@ function buildSparkline(year){
     .selectAll('.line-plot')    
     .data([currYearTotal])
 
-    if(chartG.select('path').node()!=null){
-       // console.log(g);
-    }
-    
     line.exit().remove();
     
     var lineEnter = line
+    .data([currYearTotal])
     .enter()
     .append("path")
 
@@ -85,18 +85,19 @@ function buildSparkline(year){
     .attr("fill", function(d){
         return "none"
     })
-    .attr("stroke", "red")
-    .attr("stroke-width", 1)    
     .attr('class', 'line-plot')
 
-    // d3.select(mergedLine.node())
-    // .attr("stroke-dasharray",len+" "+len)
-    // .attr("stroke-dashoffset",len)
-    // .transition()
-    // .duration(1000)
-    // .attr("stroke-dashoffset",0)
-    
-    //createSparklineCircles(currYearTotal)
+    chartG.append("text")
+    .attr("dx", "25em")
+    .attr("dy", "13em")
+    .text("Asylum Seekers: ")
+    .attr("class","sparklineTextAsylum")
+
+    chartG.append("text")
+    .attr("dx", "33em")
+    .attr("dy", "13em")
+    .text(yearTotal[year%2011].value.totalAsylumSeekers)
+    .attr("class","sparklineTextNumber")
 
 }
 function createSparklineCircles(currYearTotal){
@@ -109,20 +110,19 @@ function createSparklineCircles(currYearTotal){
     var circleEnter = circle
     .enter()
     .append("circle")
+    .style("fill", "none")
 
     circleEnter.merge(circle)
     .attr('cx',function(d){
-        return xScaleSparkline(d.value.year);
+        return xScaleSparkline(parseDate(d.value.year));
     })
     .attr('cy',function(d){
         return yScaleSparkline(d.value.totalAsylumSeekers);
     })
-    .attr('r',"5px")
-    .style("fill", "none")
+    .attr('r',"2px")
     .transition()
-    .ease(d3.easeLinear)
-    
-    .style('fill', "steelblue")
+    .ease(d3.easeLinear)    
+    .style('fill', "#aa0000")
     .attr('çlass','sparklineCircle');
 }
 
