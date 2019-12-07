@@ -5,8 +5,8 @@ var margin = { top: 20, right: 50, bottom: 200, left: 50 },
 var xScale = d3.scaleBand().range([0, width]);
 var yScale = d3.scaleLinear().range([height, 0]);
 var colorScale = d3.scaleOrdinal()
-    .domain([0,1,2,3,4,5,6,7])
-    .range(['#ffffcc','#ffeda0','#fed976','#feb24c','#fd8d3c','#fc4e2a','#e31a1c','#b10026'])
+    .domain([0, 1, 2, 3, 4, 5, 6, 7])
+    .range(['#ffffcc', '#ffeda0', '#fed976', '#feb24c', '#fd8d3c', '#fc4e2a', '#e31a1c', '#b10026'])
 
 var barMargin
 var bandwidth
@@ -16,7 +16,8 @@ var ratio
 var numOfCountries = 15;
 var unitsEnter;
 var allCountriesData;
-
+var allYears = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018]
+var yearTotalPersons;
 
 var svg = d3.select(".fixed").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -25,10 +26,29 @@ var svg = d3.select(".fixed").append("svg")
     .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
 
+var tool_tip = d3.tip()
+    .attr("class", "d3-tip")
+    .offset([-8, 0])
+    .html(function (d) {
+        return "Year " + d.year + "<br><br>Asylum Seekers: " + d.yearTotal
+    });
+
 
 d3.csv("asylum.csv", function (dataSet) {
     data = dataSet;
-    console.log(data);
+    yearTotalPersons= d3.nest()
+        .key(function(d){
+            return d["Year"]
+        })
+        .rollup(function(rows){            
+            return d3.sum(rows, d => {
+                return d["Asylum-seekers"]
+            })
+        })
+        .object(dataSet)
+
+    
+    
     allCountriesData = d3.nest()
         .key(function (d) {
             return d["Country of Asylum"];
@@ -48,35 +68,18 @@ d3.csv("asylum.csv", function (dataSet) {
             return { 'country': d.key, 'years': years, 'total': total };
         })
 
-    console.log(allCountriesData);
+    //console.log(allCountriesData);
     allCountriesData.sort(function (a, b) {
         return b.total - a.total;
     })
     var yearData = [];
     Object.assign(yearData, allCountriesData);
     yearData = yearData.splice(0, numOfCountries);
-    console.log(allCountriesData);
+    //console.log(allCountriesData);
 
     var countries = yearData.map(function (d) { return d.country })
 
     xScale.domain(countries);
-
-    // var xAxis = d3.axisBottom()
-    //     .scale(xScale)
-
-    //x axis
-    // svg.append('g')
-    //     .attr('transform', 'translate(0,' + (+height + 10) + ')')
-    //     .call(xAxis)
-    //     .attr('class','xaxis')
-    //     .selectAll("text")
-    //     .style("text-anchor", "end")
-    //     .attr("dx", "-.8em")
-    //     .attr("dy", ".15em")
-    //     .attr("transform", "rotate(-65)")
-    //     .style("font-size", "10px");
-
-
 
     var maxCount = d3.max(yearData.map(function (d) {
         return +d.total;
@@ -87,18 +90,16 @@ d3.csv("asylum.csv", function (dataSet) {
 
     var year = 2011;
 
-    cols = 24;
+    cols = 12;
     barMargin = 5;
     bandwidth = xScale.bandwidth() - (2 * barMargin);
     size = bandwidth / cols;
     persons = [];
-    ratio = 100;
+    ratio = 400;
 
 
     //cumulative
     yearData.forEach((c, idx) => {
-        console.log("idx")
-        console.log(idx)
         var total = Math.round(c.total / ratio);
         var xStart = xScale(c.country) + barMargin;
         var cumulative = { 2011: c.years[2011], 2012: 0, 2013: 0, 2014: 0, 2015: 0, 2016: 0, 2017: 0, 2018: 0 };
@@ -114,7 +115,8 @@ d3.csv("asylum.csv", function (dataSet) {
                 ypos: height - (Math.floor((i / cols)) * size),
                 color: colorScale(idx),
                 year: getYear(i, cumulative),
-                country: c.country
+                country: c.country,
+                yearTotal: c.years[getYear(i, cumulative)]
             }
 
         })
@@ -126,12 +128,15 @@ d3.csv("asylum.csv", function (dataSet) {
     persons.sort(function (a, b) {
         return a.year - b.year;
     })
-    console.log(persons.length);
-    // for(y = 2011; y<=2018; y++){
-    //     createUnitVis(y);
-    // }
-    //scrollYear2011();
-    new scroll('div1', '75%', scrollYear2011, dummyfunction);
+    //console.log(persons.length);
+
+    // new scroll('pixelPersonRatio', '75%', showPixelPersonRatio, dummyfunction);
+    // new scroll('pixelPersonRatio2', '75%', showPixelGroup, showPixelPersonRatio);
+    new scroll('person', '75%', showPerson, dummyfunction);
+    new scroll('100person', '75%', show100Persons, showPerson);
+    new scroll('personRatio', '75%', shift100Persons, show100Persons);
+    new scroll('2011pixels', '75%', hide100Persons, shift100Persons);
+    new scroll('div1', '75%', scrollYear2011, hide100Persons);
     new scroll('div2', '75%', scrollYear2012, scrollYear2011);
     new scroll('div3', '75%', scrollYear2013, scrollYear2012);
     new scroll('div4', '75%', scrollYear2014, scrollYear2013);
@@ -140,8 +145,8 @@ d3.csv("asylum.csv", function (dataSet) {
     new scroll('div7', '75%', scrollYear2017, scrollYear2016);
     new scroll('div8', '75%', scrollYear2018, scrollYear2017);
     new scroll('div9', '75%', showBlock, scrollYear2018);
-    new scroll('div10', '75%', showOtherCountryPersons, showBlock);
-    new scroll('div11', '75%', changeColor, showOtherCountryPersons);
+    //new scroll('div10', '75%', showOtherCountryPersons, showBlock);
+    new scroll('div11', '75%', changeColor, showBlock);
     new scroll('div12', '75%', splitResettled, changeColor);
     new scroll('div13', '75%', createOriginDropDown, splitResettled);
     new scroll('div14', '75%', createOriginDestDropDown, createOriginDropDown);
@@ -150,11 +155,14 @@ d3.csv("asylum.csv", function (dataSet) {
 
 
 function createUnitVis(currYear) {
+    //tootlip to show the total of each country for that year
+    svg.call(tool_tip);
     //don't delete this log..adds delay required in the code
     console.log("create unit vis is being called")
+
     svg.selectAll('.resettlementaxis').remove()
     svg.selectAll('.xaxis').remove()
-    //svg.selectAll('rect').remove()
+    d3.selectAll('.personImg').remove()
 
     var xAxis = d3.axisBottom()
         .scale(xScale)
@@ -167,8 +175,8 @@ function createUnitVis(currYear) {
         //.style("text-anchor", "end")
         .attr("dx", "-.5em")
         .attr("dy", ".15em")
-        // .attr("transform", "rotate(-65)")
-        // .style("font-size", "10px");
+    // .attr("transform", "rotate(-65)")
+    // .style("font-size", "10px");
 
 
     if (currYear > 2018)
@@ -177,6 +185,8 @@ function createUnitVis(currYear) {
         if (p.year <= currYear)
             return true;
     })
+
+    //console.log("currpersons",currYearPersons);
 
     var units = svg
         .selectAll('rect')
@@ -187,13 +197,6 @@ function createUnitVis(currYear) {
     var unitsEnter = units
         .enter()
         .append('rect')
-
-        .attr('height', function (d) {
-            return d.size;
-        })
-        .attr('width', function (d) {
-            return d.size;
-        })
         .style("fill", function (d) {
             return colorScale(d.year % 2011)
         })
@@ -202,10 +205,18 @@ function createUnitVis(currYear) {
 
     units
         .attr('class', function (d, i) {
-            return ('year' + d.year);
+            return ('dataPixel year' + d.year);
         })
         .transition()
         .duration(1000)
+
+        //very important. Don't discard this change
+        .attr('height', function (d) {
+            return d.size;
+        })
+        .attr('width', function (d) {
+            return d.size;
+        })
         .attr('x', function (d, i) {
             return d.xpos;
         })
@@ -218,20 +229,23 @@ function createUnitVis(currYear) {
 
     units
         .on("mouseover", function (d) {
-            var className = d3.select(this).attr("class");
-            d3.selectAll('.' + className)
-                .style('fill', 'black');
+            var year = d.year;
+            var otherYears = allYears.filter(y => { if (y != d.year) return true });
 
+            d3.selectAll('.dataPixel').style('opacity', function (r) {
+                return (r.year == year) ? 1.0 : 0.5;
+            })
+            tool_tip.show(d);
         })
         .on("mouseout", function (d) {
-            var className = d3.select(this).attr("class");
-            d3.selectAll('.' + className)
-                .style('fill', function (d) { return colorScale(d.year % 2011) });
+            d3.selectAll('.dataPixel').style('opacity', 1.0)
+            tool_tip.hide();
         })
 
 }
 
 function dummyfunction() {
+    d3.select('.personImg').remove()
     d3.select('.xAxisSparkline').remove()
     svg.selectAll('.resettlementaxis').remove()
     svg.selectAll('.xaxis').remove()
@@ -263,19 +277,6 @@ function scroll(n, offset, func1, func2) {
 
 
 function scrollYear2011() {
-    // var xAxis = d3.axisBottom()
-    //     .scale(xScale)
-    // svg.append('g')
-    //     .attr('transform', 'translate(0,' + (+height + 10) + ')')
-    //     .call(xAxis)
-    //     .attr('class','xaxis')
-    //     .selectAll("text")
-    //     .style("text-anchor", "end")
-    //     .attr("dx", "-.8em")
-    //     .attr("dy", ".15em")
-    //     .attr("transform", "rotate(-65)")
-    //     .style("font-size", "10px");
-    // console.log("lalalalalalala")
     createUnitVis(2011);
     buildSparkline(2011);
 }

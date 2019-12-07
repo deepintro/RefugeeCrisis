@@ -7,12 +7,29 @@
 </head>
 
 <body>
-    <button onclick="showBlock()">Show block</button>
-    <button onclick="showOtherCountryPersons()">Merge</button>
     <div class="container">
     	<div id="div0" class="scrollyText">
     		<h2>Syrian Refugee Crisis</h2>   
-    	</div>
+        </div>
+        <div id="person">
+    		<h2>This is Bilal</h2>   
+        </div>
+        <div id="100person">
+    		<h2>There are more. Consider 100 people like Bilal</h2>   
+        </div>
+        <div id="personRatio">
+    		<h2>One pixel = 100 people</h2>   
+        </div>
+        <div id="2011pixels">
+    		<h2>In 2011, these many people took asylum in these countries</h2>   
+        </div>
+        <!-- <div id="pixelPersonRatio">
+            <p>Ratio</p>
+        </div>
+        <div id="pixelPersonRatio2">
+            <p>Ratio</p>
+        </div> -->
+        
         <div id="div1" class="scrollyText">
             <h2>2011</h2>
             <p>Syrian Civil war begins on March 15. Economic problems and lack of freedom cause Syrians resentment towards Assad's authoritarian rule </p>
@@ -48,9 +65,9 @@
         <div id="div9" class="scrollyText">
             <h2>Total</h2>
         </div>
-        <div id="div10" class="scrollyText">
+        <!-- <div id="div10" class="scrollyText">
             <h2>Other asylum countries</h2>
-        </div>
+        </div> -->
         <div id="div11" class="scrollyText">
             <h2>Merge and show as whole</h2>
         </div>
@@ -69,8 +86,10 @@
 </body>
 
 <script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="d3-tip.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.js"></script>
 <script src="main.js"></script>
 <script src="sparkline.js"></script>
 <script src="asylumBlock.js"></script>
 <script src="resettlement.js"></script>
+<script src="pixelAnimation.js"></script>
