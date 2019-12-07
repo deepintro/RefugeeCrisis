@@ -73,6 +73,12 @@ html,
     opacity:1;
   }
 
+  .scrollyText
+  {
+    font-size: 17px;
+  }
+
+
 
   .d3-tip {
     line-height: 1;
@@ -101,4 +107,5 @@ html,
     margin: -2px 0 0 0;
     top: 100%;
     left: 0;
+
   }
