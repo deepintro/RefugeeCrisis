@@ -64,6 +64,10 @@ html,
   .xaxis{
     font-size: 12px;
   }
+  .yAxisAsylum text{
+    font-size: 10px;
+    font-weight: lighter;
+  }
 
   .xAxisSparkline{
     opacity: 0.3;

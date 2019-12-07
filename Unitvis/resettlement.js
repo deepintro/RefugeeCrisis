@@ -134,6 +134,7 @@ function createOriginCountryViz(origin) {
     var countries = resettlementCountrywiseYearData.map(function (d) { return d.country })
 
     svg.selectAll('.xaxis').remove()
+    d3.selectAll(".yAxisAsylum").remove();
     svg.selectAll('.resettlementaxis').remove()
     svg.selectAll('.timeaxis').remove()
     xResettlementScale.domain(countries);
@@ -153,8 +154,8 @@ function createOriginCountryViz(origin) {
         .style("font-size", "10px");
 
 
-    resettlement_cols = 12;
-    barMargin = 5;
+    resettlement_cols = 20;
+    barMargin = 10;
     resettlement_bandwidth = xResettlementScale.bandwidth() - (2 * barMargin);
     resettlement_size = resettlement_bandwidth / resettlement_cols;
     resettlement_ratio = 100;
