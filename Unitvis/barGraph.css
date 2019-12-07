@@ -65,6 +65,10 @@ html,
     font-size: 12px;
     font-family: 'Georgia', sans-serif;
   }
+  .yAxisAsylum text{
+    font-size: 10px;
+    font-weight: lighter;
+  }
 
   .xAxisSparkline{
     font-size: 10px;

@@ -14,6 +14,7 @@ var tooltipTotal = d3.tip()
 function showBlock() {
     svg.call(tooltipTotal)
     d3.selectAll(".xAxis").remove();
+    d3.selectAll(".yAxisAsylum").remove();
     buildSparkline(2018)
     d3.selectAll(".sparklineTextAsylum").remove();
     d3.selectAll(".sparklineTextNumber").remove();
@@ -239,10 +240,11 @@ function splitResettled() {
     d3.selectAll(".yearDropdownOrigin").remove()
     d3.select(".yearDropdownDest").remove()
     d3.selectAll('.xaxis').remove()
+    d3.selectAll(".yAxisAsylum").remove();
     d3.selectAll('.resettlementaxis').remove()
     d3.selectAll('.timeaxis').remove()
 
-    var resettled = 246720 / ratio;
+    var resettled = 222706 / ratio;
 
     var line = chartG
         .selectAll('.line-plot')
