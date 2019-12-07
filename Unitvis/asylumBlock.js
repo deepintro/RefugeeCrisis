@@ -192,7 +192,6 @@ function splitResettled() {
         .attr('y', function (d, i) {
             return height - (Math.floor(((i) / blockCols)) * size);
         })
->>>>>>> upstream/master
 
     d3.selectAll(".not_resettled")
         .transition()

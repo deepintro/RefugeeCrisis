@@ -1,5 +1,6 @@
 var rpersons = [];
 var xResettlementScale = d3.scaleBand().range([0, width]);
+var xTimeScale = d3.scaleBand().range([height, 0]);
 var resettlementCompleteData = []
 var rTimeData = []
 var countryList = []
@@ -175,6 +176,7 @@ function createOriginCountryViz(origin) {
 
     svg.selectAll('.xaxis').remove()
     svg.selectAll('.resettlementaxis').remove()
+    svg.selectAll('.timeaxis').remove()
     xResettlementScale.domain(countries);
 
     var xAxis = d3.axisBottom()
@@ -241,24 +243,27 @@ function createTimeLine(origin, destination){
 
     svg.selectAll('.xaxis').remove()
     svg.selectAll('.resettlementaxis').remove()
-    xResettlementScale.domain(years);
+    svg.selectAll('.timeaxis').remove()
+    xTimeScale.domain(years);
 
-    var xAxis = d3.axisBottom()
-        .scale(xResettlementScale)
+    var xAxis = d3.axisLeft()
+        .scale(xTimeScale)
     //x axis
     svg.append('g')
-        .attr('transform', 'translate(0,' + (+height + 10) + ')')
+        
         .call(xAxis)
-        .attr('class','resettlementaxis')
+        .attr('class','timeaxis')
         .selectAll("text")
+        .attr("transform", "rotate(90)")
         .style("text-anchor", "end")
-        .attr("dx", "-.8em")
-        .attr("dy", ".15em")
-        .style("font-size", "10px");
+        .attr("x",40)
+        .attr("dy", "5em")
+        .style("font-size", "10px")
+        .style("color", "white");
 
-    resettlement_cols = 24;
+    resettlement_cols = 12;
     barMargin = 5;
-    resettlement_bandwidth = xResettlementScale.bandwidth() - (2 * barMargin);
+    resettlement_bandwidth = xTimeScale.bandwidth() - (2 * barMargin);
     resettlement_size = resettlement_bandwidth / resettlement_cols;
     resettlement_ratio = 10;
 
@@ -266,13 +271,13 @@ function createTimeLine(origin, destination){
     rTimeData = []
     yearWiseOriginDestData.forEach((c, idx) => {
         var total = Math.round(c.total / resettlement_ratio);
-        var xStart = xResettlementScale(c.year) + barMargin;
+        var xStart = xTimeScale(c.year) + barMargin;
 
         var resettlementNodes = d3.range(total).map(function (d, i) {
             return {
                 size: resettlement_size,
-                x: (i % resettlement_cols) * resettlement_size + xStart,
-                y: height - (Math.floor((i / resettlement_cols)) * resettlement_size)
+                y: height - ((i % resettlement_cols) * resettlement_size + xStart),
+                x: (Math.floor((i / resettlement_cols)) * resettlement_size)
             }
         })
         rTimeData = rTimeData.concat(resettlementNodes);
