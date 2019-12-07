@@ -109,3 +109,8 @@ html,
     left: 0;
 
   }
+
+  .label{
+    color: rgb(219, 23, 23);
+    font-weight: bold;
+  }
