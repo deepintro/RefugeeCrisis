@@ -169,6 +169,7 @@ function hide100Persons() {
         if (p.year <= 2011)
             return true;
     })
+    
     var pixelData = d3.range(0, personData2011.length);
     pixelCols = 10;
     var pixel = svg.selectAll('.pixel')
