@@ -186,11 +186,11 @@ function createOriginCountryViz(origin) {
         .call(xAxis)
         .attr('class','resettlementaxis')
         .selectAll("text")
-        .style("text-anchor", "end")
-        .attr("dx", "-.8em")
+        //.style("text-anchor", "end")
+        .attr("dx", "-0.5em")
         .attr("dy", ".15em")
-        .attr("transform", "rotate(-65)")
-        .style("font-size", "10px");
+        // .attr("transform", "rotate(-65)")
+        // .style("font-size", "10px");
 
 
     resettlement_cols = 12;

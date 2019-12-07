@@ -42,7 +42,7 @@ function showBlock() {
         otherCountryPersons = otherCountryPersons.concat(nodes);
 
     })
-    console.log(otherCountryPersons);
+    //console.log(otherCountryPersons);
     allPersons = [];
     Object.assign(allPersons, persons);
     allPersons = allPersons.concat(otherCountryPersons);
@@ -182,6 +182,42 @@ function changeColor() {
 
 }
 
+function showChildren(){
+    var childrenCount = allPersons.length/2;
+
+    var units = svg
+        .selectAll('rect')
+        .data(allPersons)
+
+    units.exit().remove();
+
+    var unitsEnter = units
+        .enter()
+        .append('rect')
+        .attr('height', function (d) {
+            return d.size;
+        })
+        .attr('width', function (d) {
+            return d.size;
+        })
+
+
+    units = units.merge(unitsEnter);
+    
+    units
+        .transition()
+        .duration(1000)
+        .delay(function(d,i){
+            return i*10;
+        })
+        .style("fill", function(d,i){
+            if(i < childrenCount)
+                return "white";
+            else
+                return "red";
+        })
+}
+
 function splitResettled() {
     d3.select('.xAxisSparkline').remove();
     var resettled = 246720/ratio;
@@ -227,6 +263,7 @@ function splitResettled() {
         .on("mouseover", doNothing)
         .on("mouseout", doNothing)
         .transition()
+        .delay(2000)
         .duration(1000)
         .attr('x', function (d, i) {
             return ((i) % blockCols) * size;

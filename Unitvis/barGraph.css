@@ -76,6 +76,12 @@ html,
     stroke: red;
   }
 
+  .scrollyText
+  {
+    font-size: 17px;
+  }
+
+
 
   .d3-tip {
     line-height: 1;

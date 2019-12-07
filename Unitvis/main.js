@@ -18,6 +18,7 @@ var unitsEnter;
 var allCountriesData;
 var allYears = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018]
 var yearTotalPersons;
+var yearsTotalPersonsArray
 
 var svg = d3.select(".fixed").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -30,7 +31,7 @@ var tool_tip = d3.tip()
     .attr("class", "d3-tip")
     .offset([-8, 0])
     .html(function (d) {
-        return "Year " + d.year + "<br><br>Asylum Seekers: " + d.yearTotal
+        return "Country: " + d.country + "<br><br>Year: " + d.year + "<br><br>Asylum Seekers: " + d.yearTotal
     });
 
 
@@ -47,8 +48,18 @@ d3.csv("asylum.csv", function (dataSet) {
         })
         .object(dataSet)
 
+
     
+    yearsTotalPersonsArray = Object.keys(yearTotalPersons).map(d => {
+        return {'year': d, 'count': yearTotalPersons[d]}
+    })
+    yearsTotalPersonsArray.sort(function(a,b){
+        return a.count - b.count;
+    })
     
+    yearsTotalPersonsArray = yearsTotalPersonsArray.map(d => {return +d.year});
+    
+
     allCountriesData = d3.nest()
         .key(function (d) {
             return d["Country of Asylum"];
@@ -147,7 +158,8 @@ d3.csv("asylum.csv", function (dataSet) {
     new scroll('div9', '75%', showBlock, scrollYear2018);
     //new scroll('div10', '75%', showOtherCountryPersons, showBlock);
     new scroll('div11', '75%', changeColor, showBlock);
-    new scroll('div12', '75%', splitResettled, changeColor);
+    new scroll('showChildren', '75%', showChildren, changeColor);
+    new scroll('div12', '75%', splitResettled, showChildren);
     new scroll('div13', '75%', createOriginDropDown, splitResettled);
     new scroll('div14', '75%', createOriginDestDropDown, createOriginDropDown);
 
@@ -198,7 +210,7 @@ function createUnitVis(currYear) {
         .enter()
         .append('rect')
         .style("fill", function (d) {
-            return colorScale(d.year % 2011)
+            return colorScale(yearsTotalPersonsArray.indexOf(d.year));
         })
 
     units = units.merge(unitsEnter);
@@ -224,7 +236,8 @@ function createUnitVis(currYear) {
             return d.ypos - size;
         })
         .style("fill", function (d) {
-            return colorScale(d.year % 2011)
+            return colorScale(yearsTotalPersonsArray.indexOf(d.year));
+            //return colorScale(d.year % 2011)
         })
 
     units

@@ -3,11 +3,11 @@ year,origin,destination,total
 2011,Myanmar,Denmark,149
 2011,Iran (Islamic Rep. of),Germany,22
 2011,Somalia,Norway,182
-2011,Iraq,United Kingdom of Great Britain and Northern Ireland,86
+2011,Iraq,UK,86
 2011,Iraq,Sweden,57
 2011,Bhutan,Netherlands,96
 2011,Dem. Rep. of the Congo,Canada,185
-2011,Somalia,United Kingdom of Great Britain and Northern Ireland,70
+2011,Somalia,UK,70
 2011,Sudan,Finland,7
 2011,Myanmar,Netherlands,75
 2011,Afghanistan,New Zealand,6
@@ -25,25 +25,25 @@ year,origin,destination,total
 2011,Myanmar,Japan,18
 2011,Myanmar,Ireland,1
 2011,Iraq,Netherlands,74
-2011,Eritrea,United States of America,1629
+2011,Eritrea,USA,1629
 2011,Myanmar,Sweden,28
 2011,Iran (Islamic Rep. of),Finland,2
 2011,Dem. Rep. of the Congo,Australia,428
 2011,Iraq,Switzerland,30
-2011,Somalia,United States of America,3082
+2011,Somalia,USA,3082
 2011,Afghanistan,Netherlands,8
-2011,Myanmar,United States of America,15211
+2011,Myanmar,USA,15211
 2011,Sudan,New Zealand,5
 2011,Eritrea,Portugal,23
-2011,Afghanistan,United States of America,250
+2011,Afghanistan,USA,250
 2011,Afghanistan,Canada,214
 2011,Somalia,Finland,2
 2011,Iran (Islamic Rep. of),Denmark,1
 2011,Eritrea,Australia,59
-2011,Myanmar,United Kingdom of Great Britain and Northern Ireland,6
+2011,Myanmar,UK,6
 2011,Iraq,Norway,1
 2011,Iran (Islamic Rep. of),Canada,414
-2011,Syrian Arab Rep.,United States of America,13
+2011,Syrian Arab Rep.,USA,13
 2011,Somalia,Canada,543
 2011,Sudan,France,1
 2011,Myanmar,Australia,1592
@@ -53,7 +53,7 @@ year,origin,destination,total
 2011,Somalia,Netherlands,1
 2011,Iran (Islamic Rep. of),Netherlands,14
 2011,Eritrea,Sweden,526
-2011,Bhutan,United States of America,14694
+2011,Bhutan,USA,14694
 2011,Dem. Rep. of the Congo,New Zealand,2
 2011,Iran (Islamic Rep. of),Sweden,30
 2011,Dem. Rep. of the Congo,Denmark,95
@@ -64,21 +64,21 @@ year,origin,destination,total
 2011,Eritrea,Finland,9
 2011,Syrian Arab Rep.,Canada,7
 2011,Eritrea,Belgium,14
-2011,Iran (Islamic Rep. of),United States of America,1050
+2011,Iran (Islamic Rep. of),USA,1050
 2011,Eritrea,Norway,417
 2011,Eritrea,Canada,76
 2011,Bhutan,Canada,1873
 2011,Afghanistan,France,1
 2011,Sudan,Netherlands,4
 2011,Dem. Rep. of the Congo,Netherlands,22
-2011,Sudan,United States of America,322
-2011,Dem. Rep. of the Congo,United Kingdom of Great Britain and Northern Ireland,115
+2011,Sudan,USA,322
+2011,Dem. Rep. of the Congo,UK,115
 2011,Afghanistan,Australia,351
 2011,Dem. Rep. of the Congo,France,14
 2011,Sudan,Ireland,23
 2011,Dem. Rep. of the Congo,Norway,38
 2011,Iraq,Finland,184
-2011,Iraq,United States of America,4628
+2011,Iraq,USA,4628
 2011,Bhutan,Australia,1026
 2011,Somalia,France,2
 2011,Somalia,Australia,203
@@ -88,12 +88,12 @@ year,origin,destination,total
 2011,Iran (Islamic Rep. of),Australia,228
 2011,Myanmar,Norway,155
 2011,Iran (Islamic Rep. of),Norway,147
-2011,Dem. Rep. of the Congo,United States of America,990
+2011,Dem. Rep. of the Congo,USA,990
 2011,Iraq,Ireland,6
 2011,Iraq,Canada,2190
 2011,Bhutan,Denmark,287
 2011,Somalia,Denmark,7
-2011,Eritrea,United Kingdom of Great Britain and Northern Ireland,1
+2011,Eritrea,UK,1
 2011,Sudan,Norway,50
 2011,Myanmar,Finland,146
 2011,Afghanistan,Norway,164
@@ -101,16 +101,16 @@ year,origin,destination,total
 2012,Dem. Rep. of the Congo,Australia,271
 2012,Iran (Islamic Rep. of),Ireland,5
 2012,Iraq,Netherlands,64
-2012,Sudan,United Kingdom of Great Britain and Northern Ireland,89
+2012,Sudan,UK,89
 2012,Somalia,Portugal,1
 2012,Iran (Islamic Rep. of),Sweden,25
 2012,Iran (Islamic Rep. of),Norway,130
 2012,Dem. Rep. of the Congo,Netherlands,22
 2012,Somalia,New Zealand,2
-2012,Afghanistan,United States of America,461
+2012,Afghanistan,USA,461
 2012,Afghanistan,Portugal,1
 2012,Iran (Islamic Rep. of),Australia,180
-2012,Eritrea,United Kingdom of Great Britain and Northern Ireland,9
+2012,Eritrea,UK,9
 2012,Bhutan,Norway,172
 2012,Syrian Arab Rep.,Sweden,59
 2012,Eritrea,Denmark,10
@@ -118,14 +118,14 @@ year,origin,destination,total
 2012,Sudan,Australia,38
 2012,Dem. Rep. of the Congo,Germany,1
 2012,Afghanistan,Sweden,615
-2012,Dem. Rep. of the Congo,United States of America,1660
+2012,Dem. Rep. of the Congo,USA,1660
 2012,Dem. Rep. of the Congo,Denmark,2
 2012,Dem. Rep. of the Congo,Norway,16
 2012,Afghanistan,France,12
 2012,Iran (Islamic Rep. of),Germany,7
 2012,Iran (Islamic Rep. of),New Zealand,1
 2012,Eritrea,Portugal,1
-2012,Iraq,United States of America,10736
+2012,Iraq,USA,10736
 2012,Dem. Rep. of the Congo,Finland,246
 2012,Somalia,Australia,76
 2012,Eritrea,Norway,234
@@ -134,9 +134,9 @@ year,origin,destination,total
 2012,Eritrea,Germany,39
 2012,Afghanistan,Netherlands,3
 2012,Dem. Rep. of the Congo,France,9
-2012,Somalia,United Kingdom of Great Britain and Northern Ireland,161
+2012,Somalia,UK,161
 2012,Dem. Rep. of the Congo,Portugal,1
-2012,Iran (Islamic Rep. of),United States of America,1203
+2012,Iran (Islamic Rep. of),USA,1203
 2012,Iran (Islamic Rep. of),France,2
 2012,Iraq,Australia,1202
 2012,Iraq,Canada,1059
@@ -146,15 +146,15 @@ year,origin,destination,total
 2012,Syrian Arab Rep.,Norway,1
 2012,Sudan,Portugal,14
 2012,Eritrea,Spain,11
-2012,Myanmar,United States of America,14754
-2012,Eritrea,United States of America,1478
+2012,Myanmar,USA,14754
+2012,Eritrea,USA,1478
 2012,Somalia,Ireland,6
-2012,Bhutan,United States of America,14417
+2012,Bhutan,USA,14417
 2012,Dem. Rep. of the Congo,Canada,269
 2012,Iran (Islamic Rep. of),Belgium,1
 2012,Iraq,New Zealand,198
 2012,Iraq,Sweden,8
-2012,Somalia,United States of America,5210
+2012,Somalia,USA,5210
 2012,Syrian Arab Rep.,Australia,1
 2012,Somalia,Norway,116
 2012,Eritrea,Italy,7
@@ -166,13 +166,13 @@ year,origin,destination,total
 2012,Sudan,Canada,15
 2012,Bhutan,Canada,1067
 2012,Dem. Rep. of the Congo,Sweden,21
-2012,Iran (Islamic Rep. of),United Kingdom of Great Britain and Northern Ireland,1
+2012,Iran (Islamic Rep. of),UK,1
 2012,Iran (Islamic Rep. of),Hungary,1
 2012,Afghanistan,Finland,244
 2012,Somalia,Canada,631
-2012,Dem. Rep. of the Congo,United Kingdom of Great Britain and Northern Ireland,184
+2012,Dem. Rep. of the Congo,UK,184
 2012,Somalia,Finland,10
-2012,Iraq,United Kingdom of Great Britain and Northern Ireland,84
+2012,Iraq,UK,84
 2012,Myanmar,Denmark,104
 2012,Sudan,Finland,7
 2012,Somalia,Germany,43
@@ -180,7 +180,7 @@ year,origin,destination,total
 2012,Eritrea,Sweden,151
 2012,Bhutan,Australia,624
 2012,Sudan,New Zealand,6
-2012,Afghanistan,United Kingdom of Great Britain and Northern Ireland,3
+2012,Afghanistan,UK,3
 2012,Afghanistan,Norway,211
 2012,Somalia,Sweden,295
 2012,Dem. Rep. of the Congo,Ireland,20
@@ -197,36 +197,36 @@ year,origin,destination,total
 2012,Syrian Arab Rep.,Finland,1
 2012,Afghanistan,Iceland,9
 2012,Iran (Islamic Rep. of),Netherlands,7
-2012,Sudan,United States of America,1086
+2012,Sudan,USA,1086
 2012,Myanmar,Finland,107
 2012,Afghanistan,New Zealand,21
 2012,Iran (Islamic Rep. of),Canada,496
-2012,Syrian Arab Rep.,United States of America,34
+2012,Syrian Arab Rep.,USA,34
 2012,Myanmar,Sweden,35
 2012,Afghanistan,Canada,464
 2012,Sudan,Spain,35
 2012,Afghanistan,Australia,582
 2012,Eritrea,Finland,8
-2012,Bhutan,United Kingdom of Great Britain and Northern Ireland,146
+2012,Bhutan,UK,146
 2013,Myanmar,Denmark,17
 2013,Iran (Islamic Rep. of),Germany,116
 2013,Eritrea,Switzerland,1
-2013,Dem. Rep. of the Congo,United States of America,2512
+2013,Dem. Rep. of the Congo,USA,2512
 2013,Iraq,Finland,18
 2013,Dem. Rep. of the Congo,Denmark,29
-2013,Bhutan,United Kingdom of Great Britain and Northern Ireland,99
+2013,Bhutan,UK,99
 2013,Iran (Islamic Rep. of),Australia,420
 2013,Afghanistan,Germany,1
-2013,Somalia,United States of America,6426
+2013,Somalia,USA,6426
 2013,Iraq,Sweden,4
 2013,Eritrea,Finland,45
 2013,Afghanistan,Ireland,31
 2013,Iran (Islamic Rep. of),Albania,197
-2013,Afghanistan,United States of America,641
+2013,Afghanistan,USA,641
 2013,Sudan,New Zealand,8
 2013,Afghanistan,Canada,214
 2013,Sudan,Germany,1
-2013,Eritrea,United States of America,980
+2013,Eritrea,USA,980
 2013,Syrian Arab Rep.,Netherlands,14
 2013,Eritrea,Netherlands,85
 2013,Bhutan,Norway,3
@@ -237,32 +237,32 @@ year,origin,destination,total
 2013,Eritrea,Norway,37
 2013,Iraq,Switzerland,57
 2013,Iran (Islamic Rep. of),Sweden,8
-2013,Dem. Rep. of the Congo,United Kingdom of Great Britain and Northern Ireland,199
+2013,Dem. Rep. of the Congo,UK,199
 2013,Dem. Rep. of the Congo,Canada,675
 2013,Dem. Rep. of the Congo,Norway,199
 2013,Myanmar,Sweden,31
 2013,Sudan,Switzerland,1
 2013,Eritrea,Canada,166
 2013,Syrian Arab Rep.,Australia,2
-2013,Syrian Arab Rep.,United States of America,40
+2013,Syrian Arab Rep.,USA,40
 2013,Afghanistan,Denmark,1
 2013,Iraq,Australia,3404
-2013,Sudan,United States of America,1732
+2013,Sudan,USA,1732
 2013,Sudan,France,5
 2013,Somalia,Denmark,66
 2013,Somalia,Netherlands,2
 2013,Iran (Islamic Rep. of),Norway,118
 2013,Somalia,Finland,43
 2013,Dem. Rep. of the Congo,Belgium,65
-2013,Bhutan,United States of America,8928
-2013,Myanmar,United States of America,13911
+2013,Bhutan,USA,8928
+2013,Myanmar,USA,13911
 2013,Iran (Islamic Rep. of),Finland,83
 2013,Eritrea,Australia,195
 2013,Dem. Rep. of the Congo,France,7
 2013,Syrian Arab Rep.,Canada,7
 2013,Afghanistan,Belgium,1
 2013,Iraq,New Zealand,96
-2013,Sudan,United Kingdom of Great Britain and Northern Ireland,125
+2013,Sudan,UK,125
 2013,Syrian Arab Rep.,Germany,804
 2013,Somalia,Norway,198
 2013,Dem. Rep. of the Congo,Ireland,24
@@ -270,9 +270,9 @@ year,origin,destination,total
 2013,Dem. Rep. of the Congo,Sweden,200
 2013,Bhutan,Australia,907
 2013,Afghanistan,Sweden,206
-2013,Iran (Islamic Rep. of),United Kingdom of Great Britain and Northern Ireland,5
-2013,Eritrea,United Kingdom of Great Britain and Northern Ireland,4
-2013,Somalia,United Kingdom of Great Britain and Northern Ireland,258
+2013,Iran (Islamic Rep. of),UK,5
+2013,Eritrea,UK,4
+2013,Somalia,UK,258
 2013,Somalia,Sweden,352
 2013,Iran (Islamic Rep. of),Denmark,1
 2013,Afghanistan,Finland,262
@@ -281,7 +281,7 @@ year,origin,destination,total
 2013,Somalia,Portugal,1
 2013,Myanmar,Japan,18
 2013,Eritrea,France,8
-2013,Iran (Islamic Rep. of),United States of America,1161
+2013,Iran (Islamic Rep. of),USA,1161
 2013,Bhutan,Canada,476
 2013,Afghanistan,Australia,2713
 2013,Iran (Islamic Rep. of),Portugal,2
@@ -295,12 +295,12 @@ year,origin,destination,total
 2013,Sudan,Netherlands,6
 2013,Myanmar,Finland,105
 2013,Myanmar,Netherlands,30
-2013,Iraq,United Kingdom of Great Britain and Northern Ireland,33
+2013,Iraq,UK,33
 2013,Dem. Rep. of the Congo,Australia,557
 2013,Bhutan,New Zealand,146
 2013,Myanmar,Australia,2136
 2013,Iraq,Germany,170
-2013,Iraq,United States of America,9171
+2013,Iraq,USA,9171
 2013,Somalia,Ireland,3
 2013,Somalia,France,5
 2013,Dem. Rep. of the Congo,Finland,50
@@ -329,7 +329,7 @@ year,origin,destination,total
 2014,Somalia,New Zealand,16
 2014,Bhutan,Norway,6
 2014,Dem. Rep. of the Congo,Denmark,126
-2014,Eritrea,United Kingdom of Great Britain and Northern Ireland,3
+2014,Eritrea,UK,3
 2014,Dem. Rep. of the Congo,France,13
 2014,Eritrea,Austria,2
 2014,Sudan,Germany,2
@@ -344,13 +344,13 @@ year,origin,destination,total
 2014,Somalia,Germany,32
 2014,Sudan,France,1
 2014,Dem. Rep. of the Congo,Finland,203
-2014,Somalia,United Kingdom of Great Britain and Northern Ireland,226
+2014,Somalia,UK,226
 2014,Iran (Islamic Rep. of),New Zealand,9
 2014,Sudan,Finland,1
 2014,Dem. Rep. of the Congo,Ireland,8
 2014,Sudan,Canada,94
 2014,Syrian Arab Rep.,Iceland,1
-2014,Syrian Arab Rep.,United States of America,226
+2014,Syrian Arab Rep.,USA,226
 2014,Afghanistan,Germany,16
 2014,Syrian Arab Rep.,Ireland,90
 2014,Iraq,Romania,40
@@ -360,10 +360,10 @@ year,origin,destination,total
 2014,Dem. Rep. of the Congo,Australia,208
 2014,Sudan,Australia,1
 2014,Iran (Islamic Rep. of),Netherlands,11
-2014,Afghanistan,United States of America,633
-2014,Iraq,United Kingdom of Great Britain and Northern Ireland,10
+2014,Afghanistan,USA,633
+2014,Iraq,UK,10
 2014,Myanmar,Japan,23
-2014,Iran (Islamic Rep. of),United States of America,1062
+2014,Iran (Islamic Rep. of),USA,1062
 2014,Sudan,New Zealand,4
 2014,Syrian Arab Rep.,Sweden,420
 2014,Dem. Rep. of the Congo,Portugal,2
@@ -376,15 +376,15 @@ year,origin,destination,total
 2014,Iraq,Germany,133
 2014,Afghanistan,France,37
 2014,Iraq,France,2
-2014,Somalia,United States of America,8652
+2014,Somalia,USA,8652
 2014,Afghanistan,Australia,1506
 2014,Iraq,Netherlands,50
-2014,Myanmar,United Kingdom of Great Britain and Northern Ireland,2
+2014,Myanmar,UK,2
 2014,Eritrea,Canada,413
 2014,Myanmar,Netherlands,2
 2014,Iran (Islamic Rep. of),Canada,1040
 2014,Iran (Islamic Rep. of),Portugal,2
-2014,Syrian Arab Rep.,United Kingdom of Great Britain and Northern Ireland,132
+2014,Syrian Arab Rep.,UK,132
 2014,Iraq,Australia,1049
 2014,Syrian Arab Rep.,Luxembourg,28
 2014,Syrian Arab Rep.,Belgium,25
@@ -393,15 +393,15 @@ year,origin,destination,total
 2014,Iraq,Switzerland,23
 2014,Somalia,Canada,364
 2014,Syrian Arab Rep.,Germany,3183
-2014,Dem. Rep. of the Congo,United States of America,4481
+2014,Dem. Rep. of the Congo,USA,4481
 2014,Iraq,Canada,2203
 2014,Somalia,Sweden,237
 2014,Syrian Arab Rep.,New Zealand,1
 2014,Syrian Arab Rep.,Brazil,1
-2014,Bhutan,United States of America,7335
+2014,Bhutan,USA,7335
 2014,Afghanistan,Canada,317
 2014,Iraq,New Zealand,18
-2014,Dem. Rep. of the Congo,United Kingdom of Great Britain and Northern Ireland,202
+2014,Dem. Rep. of the Congo,UK,202
 2014,Syrian Arab Rep.,Liechtenstein,5
 2014,Iraq,Denmark,1
 2014,Eritrea,Norway,192
@@ -409,8 +409,8 @@ year,origin,destination,total
 2014,Iraq,Finland,14
 2014,Somalia,Norway,93
 2014,Syrian Arab Rep.,Switzerland,114
-2014,Eritrea,United States of America,1167
-2014,Myanmar,United States of America,15358
+2014,Eritrea,USA,1167
+2014,Myanmar,USA,15358
 2014,Syrian Arab Rep.,Norway,786
 2014,Syrian Arab Rep.,Austria,243
 2014,Iran (Islamic Rep. of),Finland,81
@@ -438,19 +438,19 @@ year,origin,destination,total
 2014,Somalia,Denmark,12
 2014,Syrian Arab Rep.,Australia,409
 2014,Iraq,Norway,2
-2014,Sudan,United States of America,458
+2014,Sudan,USA,458
 2014,Syrian Arab Rep.,Denmark,9
-2014,Iraq,United States of America,7432
+2014,Iraq,USA,7432
 2014,Myanmar,Canada,395
 2015,Myanmar,Sweden,6
-2015,Afghanistan,United States of America,1205
+2015,Afghanistan,USA,1205
 2015,Syrian Arab Rep.,Italy,96
 2015,Myanmar,Canada,363
 2015,Syrian Arab Rep.,Liechtenstein,17
 2015,Somalia,Finland,25
 2015,Iraq,Sweden,48
 2015,Dem. Rep. of the Congo,Norway,187
-2015,Bhutan,United States of America,5558
+2015,Bhutan,USA,5558
 2015,Eritrea,Germany,177
 2015,Iran (Islamic Rep. of),Australia,222
 2015,Sudan,Sweden,17
@@ -458,19 +458,19 @@ year,origin,destination,total
 2015,Iran (Islamic Rep. of),Canada,374
 2015,Iraq,Switzerland,89
 2015,Eritrea,New Zealand,2
-2015,Iraq,United States of America,4119
+2015,Iraq,USA,4119
 2015,Iran (Islamic Rep. of),Albania,483
-2015,Iran (Islamic Rep. of),United States of America,1190
+2015,Iran (Islamic Rep. of),USA,1190
 2015,Syrian Arab Rep.,Belarus,14
 2015,Somalia,Norway,41
 2015,Syrian Arab Rep.,Iceland,12
-2015,Sudan,United States of America,1519
+2015,Sudan,USA,1519
 2015,Iraq,Norway,4
 2015,Dem. Rep. of the Congo,Australia,363
 2015,Bhutan,Canada,398
-2015,Eritrea,United Kingdom of Great Britain and Northern Ireland,17
+2015,Eritrea,UK,17
 2015,Iraq,Australia,1159
-2015,Syrian Arab Rep.,United States of America,2187
+2015,Syrian Arab Rep.,USA,2187
 2015,Syrian Arab Rep.,Ireland,145
 2015,Syrian Arab Rep.,Brazil,2
 2015,Dem. Rep. of the Congo,Ireland,2
@@ -481,23 +481,23 @@ year,origin,destination,total
 2015,Somalia,Denmark,16
 2015,Syrian Arab Rep.,Hungary,2
 2015,Sudan,Germany,123
-2015,Iraq,United Kingdom of Great Britain and Northern Ireland,4
+2015,Iraq,UK,4
 2015,Dem. Rep. of the Congo,Sweden,217
 2015,Bhutan,Australia,312
 2015,Eritrea,Canada,608
 2015,Afghanistan,Norway,239
 2015,Syrian Arab Rep.,Germany,1627
-2015,Somalia,United Kingdom of Great Britain and Northern Ireland,163
+2015,Somalia,UK,163
 2015,Somalia,Australia,281
 2015,Myanmar,Rep. of Korea,22
 2015,Somalia,Austria,21
 2015,Myanmar,Norway,5
 2015,Iraq,New Zealand,49
 2015,Iran (Islamic Rep. of),Netherlands,2
-2015,Dem. Rep. of the Congo,United Kingdom of Great Britain and Northern Ireland,157
+2015,Dem. Rep. of the Congo,UK,157
 2015,Myanmar,New Zealand,233
 2015,Dem. Rep. of the Congo,New Zealand,4
-2015,Sudan,United Kingdom of Great Britain and Northern Ireland,68
+2015,Sudan,UK,68
 2015,Iraq,Denmark,1
 2015,Syrian Arab Rep.,Canada,3061
 2015,Bhutan,New Zealand,53
@@ -507,8 +507,8 @@ year,origin,destination,total
 2015,Somalia,Sweden,332
 2015,Eritrea,Netherlands,11
 2015,Iran (Islamic Rep. of),Finland,18
-2015,Somalia,United States of America,7074
-2015,Syrian Arab Rep.,United Kingdom of Great Britain and Northern Ireland,1208
+2015,Somalia,USA,7074
+2015,Syrian Arab Rep.,UK,1208
 2015,Dem. Rep. of the Congo,Canada,547
 2015,Myanmar,Japan,19
 2015,Sudan,Finland,212
@@ -542,23 +542,23 @@ year,origin,destination,total
 2015,Syrian Arab Rep.,Denmark,145
 2015,Dem. Rep. of the Congo,Netherlands,74
 2015,Dem. Rep. of the Congo,Finland,151
-2015,Dem. Rep. of the Congo,United States of America,8645
+2015,Dem. Rep. of the Congo,USA,8645
 2015,Afghanistan,New Zealand,151
 2015,Sudan,Portugal,8
 2015,Syrian Arab Rep.,Spain,92
 2015,Sudan,Canada,81
-2015,Afghanistan,United Kingdom of Great Britain and Northern Ireland,4
+2015,Afghanistan,UK,4
 2015,Eritrea,France,18
 2015,Afghanistan,Denmark,14
 2015,Syrian Arab Rep.,Portugal,27
 2015,Sudan,France,6
-2015,Myanmar,United States of America,16675
+2015,Myanmar,USA,16675
 2015,Syrian Arab Rep.,Luxembourg,49
 2015,Somalia,Canada,355
 2015,Syrian Arab Rep.,Netherlands,236
 2015,Dem. Rep. of the Congo,Denmark,264
 2015,Dem. Rep. of the Congo,France,2
-2015,Eritrea,United States of America,1457
+2015,Eritrea,USA,1457
 2015,Afghanistan,Germany,5
 2015,Sudan,Netherlands,6
 2015,Syrian Arab Rep.,Belgium,188
@@ -568,7 +568,7 @@ year,origin,destination,total
 2015,Afghanistan,Netherlands,5
 2016,Afghanistan,France,1
 2016,Somalia,Sweden,219
-2016,Syrian Arab Rep.,United Kingdom of Great Britain and Northern Ireland,4271
+2016,Syrian Arab Rep.,UK,4271
 2016,Syrian Arab Rep.,Monaco,6
 2016,Myanmar,Norway,1
 2016,Syrian Arab Rep.,New Zealand,383
@@ -582,16 +582,16 @@ year,origin,destination,total
 2016,Afghanistan,Canada,282
 2016,Eritrea,Finland,4
 2016,Eritrea,Netherlands,2
-2016,Afghanistan,United Kingdom of Great Britain and Northern Ireland,3
-2016,Somalia,United States of America,9916
+2016,Afghanistan,UK,3
+2016,Somalia,USA,9916
 2016,Syrian Arab Rep.,Netherlands,582
 2016,Syrian Arab Rep.,Spain,288
-2016,Myanmar,United States of America,10933
+2016,Myanmar,USA,10933
 2016,Dem. Rep. of the Congo,Ireland,2
 2016,Dem. Rep. of the Congo,Finland,196
 2016,Bhutan,Norway,4
 2016,Myanmar,New Zealand,155
-2016,Eritrea,United Kingdom of Great Britain and Northern Ireland,31
+2016,Eritrea,UK,31
 2016,Iraq,France,5
 2016,Eritrea,Norway,7
 2016,Sudan,France,5
@@ -604,17 +604,17 @@ year,origin,destination,total
 2016,Dem. Rep. of the Congo,France,12
 2016,Bhutan,New Zealand,58
 2016,Myanmar,Sweden,11
-2016,Eritrea,United States of America,1805
+2016,Eritrea,USA,1805
 2016,Iraq,Ireland,15
 2016,Somalia,Australia,186
-2016,Iraq,United Kingdom of Great Britain and Northern Ireland,159
+2016,Iraq,UK,159
 2016,Syrian Arab Rep.,Estonia,11
 2016,Sudan,Canada,155
 2016,Iran (Islamic Rep. of),France,15
-2016,Bhutan,United States of America,5577
+2016,Bhutan,USA,5577
 2016,Afghanistan,New Zealand,93
 2016,Iran (Islamic Rep. of),Sweden,12
-2016,Dem. Rep. of the Congo,United Kingdom of Great Britain and Northern Ireland,204
+2016,Dem. Rep. of the Congo,UK,204
 2016,Sudan,Netherlands,2
 2016,Afghanistan,Finland,130
 2016,Iraq,Canada,614
@@ -625,15 +625,15 @@ year,origin,destination,total
 2016,Iraq,Italy,7
 2016,Syrian Arab Rep.,Hungary,4
 2016,Sudan,Denmark,5
-2016,Iran (Islamic Rep. of),United States of America,1786
+2016,Iran (Islamic Rep. of),USA,1786
 2016,Myanmar,Japan,18
 2016,Iran (Islamic Rep. of),Canada,198
-2016,Dem. Rep. of the Congo,United States of America,19502
+2016,Dem. Rep. of the Congo,USA,19502
 2016,Somalia,Ireland,1
 2016,Dem. Rep. of the Congo,Norway,8
 2016,Eritrea,Germany,20
 2016,Afghanistan,Norway,207
-2016,Iraq,United States of America,5222
+2016,Iraq,USA,5222
 2016,Syrian Arab Rep.,Canada,17015
 2016,Iraq,Sweden,99
 2016,Eritrea,Sweden,269
@@ -643,7 +643,7 @@ year,origin,destination,total
 2016,Dem. Rep. of the Congo,Australia,514
 2016,Bhutan,Australia,547
 2016,Iran (Islamic Rep. of),New Zealand,8
-2016,Sudan,United States of America,1365
+2016,Sudan,USA,1365
 2016,Somalia,Netherlands,3
 2016,Dem. Rep. of the Congo,Sweden,328
 2016,Eritrea,Italy,48
@@ -656,11 +656,11 @@ year,origin,destination,total
 2016,Iran (Islamic Rep. of),Australia,223
 2016,Syrian Arab Rep.,Italy,473
 2016,Syrian Arab Rep.,Luxembourg,52
-2016,Sudan,United Kingdom of Great Britain and Northern Ireland,108
+2016,Sudan,UK,108
 2016,Dem. Rep. of the Congo,Belgium,4
 2016,Bhutan,Canada,108
 2016,Iraq,Australia,1102
-2016,Syrian Arab Rep.,United States of America,14880
+2016,Syrian Arab Rep.,USA,14880
 2016,Somalia,New Zealand,5
 2016,Somalia,Canada,294
 2016,Iraq,Switzerland,90
@@ -679,25 +679,25 @@ year,origin,destination,total
 2016,Iraq,New Zealand,36
 2016,Eritrea,Australia,162
 2016,Iraq,Denmark,3
-2016,Afghanistan,United States of America,2900
+2016,Afghanistan,USA,2900
 2016,Eritrea,Austria,1
 2016,Myanmar,Rep. of Korea,34
-2016,Somalia,United Kingdom of Great Britain and Northern Ireland,110
+2016,Somalia,UK,110
 2017,Eritrea,France,44
 2017,Syrian Arab Rep.,Romania,43
 2017,Syrian Arab Rep.,Iceland,47
 2017,Afghanistan,Sweden,203
-2017,Sudan,United States of America,582
+2017,Sudan,USA,582
 2017,Afghanistan,New Zealand,119
 2017,Myanmar,Norway,6
 2017,Afghanistan,Finland,51
-2017,Iraq,United States of America,1844
+2017,Iraq,USA,1844
 2017,Syrian Arab Rep.,Croatia,40
 2017,Sudan,New Zealand,3
 2017,Dem. Rep. of the Congo,Norway,47
 2017,Eritrea,Australia,136
 2017,Iran (Islamic Rep. of),Germany,4
-2017,Iran (Islamic Rep. of),United Kingdom of Great Britain and Northern Ireland,10
+2017,Iran (Islamic Rep. of),UK,10
 2017,Eritrea,Italy,78
 2017,Syrian Arab Rep.,Spain,1062
 2017,Syrian Arab Rep.,Ireland,261
@@ -709,19 +709,19 @@ year,origin,destination,total
 2017,Sudan,Australia,29
 2017,Syrian Arab Rep.,Canada,4137
 2017,Syrian Arab Rep.,Italy,832
-2017,Eritrea,United Kingdom of Great Britain and Northern Ireland,16
-2017,Somalia,United States of America,2394
+2017,Eritrea,UK,16
+2017,Somalia,USA,2394
 2017,Iraq,Germany,9
 2017,Iran (Islamic Rep. of),Luxembourg,1
 2017,Iran (Islamic Rep. of),Netherlands,5
 2017,Sudan,Norway,10
 2017,Iraq,France,8
 2017,Syrian Arab Rep.,Denmark,5
-2017,Eritrea,United States of America,1676
+2017,Eritrea,USA,1676
 2017,Syrian Arab Rep.,Austria,379
 2017,Bhutan,Australia,510
-2017,Dem. Rep. of the Congo,United States of America,5297
-2017,Myanmar,United States of America,3370
+2017,Dem. Rep. of the Congo,USA,5297
+2017,Myanmar,USA,3370
 2017,Eritrea,Norway,7
 2017,Syrian Arab Rep.,Finland,972
 2017,Syrian Arab Rep.,Lithuania,58
@@ -729,11 +729,11 @@ year,origin,destination,total
 2017,Somalia,Norway,13
 2017,Somalia,Germany,7
 2017,Sudan,Germany,119
-2017,Iran (Islamic Rep. of),United States of America,669
+2017,Iran (Islamic Rep. of),USA,669
 2017,Sudan,Sweden,50
 2017,Sudan,France,40
 2017,Eritrea,Netherlands,2
-2017,Somalia,United Kingdom of Great Britain and Northern Ireland,263
+2017,Somalia,UK,263
 2017,Syrian Arab Rep.,Belgium,1170
 2017,Bhutan,Canada,59
 2017,Somalia,Canada,235
@@ -747,14 +747,14 @@ year,origin,destination,total
 2017,Iraq,Australia,314
 2017,Iran (Islamic Rep. of),France,1
 2017,Afghanistan,Australia,898
-2017,Dem. Rep. of the Congo,United Kingdom of Great Britain and Northern Ireland,291
+2017,Dem. Rep. of the Congo,UK,291
 2017,Iran (Islamic Rep. of),Canada,127
 2017,Syrian Arab Rep.,Estonia,19
 2017,Bhutan,New Zealand,26
 2017,Dem. Rep. of the Congo,France,18
 2017,Somalia,New Zealand,14
 2017,Dem. Rep. of the Congo,New Zealand,8
-2017,Syrian Arab Rep.,United States of America,2927
+2017,Syrian Arab Rep.,USA,2927
 2017,Syrian Arab Rep.,Latvia,40
 2017,Iraq,Monaco,23
 2017,Afghanistan,Canada,40
@@ -765,26 +765,26 @@ year,origin,destination,total
 2017,Somalia,Finland,13
 2017,Iraq,Canada,765
 2017,Syrian Arab Rep.,France,2279
-2017,Bhutan,United States of America,3364
+2017,Bhutan,USA,3364
 2017,Dem. Rep. of the Congo,Finland,34
 2017,Syrian Arab Rep.,New Zealand,312
 2017,Iran (Islamic Rep. of),Finland,1
-2017,Afghanistan,United Kingdom of Great Britain and Northern Ireland,35
+2017,Afghanistan,UK,35
 2017,Syrian Arab Rep.,Malta,17
 2017,Iraq,Netherlands,6
-2017,Sudan,United Kingdom of Great Britain and Northern Ireland,282
+2017,Sudan,UK,282
 2017,Somalia,Sweden,73
 2017,Iraq,Luxembourg,2
 2017,Sudan,Canada,100
 2017,Myanmar,Canada,102
 2017,Iraq,Norway,6
-2017,Iraq,United Kingdom of Great Britain and Northern Ireland,333
-2017,Syrian Arab Rep.,United Kingdom of Great Britain and Northern Ireland,4850
+2017,Iraq,UK,333
+2017,Syrian Arab Rep.,UK,4850
 2017,Iran (Islamic Rep. of),New Zealand,42
 2017,Dem. Rep. of the Congo,Sweden,527
 2017,Iraq,Sweden,25
 2017,Eritrea,Germany,14
-2017,Afghanistan,United States of America,702
+2017,Afghanistan,USA,702
 2017,Syrian Arab Rep.,Netherlands,2221
 2017,Syrian Arab Rep.,Portugal,156
 2017,Syrian Arab Rep.,Chile,66
@@ -803,17 +803,17 @@ year,origin,destination,total
 2017,Eritrea,Canada,741
 2018,Iraq,Belgium,1
 2018,Iraq,Canada,671
-2018,Somalia,United States of America,23
+2018,Somalia,USA,23
 2018,Bhutan,Australia,253
 2018,Somalia,Canada,502
 2018,Syrian Arab Rep.,Germany,2929
 2018,Afghanistan,Finland,6
-2018,Iran (Islamic Rep. of),United Kingdom of Great Britain and Northern Ireland,25
+2018,Iran (Islamic Rep. of),UK,25
 2018,Dem. Rep. of the Congo,New Zealand,14
 2018,Somalia,New Zealand,15
 2018,Dem. Rep. of the Congo,Australia,1311
-2018,Syrian Arab Rep.,United States of America,29
-2018,Iraq,United States of America,33
+2018,Syrian Arab Rep.,USA,29
+2018,Iraq,USA,33
 2018,Eritrea,Netherlands,39
 2018,Syrian Arab Rep.,Australia,302
 2018,Sudan,Switzerland,5
@@ -825,10 +825,10 @@ year,origin,destination,total
 2018,Sudan,Norway,3
 2018,Iran (Islamic Rep. of),Italy,3
 2018,Sudan,Sweden,211
-2018,Dem. Rep. of the Congo,United Kingdom of Great Britain and Northern Ireland,281
+2018,Dem. Rep. of the Congo,UK,281
 2018,Dem. Rep. of the Congo,Belgium,34
 2018,Iran (Islamic Rep. of),France,6
-2018,Sudan,United Kingdom of Great Britain and Northern Ireland,227
+2018,Sudan,UK,227
 2018,Somalia,Switzerland,10
 2018,Syrian Arab Rep.,Belgium,816
 2018,Sudan,Italy,14
@@ -843,14 +843,14 @@ year,origin,destination,total
 2018,Iraq,France,2
 2018,Dem. Rep. of the Congo,Netherlands,135
 2018,Myanmar,Australia,780
-2018,Sudan,United States of America,56
+2018,Sudan,USA,56
 2018,Eritrea,Finland,59
 2018,Eritrea,Belgium,33
 2018,Syrian Arab Rep.,Bulgaria,21
 2018,Iraq,Iceland,28
 2018,Syrian Arab Rep.,Norway,1607
-2018,Somalia,United Kingdom of Great Britain and Northern Ireland,130
-2018,Bhutan,United States of America,653
+2018,Somalia,UK,130
+2018,Bhutan,USA,653
 2018,Somalia,Sweden,55
 2018,Syrian Arab Rep.,Lithuania,18
 2018,Syrian Arab Rep.,Portugal,20
@@ -865,9 +865,9 @@ year,origin,destination,total
 2018,Syrian Arab Rep.,Sweden,2791
 2018,Eritrea,Italy,60
 2018,Iran (Islamic Rep. of),New Zealand,8
-2018,Afghanistan,United States of America,774
+2018,Afghanistan,USA,774
 2018,Syrian Arab Rep.,Netherlands,859
-2018,Iran (Islamic Rep. of),United States of America,11
+2018,Iran (Islamic Rep. of),USA,11
 2018,Afghanistan,Australia,147
 2018,Sudan,France,316
 2018,Eritrea,Australia,251
@@ -876,8 +876,8 @@ year,origin,destination,total
 2018,Dem. Rep. of the Congo,Canada,653
 2018,Syrian Arab Rep.,Finland,366
 2018,Syrian Arab Rep.,Iceland,14
-2018,Afghanistan,United Kingdom of Great Britain and Northern Ireland,40
-2018,Eritrea,United Kingdom of Great Britain and Northern Ireland,109
+2018,Afghanistan,UK,40
+2018,Eritrea,UK,109
 2018,Iraq,New Zealand,7
 2018,Afghanistan,Canada,100
 2018,Syrian Arab Rep.,New Zealand,230
@@ -886,7 +886,7 @@ year,origin,destination,total
 2018,Syrian Arab Rep.,Argentina,3
 2018,Somalia,Netherlands,24
 2018,Myanmar,New Zealand,229
-2018,Myanmar,United States of America,3588
+2018,Myanmar,USA,3588
 2018,Eritrea,Germany,238
 2018,Dem. Rep. of the Congo,Finland,128
 2018,Syrian Arab Rep.,France,4193
@@ -896,19 +896,19 @@ year,origin,destination,total
 2018,Myanmar,Japan,22
 2018,Eritrea,New Zealand,1
 2018,Syrian Arab Rep.,Spain,80
-2018,Iraq,United Kingdom of Great Britain and Northern Ireland,338
+2018,Iraq,UK,338
 2018,Eritrea,France,148
 2018,Syrian Arab Rep.,Ireland,333
 2018,Eritrea,Canada,935
 2018,Somalia,Australia,33
 2018,Somalia,Germany,37
-2018,Dem. Rep. of the Congo,United States of America,8915
-2018,Syrian Arab Rep.,United Kingdom of Great Britain and Northern Ireland,4297
+2018,Dem. Rep. of the Congo,USA,8915
+2018,Syrian Arab Rep.,UK,4297
 2018,Myanmar,Sweden,2
 2018,Iran (Islamic Rep. of),Canada,191
 2018,Afghanistan,Sweden,270
 2018,Myanmar,Rep. of Korea,26
-2018,Eritrea,United States of America,1210
+2018,Eritrea,USA,1210
 2018,Syrian Arab Rep.,Slovenia,34
 2018,Iraq,Germany,1
 2018,Eritrea,Switzerland,61
@@ -1009,8 +1009,8 @@ year,origin,destination,total
 2011,all,Portugal,28
 2011,all,Sweden,1463
 2011,all,Switzerland,30
-2011,all,United Kingdom of Great Britain and Northern Ireland,278
-2011,all,United States of America,41869
+2011,all,UK,278
+2011,all,USA,41869
 2012,all,Australia,4704
 2012,all,Belgium,1
 2012,all,Canada,4228
@@ -1030,8 +1030,8 @@ year,origin,destination,total
 2012,all,Spain,46
 2012,all,Sweden,1281
 2012,all,Switzerland,43
-2012,all,United Kingdom of Great Britain and Northern Ireland,677
-2012,all,United States of America,51039
+2012,all,UK,677
+2012,all,USA,51039
 2013,all,Albania,197
 2013,all,Australia,10768
 2013,all,Austria,4
@@ -1050,8 +1050,8 @@ year,origin,destination,total
 2013,all,Portugal,6
 2013,all,Sweden,1561
 2013,all,Switzerland,61
-2013,all,United Kingdom of Great Britain and Northern Ireland,723
-2013,all,United States of America,45502
+2013,all,UK,723
+2013,all,USA,45502
 2014,all,Albania,278
 2014,all,Australia,6038
 2014,all,Austria,269
@@ -1077,8 +1077,8 @@ year,origin,destination,total
 2014,all,Spain,30
 2014,all,Sweden,1668
 2014,all,Switzerland,137
-2014,all,United Kingdom of Great Britain and Northern Ireland,575
-2014,all,United States of America,46804
+2014,all,UK,575
+2014,all,USA,46804
 2014,all,Uruguay,42
 2015,all,Albania,483
 2015,all,Australia,4931
@@ -1107,8 +1107,8 @@ year,origin,destination,total
 2015,all,Spain,92
 2015,all,Sweden,1563
 2015,all,Switzerland,640
-2015,all,United Kingdom of Great Britain and Northern Ireland,1621
-2015,all,United States of America,49629
+2015,all,UK,1621
+2015,all,USA,49629
 2016,all,Australia,6967
 2016,all,Austria,81
 2016,all,Belgium,452
@@ -1136,8 +1136,8 @@ year,origin,destination,total
 2016,all,Spain,288
 2016,all,Sweden,1688
 2016,all,Switzerland,664
-2016,all,United Kingdom of Great Britain and Northern Ireland,4886
-2016,all,United States of America,73886
+2016,all,UK,4886
+2016,all,USA,73886
 2017,all,Australia,3613
 2017,all,Austria,379
 2017,all,Belgium,1288
@@ -1168,8 +1168,8 @@ year,origin,destination,total
 2017,all,Spain,1062
 2017,all,Sweden,2945
 2017,all,Switzerland,581
-2017,all,United Kingdom of Great Britain and Northern Ireland,6080
-2017,all,United States of America,22825
+2017,all,UK,6080
+2017,all,USA,22825
 2018,all,Argentina,3
 2018,all,Australia,3272
 2018,all,Belgium,894
@@ -1194,5 +1194,5 @@ year,origin,destination,total
 2018,all,Spain,80
 2018,all,Sweden,4363
 2018,all,Switzerland,1072
-2018,all,United Kingdom of Great Britain and Northern Ireland,5447
-2018,all,United States of America,15292
+2018,all,UK,5447
+2018,all,USA,15292
