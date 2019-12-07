@@ -1,13 +1,14 @@
 var blockCols;
 // blockCols = Math.ceil(Math.sqrt(persons.length));
 var otherCountryPersons;
-var allPersons 
+var allPersons
 
 var tooltipTotal = d3.tip()
     .attr("class", "d3-tip")
     .offset([-8, 0])
     .html(function (d) {
-        return "Year " + d.year + "<br><br>Total Asylum Seekers: " + yearTotalPersons[d.year]
+        return "<div class = 'label'>Year</div>" 
+        + d.year + "<br><br><div class = 'label'>Total Asylum Seekers</div>" + yearTotalPersons[d.year]
     });
 
 function showBlock() {
@@ -41,7 +42,7 @@ function showBlock() {
         otherCountryPersons = otherCountryPersons.concat(nodes);
 
     })
-    console.log(otherCountryPersons);
+    //console.log(otherCountryPersons);
     allPersons = [];
     Object.assign(allPersons, persons);
     allPersons = allPersons.concat(otherCountryPersons);
@@ -50,18 +51,30 @@ function showBlock() {
         return a.year - b.year;
     })
 
-    console.log(allPersons);
+    //console.log(allPersons);
     var units = svg
         .selectAll('rect')
         .data(allPersons)
 
     units.exit().remove();
 
-    var unitsEnter = units.enter().append('rect').attr('class','dataPixel')
+    var unitsEnter = units.enter().append('rect').attr('class', 'dataPixel')
 
     units = units.merge(unitsEnter)
-        .on("mouseover", tooltipTotal.show)
-        .on("mouseout", tooltipTotal.hide)
+        .style("fill", function (d) {
+            return colorScale(yearsTotalPersonsArray.indexOf(d.year));
+        })
+        .on("mouseover", function (d, i) {
+            var year = d.year;
+            d3.selectAll('.dataPixel').style('opacity', function (r) {
+                return (r.year == year) ? 1.0 : 0.5;
+            })
+            tooltipTotal.show(d);
+        })
+        .on("mouseout", function (d, i) {
+            d3.selectAll('.dataPixel').style('opacity', 1.0)
+            tooltipTotal.hide()
+        })
         .transition()
         .duration(1000)
         .attr('x', function (d, i) {
@@ -70,9 +83,6 @@ function showBlock() {
         .attr('y', function (d, i) {
             return height - (Math.floor((i / blockCols)) * size);
         })
-        
-
-    
 }
 
 var personsCopy = []
@@ -84,9 +94,10 @@ function showOtherCountryPersons() {
     blockCols = Math.ceil(Math.sqrt(persons.length));
     personsCopy = [];
     Object.assign(personsCopy, persons);
-    otherCountryPersons.sort(function(a,b){
-        return a.year - b.year;})
-        
+    otherCountryPersons.sort(function (a, b) {
+        return a.year - b.year;
+    })
+
     personsCopy = personsCopy.concat(otherCountryPersons);
 
     var units = svg
@@ -110,7 +121,7 @@ function showOtherCountryPersons() {
 
 
     units = units.merge(unitsEnter);
-    
+
     units
         .style("fill", function (d) {
             return colorScale(d.year % 2011)
@@ -140,8 +151,9 @@ function changeColor() {
     Object.assign(personsCopy, persons);
     personsCopy = personsCopy.concat(otherCountryPersons);
 
-    personsCopy.sort(function(a,b){
-        return a.year - b.year;})
+    personsCopy.sort(function (a, b) {
+        return a.year - b.year;
+    })
 
     var units = svg
         .selectAll('rect')
@@ -167,6 +179,8 @@ function changeColor() {
 
     units
         .style("fill", "red")
+        .on("mouseover", doNothing)
+        .on("mouseout", doNothing)
         .transition()
         .duration(1000)
         .attr('x', function (d, i) {
@@ -179,6 +193,42 @@ function changeColor() {
 
 }
 
+function showChildren() {
+    var childrenCount = allPersons.length / 2;
+
+    var units = svg
+        .selectAll('rect')
+        .data(allPersons)
+
+    units.exit().remove();
+
+    var unitsEnter = units
+        .enter()
+        .append('rect')
+        .attr('height', function (d) {
+            return d.size;
+        })
+        .attr('width', function (d) {
+            return d.size;
+        })
+
+
+    units = units.merge(unitsEnter);
+
+    units
+        .transition()
+        .duration(1000)
+        .delay(function (d, i) {
+            return i * 10;
+        })
+        .style("fill", function (d, i) {
+            if (i < childrenCount)
+                return "white";
+            else
+                return "red";
+        })
+}
+
 function splitResettled() {
     d3.selectAll(".originDropDown").remove()
     d3.selectAll(".yearDropdownOrigin").remove()
@@ -187,13 +237,13 @@ function splitResettled() {
     d3.selectAll('.resettlementaxis').remove()
     d3.selectAll('.timeaxis').remove()
 
-    var resettled = 246720/ratio;
+    var resettled = 246720 / ratio;
 
     var line = chartG
-    .selectAll('.line-plot')    
-    .data([])
+        .selectAll('.line-plot')
+        .data([])
     line.exit().remove();
-    
+
     blockCols = Math.ceil(Math.sqrt(persons.length));
     var units = svg
         .selectAll('rect')
@@ -216,7 +266,7 @@ function splitResettled() {
 
 
     units = units.merge(unitsEnter);
-    
+
     units
         .style("fill", function (d) {
             return "red"
@@ -230,6 +280,7 @@ function splitResettled() {
         .on("mouseover", doNothing)
         .on("mouseout", doNothing)
         .transition()
+        .delay(2000)
         .duration(1000)
         .attr('x', function (d, i) {
             return ((i) % blockCols) * size;
@@ -237,6 +288,7 @@ function splitResettled() {
         .attr('y', function (d, i) {
             return height - (Math.floor(((i) / blockCols)) * size);
         })
+
 
     d3.selectAll(".not_resettled")
         .transition()
@@ -247,8 +299,8 @@ function splitResettled() {
         .attr('y', function (d, i) {
             return height - (Math.floor(((resettled + i) / blockCols)) * size) - 300;
         })
-    
-        
+
+
 
     d3.selectAll(".resettled")
         .transition()
@@ -262,6 +314,6 @@ function splitResettled() {
         .style("fill", "green")
 }
 
-function doNothing(){
-        
+function doNothing() {
+
 }
