@@ -237,7 +237,7 @@ function splitResettled() {
     d3.selectAll('.resettlementaxis').remove()
     d3.selectAll('.timeaxis').remove()
 
-    var resettled = 246720 / ratio;
+    var resettled = 222706 / ratio;
 
     var line = chartG
         .selectAll('.line-plot')
