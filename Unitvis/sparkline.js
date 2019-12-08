@@ -18,9 +18,10 @@ function createSparkline() {
             return { year: leaves[0]["Year"], totalAsylumSeekers: total };
         })
         .entries(data);
-    chartWidth = width / 4
-    chartHeight = height / 5
-    positionX = width / 1.3
+    console.log(yearTotal)
+    chartWidth = width/3
+    chartHeight = height/4
+    positionX = width/1.5
     positionY = 0
 
     xScaleSparkline = d3.scaleTime()
@@ -40,8 +41,10 @@ function createSparkline() {
         .attr('class', 'sparklineVis')
 }
 
-function buildSparkline(year) {
-    chartG.selectAll('.xAxisSparkline').remove()
+function buildSparkline(year){
+    d3.select('.xAxisSparkline').remove()
+    d3.selectAll('.sparklineTextAsylum').remove()
+    d3.selectAll('.sparklineTextNumber').remove()
 
     var xAxisSparkline = d3.axisBottom()
         .scale(xScaleSparkline)
@@ -51,6 +54,39 @@ function buildSparkline(year) {
         .attr('transform', 'translate(0,' + (+chartHeight) + ')')
         .call(xAxisSparkline)
         .attr('class', 'xAxisSparkline')
+
+    chartG.append("text")
+    .attr("dx", "25em")
+    .attr("dy", "13em")
+    .text("Asylum Seekers: ")
+    .attr("class","sparklineTextAsylum")
+
+    chartG.append("text")
+    .attr("dx", "33em")
+    .attr("dy", "13em")
+    .text(yearTotal[year%2011].value.totalAsylumSeekers)
+    .attr("class","sparklineTextNumber")
+
+    //removal code 
+    var nextYears = yearTotal.filter(function(d){
+        return d.key > year
+    })
+
+    // console.log("hi")
+    // console.log(d3.selectAll('.line-plot'+nextYears[0].key).empty())
+    if(nextYears.length > 0 && !d3.selectAll('.line-plot'+nextYears[0].key).empty()){        
+        d3.select('.line-plot'+nextYears[0].key).remove();
+        return;
+    }
+    if(nextYears.length == 0 && !d3.selectAll('.line-plot'+year).empty()){
+        if(!d3.select('.sparkLinesHide').empty()){
+            for(i=0;i<yearsSparklineRemoval.length;i++){
+                d3.select('.line-plot'+yearsSparklineRemoval[i]).classed('sparkLinesHide',false);
+            }
+        }
+        return;
+    }
+    // end removal code
 
     var currYearTotal = yearTotal.filter(function (d) {
         if(year > 2011){
@@ -68,7 +104,6 @@ function buildSparkline(year) {
         .selectAll('.line-plot'  + year)
         .data([currYearTotal])
 
-
     var lineEnter = line
         .enter()
         .append("path")
@@ -81,28 +116,27 @@ function buildSparkline(year) {
    
 
     mergedLine
-        .attr('d', lineInterpolate)
-        .attr("fill", function (d) {
-            return "none"
-        })
-        .attr("stroke", "red")
-        .attr("stroke-width", 1)
-        .attr('class', 'line-plot')
-        .attr("len", function (d, i) {
-            d.len = d3.select(this).node().getTotalLength() 
-            return d3.select(this).node().getTotalLength()
-        })
-        .attr("stroke-dasharray", function (d, i) {
-            return d.len + " " + d.len
-        })
-        .attr("stroke-dashoffset", function (d) {
-            return d.len
-        })
-        .transition()
-        .duration(2000)
-        .ease(d3.easeLinear)
-        .attr("stroke-dashoffset", 0);
-
+    .attr('d', lineInterpolate)
+    .attr("fill", function (d) {
+        return "none"
+    })
+    .attr("stroke", "red")
+    .attr("stroke-width", 3)
+    .attr('class','line-plot' + year)
+    .attr("len", function (d, i) {
+        d.len = d3.select(this).node().getTotalLength() 
+        return d3.select(this).node().getTotalLength()
+    })
+    .attr("stroke-dasharray", function (d, i) {
+        return d.len + " " + d.len
+    })
+    .attr("stroke-dashoffset", function (d) {
+        return d.len
+    })
+    .transition()
+    .duration(2000)
+    .ease(d3.easeLinear)
+    .attr("stroke-dashoffset", 0);
 
 }
 function createSparklineCircles(currYearTotal) {
@@ -113,22 +147,21 @@ function createSparklineCircles(currYearTotal) {
     circle.exit().remove();
 
     var circleEnter = circle
-        .enter()
-        .append("circle")
+    .enter()
+    .append("circle")
+    .style("fill", "none")
 
     circleEnter.merge(circle)
-        .attr('cx', function (d) {
-            return xScaleSparkline(d.value.year);
-        })
-        .attr('cy', function (d) {
-            return yScaleSparkline(d.value.totalAsylumSeekers);
-        })
-        .attr('r', "5px")
-        .style("fill", "none")
-        .transition()
-        .ease(d3.easeLinear)
-
-        .style('fill', "steelblue")
-        .attr('çlass', 'sparklineCircle');
+    .attr('cx',function(d){
+        return xScaleSparkline(parseDate(d.value.year));
+    })
+    .attr('cy',function(d){
+        return yScaleSparkline(d.value.totalAsylumSeekers);
+    })
+    .attr('r',"2px")
+    .transition()
+    .ease(d3.easeLinear)    
+    .style('fill', "#aa0000")
+    .attr('çlass','sparklineCircle');
 }
 

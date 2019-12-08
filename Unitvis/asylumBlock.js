@@ -17,8 +17,9 @@ function showBlock() {
     svg.call(tooltipTotal)
     d3.selectAll(".xAxis").remove();
     d3.selectAll(".yAxisAsylum").remove();
-
     buildSparkline(2018)
+    d3.selectAll(".sparklineTextAsylum").remove();
+    d3.selectAll(".sparklineTextNumber").remove();
     blockCols = Math.ceil(Math.sqrt(persons.length));
     otherCountryPersons = [];
 
@@ -156,6 +157,8 @@ function showOtherCountryPersons() {
 //show same color for all asylum seeksers
 function changeColor() {
     buildSparkline(2018)
+    d3.selectAll(".sparklineTextAsylum").remove();
+    d3.selectAll(".sparklineTextNumber").remove();
     var personsCopy = [];
     Object.assign(personsCopy, persons);
     personsCopy = personsCopy.concat(otherCountryPersons);
@@ -203,6 +206,9 @@ function changeColor() {
 }
 
 function showChildren() {
+    buildSparkline(2018)
+    d3.selectAll(".sparklineTextAsylum").remove();
+    d3.selectAll(".sparklineTextNumber").remove();
     var childrenCount = allPersons.length / 2;
 
     var units = svg
@@ -248,6 +254,12 @@ function showChildren() {
 }
 
 function splitResettled() {
+    d3.select('.xAxisSparkline').remove();
+    yearsSparklineRemoval = [2011,2012,2013,2014,2015,2016,2017,2018];
+    for(i=0;i<yearsSparklineRemoval.length;i++){
+        d3.select('.line-plot'+yearsSparklineRemoval[i]).classed('sparkLinesHide',true);
+    }
+    d3.select(".originDropDownLabel").remove()
     d3.selectAll(".originDropDown").remove()
     d3.selectAll(".yearDropdownOrigin").remove()
     d3.select(".yearDropdownDest").remove()
@@ -255,6 +267,7 @@ function splitResettled() {
     d3.selectAll(".yAxisAsylum").remove();
     d3.selectAll('.resettlementaxis').remove()
     d3.selectAll('.timeaxis').remove()
+    d3.selectAll('.ResettlementRatioImage').remove()
 
     var resettled = 222706 / ratio;
 
