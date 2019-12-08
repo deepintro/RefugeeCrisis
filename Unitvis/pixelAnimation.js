@@ -36,7 +36,7 @@ function show100Persons() {
     d3.selectAll('.equals').remove();
     d3.selectAll('.pixel').remove();
 
-    initialSize = 10;
+    initialSize = 15;
     xStart = 100;
     pixelCols = Math.round(Math.sqrt(imgRatio))
     yStart = height / 2 - (initialSize * pixelCols / 2);
@@ -74,9 +74,9 @@ function show100Persons() {
 //step 3
 function shift100Persons() {
     console.log("shift")
-    initialSize = 25;
+    initialSize = 15;
     xStart = 100;
-    pixelCols = Math.sqrt(imgRatio)
+    pixelCols = Math.round(Math.sqrt(imgRatio))
     yStart = height / 2 - (initialSize * pixelCols / 2);
     var pixelHeight = 30;
     var personData = d3.range(0, imgRatio);

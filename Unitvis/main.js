@@ -35,7 +35,7 @@ var tool_tip = d3.tip()
     .html(function (d) {
         return "<div class = 'label'>Country </div>" + d.country
             + "<br><br><div class = 'label'>Year </div>" + d.year
-            + "<br><br><div class = 'label'>Asylum Seekers </div>" + d.yearTotal
+            + "<br><br><div class = 'label'>Refugees </div>" + numberWithCommas(d.yearTotal)
     });
 
 
@@ -47,7 +47,7 @@ d3.csv("asylum.csv", function (dataSet) {
         })
         .rollup(function (rows) {
             return d3.sum(rows, d => {
-                return d["Asylum-seekers"]
+                return d["Refugees"]
             })
         })
         .object(dataSet)
@@ -77,8 +77,8 @@ d3.csv("asylum.csv", function (dataSet) {
             var total = 0;
             years = { 2011: 0, 2012: 0, 2013: 0, 2014: 0, 2015: 0, 2016: 0, 2017: 0, 2018: 0 }
             d.values.forEach(y => {
-                years[y.key] = +y.values[0]['Total Population'];
-                total += +y.values[0]['Total Population'];
+                years[y.key] = +y.values[0]['Refugees'];
+                total += +y.values[0]['Refugees'];
             })
             return { 'country': d.key, 'years': years, 'total': total };
         })
@@ -205,8 +205,9 @@ function createUnitVis(currYear) {
         .scale(yScale);
 
     svg.append("g")
-        .call(yAxis)
+        .call(yAxis.tickFormat(d3.formatPrefix(".0", 1e6)))
         .attr('class','yAxisAsylum')
+        
         
 
     svg.append('g')
@@ -354,7 +355,11 @@ function scrollYear2018() {
 }
 function conclusion()
 {
-    
+    d3.selectAll(".ResettlementRatioImage").remove();
+    d3.selectAll(".dropdownLabel").remove();
+    d3.selectAll(".dropdown").remove();
+    d3.selectAll('rect').remove();
+    d3.selectAll('.timeaxis').remove();
 }
 
 
