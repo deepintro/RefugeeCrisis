@@ -6,6 +6,7 @@ var chartHeight
 var xScaleSparkline
 var parseDate = d3.timeParse('%Y');
 var g = 0;
+var prevtotalAsylumSeekers = 0;
 function createSparkline() {
     yearTotal = d3.nest()
         .key(function (d) {
@@ -66,6 +67,10 @@ function buildSparkline(year){
     .attr("y", chartHeight+50)
     .text(numberWithCommas(yearTotal[year%2011].value.totalAsylumSeekers))
     .attr("class","sparklineTextNumber")
+    .attr("id","sparklineTextNumberID")
+
+    //animateValue("sparklineTextNumberID", parseInt(prevtotalAsylumSeekers), parseInt(yearTotal[year%2011].value.totalAsylumSeekers), 100);
+    //prevtotalAsylumSeekers = parseInt(yearTotal[year%2011].value.totalAsylumSeekers)
 
     //removal code 
     var nextYears = yearTotal.filter(function(d){
@@ -167,5 +172,20 @@ function createSparklineCircles(currYearTotal) {
 
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function animateValue(id, start, end, duration) {
+    var range = end - start;
+    var current = start;
+    var increment = end > start? 1000 : -1000;
+    var stepTime = Math.abs(Math.floor(duration / range));
+    var obj = document.getElementById(id);
+    var timer = setInterval(function() {
+        current += increment;
+        obj.innerHTML = current;
+        if (current == end) {
+            clearInterval(timer);
+        }
+    }, stepTime);
 }
 
