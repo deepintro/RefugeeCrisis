@@ -106,7 +106,9 @@ d3.csv("asylum.csv", function (dataSet) {
 
     //cumulative
     yearData.forEach((c, idx) => {
-        var total = Math.ceil(c.total / ratio);
+        
+        var total = Math.floor(c.total / ratio);
+        console.log(c.total, total);
         var xStart = xScale(c.country) + barMargin;
         var cumulative = { 2011: c.years[2011], 2012: 0, 2013: 0, 2014: 0, 2015: 0, 2016: 0, 2017: 0, 2018: 0 };
 
@@ -291,7 +293,7 @@ function dummyfunction() {
 
 function getYear(node, cumulative) {
     for (i = 2011; i <= 2018; i++) {
-        if (node < cumulative[i] / ratio) {
+        if (node < Math.round(cumulative[i] / ratio)) {
             return i;
         }
     }
