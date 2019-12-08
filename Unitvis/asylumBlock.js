@@ -2,13 +2,15 @@ var blockCols;
 // blockCols = Math.ceil(Math.sqrt(persons.length));
 var otherCountryPersons;
 var allPersons
+var resettledColor = "rgb(43, 174, 102)"
+var notResettledColor = "#aa0000";
 
 var tooltipTotal = d3.tip()
     .attr("class", "d3-tip")
     .offset([-8, 0])
     .html(function (d) {
-        return "<div class = 'label'>Year</div>" 
-        + d.year + "<br><br><div class = 'label'>Total Asylum Seekers</div>" + yearTotalPersons[d.year]
+        return "<div class = 'label'>Year</div>"
+            + d.year + "<br><br><div class = 'label'>Total Asylum Seekers</div>" + yearTotalPersons[d.year]
     });
 
 function showBlock() {
@@ -64,6 +66,12 @@ function showBlock() {
     units = units.merge(unitsEnter)
         .style("fill", function (d) {
             return colorScale(yearsTotalPersonsArray.indexOf(d.year));
+        })
+        .attr('height', function (d) {
+            return d.size;
+        })
+        .attr('width', function (d) {
+            return d.size;
         })
         .on("mouseover", function (d, i) {
             var year = d.year;
@@ -179,7 +187,7 @@ function changeColor() {
     units = units.merge(unitsEnter);
 
     units
-        .style("fill", "red")
+        .style("fill", notResettledColor)
         .on("mouseover", doNothing)
         .on("mouseout", doNothing)
         .transition()
@@ -206,27 +214,36 @@ function showChildren() {
     var unitsEnter = units
         .enter()
         .append('rect')
+
+
+
+
+    units = units.merge(unitsEnter);
+
+    units
+        .attr('x', function (d, i) {
+            return ((i) % blockCols) * size;
+        })
+        .attr('y', function (d, i) {
+            return height - (Math.floor(((i) / blockCols)) * size);
+        })
+        .style("fill", notResettledColor)
         .attr('height', function (d) {
             return d.size;
         })
         .attr('width', function (d) {
             return d.size;
         })
-
-
-    units = units.merge(unitsEnter);
-
-    units
         .transition()
         .duration(1000)
         .delay(function (d, i) {
-            return i * 10;
+            return i * 5;
         })
         .style("fill", function (d, i) {
             if (i < childrenCount)
                 return "white";
             else
-                return "red";
+                return notResettledColor;
         })
 }
 
@@ -270,8 +287,14 @@ function splitResettled() {
     units = units.merge(unitsEnter);
 
     units
+        .attr('height', function (d) {
+            return d.size;
+        })
+        .attr('width', function (d) {
+            return d.size;
+        })
         .style("fill", function (d) {
-            return "red"
+            return notResettledColor
         })
         .attr("class", function (d, i) {
             if (i < resettled)
@@ -299,7 +322,7 @@ function splitResettled() {
             return ((resettled + i) % blockCols) * size;
         })
         .attr('y', function (d, i) {
-            return height - (Math.floor(((resettled + i) / blockCols)) * size) - 300;
+            return height - (Math.floor(((resettled + i) / blockCols)) * size) - 200;
         })
 
 
@@ -313,7 +336,7 @@ function splitResettled() {
         .attr('y', function (d, i) {
             return height - (Math.floor((i / blockCols)) * size) - 100;
         })
-        .style("fill", "green")
+        .style("fill", resettledColor)
 }
 
 function doNothing() {
