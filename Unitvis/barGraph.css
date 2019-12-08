@@ -56,7 +56,7 @@ html,
   }
   .fixed {
     position: fixed;
-    max-width: 500px;
+    max-width: 820px;
     height: 500px;
     top: 50px;
   }
@@ -140,4 +140,40 @@ html,
   .label{
     color: rgb(219, 23, 23);
     font-weight: bold;
+  }
+  .sparkLinesHide{
+    opacity: 0;
+  }
+
+  .dropdown{
+    margin-left: 10px;
+    padding: 5px;
+    width: 230px;
+    border: 3px solid;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: "Georgia", sans-serif;
+  }
+
+  .dropdown option{
+    font-family: "Georgia", sans-serif;
+    font-size: 15px;
+    padding: 10px;
+      
+  }
+  .dropdown option:hover{
+    background-color: #e61111;
+  }
+
+  .dropdownLabel{
+    padding-left: 70px;
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: Georgia;
+  }
+
+  .yearDestDropDownLabel{
+    color: green;
+    padding-left: 20px;
   }

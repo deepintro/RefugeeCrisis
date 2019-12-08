@@ -78,6 +78,14 @@ function buildSparkline(year){
         d3.select('.line-plot'+nextYears[0].key).remove();
         return;
     }
+    if(nextYears.length == 0 && !d3.selectAll('.line-plot'+year).empty()){
+        if(!d3.select('.sparkLinesHide').empty()){
+            for(i=0;i<yearsSparklineRemoval.length;i++){
+                d3.select('.line-plot'+yearsSparklineRemoval[i]).classed('sparkLinesHide',false);
+            }
+        }
+        return;
+    }
     // end removal code
 
     var currYearTotal = yearTotal.filter(function (d) {
