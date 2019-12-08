@@ -10,7 +10,7 @@ var tooltipTotal = d3.tip()
     .offset([-8, 0])
     .html(function (d) {
         return "<div class = 'label'>Year</div>"
-            + d.year + "<br><br><div class = 'label'>Total Asylum Seekers</div>" + yearTotalPersons[d.year]
+            + d.year + "<br><br><div class = 'label'>Total Refugees</div>" + numberWithCommas(yearTotalPersons[d.year])
     });
 
 function showBlock() {

@@ -3,6 +3,8 @@ var xStart
 var pixelCols
 var yStart
 
+var imgRatio = 1000;
+
 //step 1
 function showPerson() {
     d3.selectAll('.personImg').remove();
@@ -34,12 +36,12 @@ function show100Persons() {
     d3.selectAll('.equals').remove();
     d3.selectAll('.pixel').remove();
 
-    initialSize = 25;
+    initialSize = 15;
     xStart = 100;
-    pixelCols = Math.sqrt(ratio)
+    pixelCols = Math.round(Math.sqrt(imgRatio))
     yStart = height / 2 - (initialSize * pixelCols / 2);
 
-    var personData = d3.range(0, ratio);
+    var personData = d3.range(0, imgRatio);
 
     var images = svg.selectAll('.personImg')
         .data(personData)
@@ -52,9 +54,9 @@ function show100Persons() {
     images = images.merge(imagesEnter)
         .transition()
         .duration(1000)
-        .delay(function (d, i) {
-            return i * 10;
-        })
+        // .delay(function (d, i) {
+        //     return i * 10;
+        // })
         .attr("xlink:href", function (d) { return "./person.png" })
         .attr("class", "personImg")
         .attr('x', function (d, i) {
@@ -72,12 +74,12 @@ function show100Persons() {
 //step 3
 function shift100Persons() {
     console.log("shift")
-    initialSize = 25;
+    initialSize = 15;
     xStart = 100;
-    pixelCols = Math.sqrt(ratio)
+    pixelCols = Math.round(Math.sqrt(imgRatio))
     yStart = height / 2 - (initialSize * pixelCols / 2);
     var pixelHeight = 30;
-    var personData = d3.range(0, ratio);
+    var personData = d3.range(0, imgRatio);
 
     var images = svg.selectAll('.personImg')
         .data(personData)
