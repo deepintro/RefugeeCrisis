@@ -167,6 +167,7 @@ d3.csv("asylum.csv", function (dataSet) {
     new scroll('div12', '75%', splitResettled, showChildren);
     new scroll('div13', '75%', createOriginDropDown, splitResettled);
     new scroll('div14', '75%', createOriginDestDropDown, createOriginDropDown);
+    new scroll('div15', '75%', conclusion, createOriginDestDropDown);
 
 })
 
@@ -349,8 +350,10 @@ function scrollYear2018() {
     createUnitVis(2018);
     buildSparkline(2018);
 }
-
-
+function conclusion()
+{
+    
+}
 
 
 
