@@ -67,6 +67,7 @@ function show100Persons() {
         })
         .attr("height", initialSize - 5)
         .attr("width", initialSize - 5)
+        
 
 }
 
@@ -115,6 +116,257 @@ function shift100Persons() {
         })
         .attr("height", 0)
         .attr("width", 0)
+
+        //test
+        .transition()
+        .duration(0)
+        .attr('x', function (d, i) {
+            return (i % pixelCols) * initialSize + xStart + 100;
+        })
+        .attr('y', function (d, i) {
+            return (Math.floor((i / pixelCols)) * initialSize) + yStart
+        })
+        .attr("height", initialSize - 5)
+        .attr("width", initialSize - 5)
+
+
+        .transition()
+        .duration(1000)
+        //.delay(1000)
+        .attr('x', function (d, i) {
+            return 100;
+        })
+        .attr('y', function (d, i) {
+            return (height / 2) - (pixelHeight / 2)
+        })
+        .attr("height", 0)
+        .attr("width", 0)
+
+        //test
+        .transition()
+        .duration(0)
+        .attr('x', function (d, i) {
+            return (i % pixelCols) * initialSize + xStart + 100;
+        })
+        .attr('y', function (d, i) {
+            return (Math.floor((i / pixelCols)) * initialSize) + yStart
+        })
+        .attr("height", initialSize - 5)
+        .attr("width", initialSize - 5)
+
+
+        .transition()
+        .duration(1000)
+        //.delay(1000)
+        .attr('x', function (d, i) {
+            return 100;
+        })
+        .attr('y', function (d, i) {
+            return (height / 2) - (pixelHeight / 2)
+        })
+        .attr("height", 0)
+        .attr("width", 0)
+
+        //test
+        .transition()
+        .duration(0)
+        .attr('x', function (d, i) {
+            return (i % pixelCols) * initialSize + xStart + 100;
+        })
+        .attr('y', function (d, i) {
+            return (Math.floor((i / pixelCols)) * initialSize) + yStart
+        })
+        .attr("height", initialSize - 5)
+        .attr("width", initialSize - 5)
+
+
+        .transition()
+        .duration(1000)
+        //.delay(1000)
+        .attr('x', function (d, i) {
+            return 100;
+        })
+        .attr('y', function (d, i) {
+            return (height / 2) - (pixelHeight / 2)
+        })
+        .attr("height", 0)
+        .attr("width", 0)
+
+        //test
+        .transition()
+        .duration(0)
+        .attr('x', function (d, i) {
+            return (i % pixelCols) * initialSize + xStart + 100;
+        })
+        .attr('y', function (d, i) {
+            return (Math.floor((i / pixelCols)) * initialSize) + yStart
+        })
+        .attr("height", initialSize - 5)
+        .attr("width", initialSize - 5)
+
+
+        .transition()
+        .duration(1000)
+        //.delay(1000)
+        .attr('x', function (d, i) {
+            return 100;
+        })
+        .attr('y', function (d, i) {
+            return (height / 2) - (pixelHeight / 2)
+        })
+        .attr("height", 0)
+        .attr("width", 0)
+
+        //test
+        .transition()
+        .duration(0)
+        .attr('x', function (d, i) {
+            return (i % pixelCols) * initialSize + xStart + 100;
+        })
+        .attr('y', function (d, i) {
+            return (Math.floor((i / pixelCols)) * initialSize) + yStart
+        })
+        .attr("height", initialSize - 5)
+        .attr("width", initialSize - 5)
+
+
+        .transition()
+        .duration(1000)
+        //.delay(1000)
+        .attr('x', function (d, i) {
+            return 100;
+        })
+        .attr('y', function (d, i) {
+            return (height / 2) - (pixelHeight / 2)
+        })
+        .attr("height", 0)
+        .attr("width", 0)
+
+        //test
+        .transition()
+        .duration(0)
+        .attr('x', function (d, i) {
+            return (i % pixelCols) * initialSize + xStart + 100;
+        })
+        .attr('y', function (d, i) {
+            return (Math.floor((i / pixelCols)) * initialSize) + yStart
+        })
+        .attr("height", initialSize - 5)
+        .attr("width", initialSize - 5)
+
+
+        .transition()
+        .duration(1000)
+        //.delay(1000)
+        .attr('x', function (d, i) {
+            return 100;
+        })
+        .attr('y', function (d, i) {
+            return (height / 2) - (pixelHeight / 2)
+        })
+        .attr("height", 0)
+        .attr("width", 0)
+
+        //test
+        .transition()
+        .duration(0)
+        .attr('x', function (d, i) {
+            return (i % pixelCols) * initialSize + xStart + 100;
+        })
+        .attr('y', function (d, i) {
+            return (Math.floor((i / pixelCols)) * initialSize) + yStart
+        })
+        .attr("height", initialSize - 5)
+        .attr("width", initialSize - 5)
+
+
+        .transition()
+        .duration(1000)
+        //.delay(1000)
+        .attr('x', function (d, i) {
+            return 100;
+        })
+        .attr('y', function (d, i) {
+            return (height / 2) - (pixelHeight / 2)
+        })
+        .attr("height", 0)
+        .attr("width", 0)
+
+        //test
+        .transition()
+        .duration(0)
+        .attr('x', function (d, i) {
+            return (i % pixelCols) * initialSize + xStart + 100;
+        })
+        .attr('y', function (d, i) {
+            return (Math.floor((i / pixelCols)) * initialSize) + yStart
+        })
+        .attr("height", initialSize - 5)
+        .attr("width", initialSize - 5)
+
+
+        .transition()
+        .duration(1000)
+        //.delay(1000)
+        .attr('x', function (d, i) {
+            return 100;
+        })
+        .attr('y', function (d, i) {
+            return (height / 2) - (pixelHeight / 2)
+        })
+        .attr("height", 0)
+        .attr("width", 0)
+
+        //test
+        .transition()
+        .duration(0)
+        .attr('x', function (d, i) {
+            return (i % pixelCols) * initialSize + xStart + 100;
+        })
+        .attr('y', function (d, i) {
+            return (Math.floor((i / pixelCols)) * initialSize) + yStart
+        })
+        .attr("height", initialSize - 5)
+        .attr("width", initialSize - 5)
+
+
+        .transition()
+        .duration(1000)
+        //.delay(1000)
+        .attr('x', function (d, i) {
+            return 100;
+        })
+        .attr('y', function (d, i) {
+            return (height / 2) - (pixelHeight / 2)
+        })
+        .attr("height", 0)
+        .attr("width", 0)
+
+        //test
+        .transition()
+        .duration(0)
+        .attr('x', function (d, i) {
+            return (i % pixelCols) * initialSize + xStart + 100;
+        })
+        .attr('y', function (d, i) {
+            return (Math.floor((i / pixelCols)) * initialSize) + yStart
+        })
+        .attr("height", initialSize - 5)
+        .attr("width", initialSize - 5)
+
+
+        .transition()
+        .duration(1000)
+        //.delay(1000)
+        .attr('x', function (d, i) {
+            return 100;
+        })
+        .attr('y', function (d, i) {
+            return (height / 2) - (pixelHeight / 2)
+        })
+        .attr("height", 0)
+        .attr("width", 0)
+
         .remove()
 
 
@@ -131,12 +383,6 @@ function shift100Persons() {
     pixel = pixel.merge(pixelEnter)
         .attr("class", "pixel")
         .style("fill", "white")
-        .attr('x', 0)
-        .attr('y', (height / 2) - (pixelHeight / 2))
-
-        .transition()
-        .duration(1000)
-        .delay(1000)
         .attr("height", pixelHeight)
         .attr("width", pixelHeight)
         .attr('x', 100)
@@ -160,7 +406,7 @@ function hide100Persons() {
 
     initialSize = 15;
     xStart = 100;
-    yStart = height / 2 - (initialSize * pixelCols / 2);
+    
 
     d3.selectAll('.personImg')
         .transition()
@@ -178,6 +424,8 @@ function hide100Persons() {
     
     var pixelData = d3.range(0, personData2011.length);
     pixelCols = 10;
+    yStart = height / 2 - (initialSize * pixelCols / 2);
+
     var pixel = svg.selectAll('.pixel')
         .data(pixelData)
 
@@ -192,7 +440,6 @@ function hide100Persons() {
         .style("fill", "white")
         .transition()
         .duration(1000)
-        .delay(2000)
         .attr("height", pixelHeight)
         .attr("width", pixelHeight)
         .attr('x', function (d, i) {

@@ -96,26 +96,17 @@ d3.csv("asylum.csv", function (dataSet) {
 
     xScale.domain(countries);
 
-    var maxCount = d3.max(yearData.map(function (d) {
-        return +d.total;
-    }))
-
-    yScale.domain([0, (+maxCount / 10000)]);
-
-
-    var year = 2011;
-
-    cols = 20;
+    cols = 15;
     barMargin = 5;
     bandwidth = xScale.bandwidth() - (2 * barMargin);
     size = bandwidth / cols;
     persons = [];
-    ratio = 5000;
+    ratio = 10000;
 
 
     //cumulative
     yearData.forEach((c, idx) => {
-        var total = Math.round(c.total / ratio);
+        var total = Math.ceil(c.total / ratio);
         var xStart = xScale(c.country) + barMargin;
         var cumulative = { 2011: c.years[2011], 2012: 0, 2013: 0, 2014: 0, 2015: 0, 2016: 0, 2017: 0, 2018: 0 };
 
