@@ -201,7 +201,6 @@ function createOriginDestDropDown(){
     d3.selectAll(".originDropDown").remove()
     d3.selectAll(".yearDropdownOrigin").remove()
     d3.select(".yearDropdownDest").remove()
-    d3.selectAll('.ResettlementRatioImage').remove()
 
     var yearDestDropDownLabel = d3.select('.fixed')
                         .insert("span","svg")
@@ -211,6 +210,7 @@ function createOriginDestDropDown(){
     dropdown3 = d3.select('.fixed')
                         .insert("select","svg")
                         .attr("class", "yearDropdownDest dropdown")
+                        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
                         .on("change",updateTimeDest)
 
 
