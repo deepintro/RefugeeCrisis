@@ -14,7 +14,7 @@ function createSparkline() {
         })
         .rollup(function (leaves) {
             var total = d3.sum(leaves, function (c) {
-                return +c["Asylum-seekers"];
+                return +c["Refugees (incl. refugee-like situations)"];
             });
             return { year: leaves[0]["Year"], totalAsylumSeekers: total };
         })
@@ -59,7 +59,7 @@ function buildSparkline(year){
     chartG.append("text")
     .attr("x", chartWidth/1.3 -25)
     .attr("y", chartHeight+50)
-    .text("Asylum Seekers: ")
+    .text("Refugees: ")
     .attr("class","sparklineTextAsylum")
 
     chartG.append("text")
