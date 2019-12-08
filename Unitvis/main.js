@@ -1,4 +1,4 @@
-var margin = { top: 20, right: 50, bottom: 200, left: 50 },
+var margin = { top: 20, right: 50, bottom: 150, left: 50 },
     width = window.innerWidth - margin.left - margin.right,
     height = window.innerHeight - margin.top - margin.bottom;
 
@@ -165,9 +165,9 @@ d3.csv("asylum.csv", function (dataSet) {
     new scroll('div11', '75%', changeColor, showBlock);
     new scroll('showChildren', '75%', showChildren, changeColor);
     new scroll('div12', '75%', splitResettled, showChildren);
-    new scroll('div13', '75%', createOriginDropDown, splitResettled);
-    new scroll('div14', '75%', createOriginDestDropDown, createOriginDropDown);
     new scroll('div15', '75%', conclusion, createOriginDestDropDown);
+    new scroll('div13', '75%', createOriginCountryViz, splitResettled);
+    new scroll('div14', '75%', createOriginDestDropDown, createOriginCountryViz);
 
 })
 
@@ -288,6 +288,8 @@ function createUnitVis(currYear) {
 function dummyfunction() {
     d3.select('.personImg').remove()
     d3.select('.xAxisSparkline').remove()
+    d3.selectAll('.sparklineTextAsylum').remove()
+    d3.selectAll('.sparklineTextNumber').remove()
     svg.selectAll('.resettlementaxis').remove()
     svg.selectAll('.xaxis').remove()
     d3.selectAll(".yAxisAsylum").remove();

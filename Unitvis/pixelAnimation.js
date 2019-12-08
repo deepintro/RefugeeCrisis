@@ -147,6 +147,8 @@ function shift100Persons() {
 function hide100Persons() {
     //remove extra stuff in case scroll back occurs
     d3.select('.xAxisSparkline').remove()
+    d3.selectAll('.sparklineTextAsylum').remove()
+    d3.selectAll('.sparklineTextNumber').remove()
     svg.selectAll('.resettlementaxis').remove()
     svg.selectAll('.xaxis').remove()
     d3.selectAll(".yAxisAsylum").remove();
