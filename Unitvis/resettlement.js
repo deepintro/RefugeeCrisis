@@ -196,6 +196,7 @@ function createOriginCountryViz(origin) {
 
 
 function createOriginDestDropDown(){
+    document.getElementsByClassName('container')[0].setAttribute("style","z-index:0");
     d3.select(".originDropDownLabel").remove()
     d3.select('.xAxisSparkline').remove()
     d3.selectAll(".originDropDown").remove()

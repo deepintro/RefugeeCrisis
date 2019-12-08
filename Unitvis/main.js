@@ -351,6 +351,8 @@ function conclusion()
     d3.selectAll(".dropdown").remove();
     d3.selectAll('rect').remove();
     d3.selectAll('.timeaxis').remove();
+
+    document.getElementsByClassName('container')[0].setAttribute("style","z-index:100");
 }
 
 
