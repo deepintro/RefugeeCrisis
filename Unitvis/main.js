@@ -3,7 +3,9 @@ var margin = { top: 20, right: 50, bottom: 200, left: 50 },
     height = window.innerHeight - margin.top - margin.bottom;
 
 var xScale = d3.scaleBand().range([0, width]);
-var yScale = d3.scaleLinear().range([height, 0]);
+var yScale = d3.scaleLinear()
+//yScale.range([821, 0]);
+//yScale.domain([0, 70])
 var colorScale = d3.scaleOrdinal()
     .domain([0, 1, 2, 3, 4, 5, 6, 7])
     .range(['#ffffcc', '#ffeda0', '#fed976', '#feb24c', '#fd8d3c', '#fc4e2a', '#e31a1c', '#b10026'])
@@ -31,19 +33,19 @@ var tool_tip = d3.tip()
     .attr("class", "d3-tip")
     .offset([-8, 0])
     .html(function (d) {
-        return "<div class = 'label'>Country </div>" + d.country 
-        + "<br><br><div class = 'label'>Year </div>" + d.year 
-        + "<br><br><div class = 'label'>Asylum Seekers </div>" + d.yearTotal
+        return "<div class = 'label'>Country </div>" + d.country
+            + "<br><br><div class = 'label'>Year </div>" + d.year
+            + "<br><br><div class = 'label'>Asylum Seekers </div>" + d.yearTotal
     });
 
 
 d3.csv("asylum.csv", function (dataSet) {
     data = dataSet;
-    yearTotalPersons= d3.nest()
-        .key(function(d){
+    yearTotalPersons = d3.nest()
+        .key(function (d) {
             return d["Year"]
         })
-        .rollup(function(rows){            
+        .rollup(function (rows) {
             return d3.sum(rows, d => {
                 return d["Asylum-seekers"]
             })
@@ -51,16 +53,16 @@ d3.csv("asylum.csv", function (dataSet) {
         .object(dataSet)
 
 
-    
+
     yearsTotalPersonsArray = Object.keys(yearTotalPersons).map(d => {
-        return {'year': d, 'count': yearTotalPersons[d]}
+        return { 'year': d, 'count': yearTotalPersons[d] }
     })
-    yearsTotalPersonsArray.sort(function(a,b){
+    yearsTotalPersonsArray.sort(function (a, b) {
         return a.count - b.count;
     })
-    
-    yearsTotalPersonsArray = yearsTotalPersonsArray.map(d => {return +d.year});
-    
+
+    yearsTotalPersonsArray = yearsTotalPersonsArray.map(d => { return +d.year });
+
 
     allCountriesData = d3.nest()
         .key(function (d) {
@@ -137,6 +139,7 @@ d3.csv("asylum.csv", function (dataSet) {
 
     })
 
+
     createSparkline();
     persons.sort(function (a, b) {
         return a.year - b.year;
@@ -176,10 +179,34 @@ function createUnitVis(currYear) {
 
     svg.selectAll('.resettlementaxis').remove()
     svg.selectAll('.xaxis').remove()
+    d3.selectAll(".yAxisAsylum").remove();
     d3.selectAll('.personImg').remove()
 
     var xAxis = d3.axisBottom()
         .scale(xScale)
+
+    //y axis
+    var yMax = d3.max(persons, d => {
+        return d.ypos;
+    })
+    var yMin = d3.min(persons, d => {
+        return d.ypos;
+    })
+    
+    var yScaleRange = yMax - yMin + size;
+    yScale.range([height, height - yScaleRange]);
+    
+    var yScalePixels = yScaleRange/size;
+
+    yScale.domain([0,yScalePixels*cols*ratio]);
+
+    var yAxis = d3.axisLeft()
+        .scale(yScale);
+
+    svg.append("g")
+        .call(yAxis)
+        .attr('class','yAxisAsylum')
+        
 
     svg.append('g')
         .attr('transform', 'translate(0,' + (+height + 10) + ')')
@@ -262,6 +289,7 @@ function dummyfunction() {
     d3.select('.xAxisSparkline').remove()
     svg.selectAll('.resettlementaxis').remove()
     svg.selectAll('.xaxis').remove()
+    d3.selectAll(".yAxisAsylum").remove();
     svg.selectAll('rect').remove()
     console.log("just displaying nothing ---- ")
 }

@@ -76,7 +76,7 @@ function shift100Persons() {
     xStart = 100;
     pixelCols = Math.sqrt(ratio)
     yStart = height / 2 - (initialSize * pixelCols / 2);
-    var pixelHeight = 15;
+    var pixelHeight = 30;
     var personData = d3.range(0, ratio);
 
     var images = svg.selectAll('.personImg')
@@ -149,6 +149,7 @@ function hide100Persons() {
     d3.select('.xAxisSparkline').remove()
     svg.selectAll('.resettlementaxis').remove()
     svg.selectAll('.xaxis').remove()
+    d3.selectAll(".yAxisAsylum").remove();
     svg.selectAll('.dataPixel').remove()
     d3.selectAll('path').remove()
 
