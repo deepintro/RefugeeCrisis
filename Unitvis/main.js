@@ -77,8 +77,8 @@ d3.csv("asylum.csv", function (dataSet) {
             var total = 0;
             years = { 2011: 0, 2012: 0, 2013: 0, 2014: 0, 2015: 0, 2016: 0, 2017: 0, 2018: 0 }
             d.values.forEach(y => {
-                years[y.key] = +y.values[0]['Asylum-seekers'];
-                total += +y.values[0]['Asylum-seekers'];
+                years[y.key] = +y.values[0]['Total Population'];
+                total += +y.values[0]['Total Population'];
             })
             return { 'country': d.key, 'years': years, 'total': total };
         })
@@ -105,12 +105,12 @@ d3.csv("asylum.csv", function (dataSet) {
 
     var year = 2011;
 
-    cols = 12;
+    cols = 20;
     barMargin = 5;
     bandwidth = xScale.bandwidth() - (2 * barMargin);
     size = bandwidth / cols;
     persons = [];
-    ratio = 400;
+    ratio = 5000;
 
 
     //cumulative
