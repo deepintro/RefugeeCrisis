@@ -48,6 +48,7 @@ html,
     height: 100%;
     line-height: 1.5;
     left:50%;
+    z-index: 1
   }
   .container div {
     height: 100%;
