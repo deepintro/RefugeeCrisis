@@ -354,7 +354,11 @@ function scrollYear2018() {
 }
 function conclusion()
 {
-    
+    d3.selectAll(".ResettlementRatioImage").remove();
+    d3.selectAll(".dropdownLabel").remove();
+    d3.selectAll(".dropdown").remove();
+    d3.selectAll('rect').remove();
+    d3.selectAll('.timeaxis').remove();
 }
 
 
