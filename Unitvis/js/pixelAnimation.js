@@ -116,105 +116,105 @@ function shift100Persons() {
         .attr("height", 0)
         .attr("width", 0)
 
-        //test
-        .transition()
-        .duration(0)
-        .attr('x', function (d, i) {
-            return (i % pixelCols) * initialSize + xStart + 100;
-        })
-        .attr('y', function (d, i) {
-            return (Math.floor((i / pixelCols)) * initialSize) + yStart
-        })
-        .attr("height", initialSize - 5)
-        .attr("width", initialSize - 5)
+        // //test
+        // .transition()
+        // .duration(0)
+        // .attr('x', function (d, i) {
+        //     return (i % pixelCols) * initialSize + xStart + 100;
+        // })
+        // .attr('y', function (d, i) {
+        //     return (Math.floor((i / pixelCols)) * initialSize) + yStart
+        // })
+        // .attr("height", initialSize - 5)
+        // .attr("width", initialSize - 5)
 
 
-        .transition()
-        .duration(1000)
-        //.delay(1000)
-        .attr('x', function (d, i) {
-            return 100;
-        })
-        .attr('y', function (d, i) {
-            return (height / 2) - (pixelHeight / 2)
-        })
-        .attr("height", 0)
-        .attr("width", 0)
+        // .transition()
+        // .duration(1000)
+        // //.delay(1000)
+        // .attr('x', function (d, i) {
+        //     return 100;
+        // })
+        // .attr('y', function (d, i) {
+        //     return (height / 2) - (pixelHeight / 2)
+        // })
+        // .attr("height", 0)
+        // .attr("width", 0)
 
-        //test
-        .transition()
-        .duration(0)
-        .attr('x', function (d, i) {
-            return (i % pixelCols) * initialSize + xStart + 100;
-        })
-        .attr('y', function (d, i) {
-            return (Math.floor((i / pixelCols)) * initialSize) + yStart
-        })
-        .attr("height", initialSize - 5)
-        .attr("width", initialSize - 5)
-
-
-        .transition()
-        .duration(1000)
-        //.delay(1000)
-        .attr('x', function (d, i) {
-            return 100;
-        })
-        .attr('y', function (d, i) {
-            return (height / 2) - (pixelHeight / 2)
-        })
-        .attr("height", 0)
-        .attr("width", 0)
-
-        //test
-        .transition()
-        .duration(0)
-        .attr('x', function (d, i) {
-            return (i % pixelCols) * initialSize + xStart + 100;
-        })
-        .attr('y', function (d, i) {
-            return (Math.floor((i / pixelCols)) * initialSize) + yStart
-        })
-        .attr("height", initialSize - 5)
-        .attr("width", initialSize - 5)
+        // //test
+        // .transition()
+        // .duration(0)
+        // .attr('x', function (d, i) {
+        //     return (i % pixelCols) * initialSize + xStart + 100;
+        // })
+        // .attr('y', function (d, i) {
+        //     return (Math.floor((i / pixelCols)) * initialSize) + yStart
+        // })
+        // .attr("height", initialSize - 5)
+        // .attr("width", initialSize - 5)
 
 
-        .transition()
-        .duration(1000)
-        //.delay(1000)
-        .attr('x', function (d, i) {
-            return 100;
-        })
-        .attr('y', function (d, i) {
-            return (height / 2) - (pixelHeight / 2)
-        })
-        .attr("height", 0)
-        .attr("width", 0)
+        // .transition()
+        // .duration(1000)
+        // //.delay(1000)
+        // .attr('x', function (d, i) {
+        //     return 100;
+        // })
+        // .attr('y', function (d, i) {
+        //     return (height / 2) - (pixelHeight / 2)
+        // })
+        // .attr("height", 0)
+        // .attr("width", 0)
 
-        //test
-        .transition()
-        .duration(0)
-        .attr('x', function (d, i) {
-            return (i % pixelCols) * initialSize + xStart + 100;
-        })
-        .attr('y', function (d, i) {
-            return (Math.floor((i / pixelCols)) * initialSize) + yStart
-        })
-        .attr("height", initialSize - 5)
-        .attr("width", initialSize - 5)
+        // //test
+        // .transition()
+        // .duration(0)
+        // .attr('x', function (d, i) {
+        //     return (i % pixelCols) * initialSize + xStart + 100;
+        // })
+        // .attr('y', function (d, i) {
+        //     return (Math.floor((i / pixelCols)) * initialSize) + yStart
+        // })
+        // .attr("height", initialSize - 5)
+        // .attr("width", initialSize - 5)
 
 
-        .transition()
-        .duration(1000)
-        //.delay(1000)
-        .attr('x', function (d, i) {
-            return 100;
-        })
-        .attr('y', function (d, i) {
-            return (height / 2) - (pixelHeight / 2)
-        })
-        .attr("height", 0)
-        .attr("width", 0)
+        // .transition()
+        // .duration(1000)
+        // //.delay(1000)
+        // .attr('x', function (d, i) {
+        //     return 100;
+        // })
+        // .attr('y', function (d, i) {
+        //     return (height / 2) - (pixelHeight / 2)
+        // })
+        // .attr("height", 0)
+        // .attr("width", 0)
+
+        // //test
+        // .transition()
+        // .duration(0)
+        // .attr('x', function (d, i) {
+        //     return (i % pixelCols) * initialSize + xStart + 100;
+        // })
+        // .attr('y', function (d, i) {
+        //     return (Math.floor((i / pixelCols)) * initialSize) + yStart
+        // })
+        // .attr("height", initialSize - 5)
+        // .attr("width", initialSize - 5)
+
+
+        // .transition()
+        // .duration(1000)
+        // //.delay(1000)
+        // .attr('x', function (d, i) {
+        //     return 100;
+        // })
+        // .attr('y', function (d, i) {
+        //     return (height / 2) - (pixelHeight / 2)
+        // })
+        // .attr("height", 0)
+        // .attr("width", 0)
 
         .remove()
 
