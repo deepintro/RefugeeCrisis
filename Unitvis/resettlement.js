@@ -180,7 +180,7 @@ function createOriginCountryViz(origin) {
                 y: height - (Math.floor((i / resettlement_cols)) * resettlement_size),
                 c : c.country,
                 total : c.total,
-                setAccepted : (i < Math.floor(accepted[0].total/resettlement_ratio)) ? true : false,
+                setAccepted : (i < Math.floor(Math.min(accepted[0].total, c.total)/resettlement_ratio)) ? true : false,
                 accepted : accepted[0].total,
                 totalCountries : countries,
                 origin : origin,
@@ -316,7 +316,7 @@ function createTimeLine(origin, destination){
                 x: (Math.floor((i / resettlement_cols)) * resettlement_size),
                 year : c.year,
                 total : c.submissions,
-                setAccepted : (accepted.length && i < Math.floor(accepted[0].total/resettlement_ratio)) ? true : false,
+                setAccepted : (accepted.length && i < Math.floor(Math.min(accepted[0].total, c.total)/resettlement_ratio)) ? true : false,
                 accepted : accepted.length > 0 ? accepted[0].total : 0,
                 origin : origin,
                 isTime : true
