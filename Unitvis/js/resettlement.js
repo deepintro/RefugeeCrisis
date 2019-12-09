@@ -81,12 +81,12 @@ function createOriginCountryViz(origin) {
         if(obj["origin"] == origin && obj["destination"]!="all")
             return true
     })
-    console.log("originData",originData)
+   
     var totalSubmissions = submissionData.filter(function(obj){
         if(obj["origin"] == origin && obj["destination"]!="all")
             return true
     })
-    console.log("totalSubmissions",totalSubmissions)
+    
     var resettlementCountrywiseYearData = d3.nest()
         .key(function (d) {
             return d["destination"];
@@ -125,8 +125,7 @@ function createOriginCountryViz(origin) {
             return { 'country': d.key, 'years': years, 'total': total };
         })
 
-    console.log("resettlementYearwiseCountryData ", resettlementCountrywiseYearData)
-    console.log("totalDepartures ", totalDepartures) 
+    
 
     resettlementCountrywiseYearData.sort(function (a, b) {
         return b.total - a.total;
@@ -172,7 +171,7 @@ function createOriginCountryViz(origin) {
         var accepted = totalDepartures.filter(function(o){
             return o.country == c.country
         })
-        console.log(accepted[0].total)
+        
         var resettlementNodes = d3.range(total).map(function (d, i) {
             return {
                 size: resettlement_size,

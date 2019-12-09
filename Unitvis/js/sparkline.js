@@ -19,7 +19,7 @@ function createSparkline() {
             return { year: leaves[0]["Year"], totalAsylumSeekers: total };
         })
         .entries(data);
-    console.log(yearTotal)
+    
     chartWidth = width/3
     chartHeight = height/4
     positionX = width/1.5

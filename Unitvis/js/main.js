@@ -4,8 +4,6 @@ var margin = { top: 20, right: 50, bottom: 150, left: 50 },
 
 var xScale = d3.scaleBand().range([0, width]);
 var yScale = d3.scaleLinear()
-//yScale.range([821, 0]);
-//yScale.domain([0, 70])
 var colorScale = d3.scaleOrdinal()
     .domain([0, 1, 2, 3, 4, 5, 6, 7])
     .range(['#ffffcc', '#ffeda0', '#fed976', '#feb24c', '#fd8d3c', '#fc4e2a', '#e31a1c', '#b10026'])
@@ -108,7 +106,6 @@ d3.csv("data/asylum.csv", function (dataSet) {
     yearData.forEach((c, idx) => {
         
         var total = Math.floor(c.total / ratio);
-        console.log(c.total, total);
         var xStart = xScale(c.country) + barMargin;
         var cumulative = { 2011: c.years[2011], 2012: 0, 2013: 0, 2014: 0, 2015: 0, 2016: 0, 2017: 0, 2018: 0 };
 
@@ -137,10 +134,7 @@ d3.csv("data/asylum.csv", function (dataSet) {
     persons.sort(function (a, b) {
         return a.year - b.year;
     })
-    //console.log(persons.length);
-
-    // new scroll('pixelPersonRatio', '75%', showPixelPersonRatio, dummyfunction);
-    // new scroll('pixelPersonRatio2', '75%', showPixelGroup, showPixelPersonRatio);
+   
     new scroll('person', '75%', showPerson, dummyfunction);
     new scroll('100person', '75%', show100Persons, showPerson);
     new scroll('personRatio', '75%', shift100Persons, show100Persons);
@@ -154,7 +148,6 @@ d3.csv("data/asylum.csv", function (dataSet) {
     new scroll('div7', '75%', scrollYear2017, scrollYear2016);
     new scroll('div8', '75%', scrollYear2018, scrollYear2017);
     new scroll('div9', '75%', showBlock, scrollYear2018);
-    //new scroll('div10', '75%', showOtherCountryPersons, showBlock);
     new scroll('div11', '75%', changeColor, showBlock);
     new scroll('showChildren', '75%', showChildren, changeColor);
     new scroll('div12', '75%', splitResettled, showChildren);

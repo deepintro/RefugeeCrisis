@@ -20,7 +20,7 @@ function showPerson() {
         .append("svg:image")
 
     person = person.merge(personEnter)
-        .attr("xlink:href", function (d) { return "./person.png" })
+        .attr("xlink:href", function (d) { return "./images/person.png" })
         .attr("class", "personImg")
         .attr('x', 100)
         .attr('y', height / 2)
@@ -31,8 +31,7 @@ function showPerson() {
 
 //step 2
 function show100Persons() {
-    console.log("show 100 persons")
-    //d3.selectAll('.personImg').remove();
+    
     d3.selectAll('.equals').remove();
     d3.selectAll('.pixel').remove();
 
@@ -57,7 +56,7 @@ function show100Persons() {
         // .delay(function (d, i) {
         //     return i * 10;
         // })
-        .attr("xlink:href", function (d) { return "./person.png" })
+        .attr("xlink:href", function (d) { return "./images/person.png" })
         .attr("class", "personImg")
         .attr('x', function (d, i) {
             return (i % pixelCols) * initialSize + xStart
@@ -74,7 +73,7 @@ function show100Persons() {
 
 //step 3
 function shift100Persons() {
-    console.log("shift")
+    
     initialSize = 15;
     xStart = 100;
     pixelCols = Math.round(Math.sqrt(imgRatio))
@@ -91,7 +90,7 @@ function shift100Persons() {
         .append("svg:image")
 
     images = images.merge(imagesEnter)       
-        .attr("xlink:href", function (d) { return "./person.png" })
+        .attr("xlink:href", function (d) { return "./images/person.png" })
         .attr("class", "personImg")
         .attr('y', function (d, i) {
             return (Math.floor((i / pixelCols)) * initialSize) + yStart
