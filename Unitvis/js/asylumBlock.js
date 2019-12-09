@@ -268,6 +268,7 @@ function splitResettled() {
     d3.selectAll('.resettlementaxis').remove()
     d3.selectAll('.timeaxis').remove()
     d3.selectAll('.ResettlementRatioImage').remove()
+    d3.selectAll(".yAxisResettlement").remove()
 
     var resettled = 222706 / ratio;
 

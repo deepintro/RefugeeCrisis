@@ -14,7 +14,7 @@ var submissionData = []
 var submittedColor = "rgb(43, 174, 102)";
 var departedColor = "#d0d1e6";
 
-
+var yScaleResettlement = d3.scaleLinear()
 d3.csv("data/resettlementTimeSeries.csv", function (rdata) {
     resettlementCompleteData = rdata
 })
@@ -144,6 +144,7 @@ function createOriginCountryViz(origin) {
     svg.selectAll('.timeaxis').remove()
     xResettlementScale.domain(countries);
 
+
     var xAxis = d3.axisBottom()
         .scale(xResettlementScale)
     //x axis
@@ -190,6 +191,31 @@ function createOriginCountryViz(origin) {
         rpersons = rpersons.concat(resettlementNodes);
 
     })
+
+    //y axis
+    var yMax = d3.max(rpersons, d => {
+        return d.y;
+    })
+    var yMin = d3.min(rpersons, d => {
+        return d.y;
+    })
+    
+    var yScaleRange = yMax - yMin + resettlement_size;
+    yScaleResettlement.range([height, height - yScaleRange]);
+    
+    var yScalePixels = yScaleRange/resettlement_size;
+
+    yScaleResettlement.domain([0,yScalePixels * resettlement_cols * resettlement_ratio]);
+
+    var yAxis = d3.axisLeft()
+        .scale(yScaleResettlement);
+
+    svg.append("g")
+        .call(yAxis.ticks(5))
+        .attr('class','yAxisResettlement')
+
+
+    //remove above if doesn't work
     createResettlementViz(rpersons);
 }
 
@@ -201,6 +227,7 @@ function createOriginDestDropDown(){
     d3.selectAll(".originDropDown").remove()
     d3.selectAll(".yearDropdownOrigin").remove()
     d3.select(".yearDropdownDest").remove()
+    d3.selectAll(".yAxisResettlement").remove()
 
     var yearDestDropDownLabel = d3.select('.fixed')
                         .insert("span","svg")
