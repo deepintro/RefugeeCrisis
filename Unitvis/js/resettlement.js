@@ -6,7 +6,7 @@ var rTimeData = []
 var countryList = []
 var destList = []
 var timeOrigin = "Syrian Arab Rep.";
-var timeDest = "all";
+var timeDest = "USA";
 var dropdown2;
 var dropdown3;
 var submissionData = []
