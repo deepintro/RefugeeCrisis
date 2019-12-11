@@ -11,8 +11,8 @@ var dropdown2;
 var dropdown3;
 var submissionData = []
 
-var submittedColor = "rgb(43, 174, 102)";
-var departedColor = "#d0d1e6";
+var submittedColor = "#d0d1e6";
+var departedColor = "rgb(43, 174, 102)";
 
 var yScaleResettlement = d3.scaleLinear()
 d3.csv("data/resettlementTimeSeries.csv", function (rdata) {
@@ -56,7 +56,7 @@ var rtoolTip = d3.tip()
         }
     });
 
-
+//resettlement countries visualization
 function createOriginCountryViz(origin) {
     d3.select('.xAxisSparkline').remove()
     d3.selectAll(".dropdownLabel").remove()
@@ -219,7 +219,7 @@ function createOriginCountryViz(origin) {
     createResettlementViz(rpersons);
 }
 
-
+//time series visualization
 function createOriginDestDropDown(){
     document.getElementsByClassName('container')[0].setAttribute("style","z-index:0");
     d3.select(".originDropDownLabel").remove()

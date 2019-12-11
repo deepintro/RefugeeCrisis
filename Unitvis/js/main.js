@@ -150,10 +150,11 @@ d3.csv("data/asylum.csv", function (dataSet) {
     new scroll('div9', '75%', showBlock, scrollYear2018);
     new scroll('div11', '75%', changeColor, showBlock);
     new scroll('showChildren', '75%', showChildren, changeColor);
-    new scroll('div12', '75%', splitResettled, showChildren);
-    new scroll('div15', '75%', conclusion, createOriginDestDropDown);
+    new scroll('div12', '75%', splitResettled, showChildren);   
     new scroll('div13', '75%', createOriginCountryViz, splitResettled);
     new scroll('div14', '75%', createOriginDestDropDown, createOriginCountryViz);
+    new scroll('div15', '75%', conclusion, createOriginDestDropDown);
+    new scroll('donate', '75%', donate, conclusion);
 
 })
 
@@ -348,6 +349,10 @@ function conclusion()
     d3.selectAll('.timeaxis').remove();
 
     document.getElementsByClassName('container')[0].setAttribute("style","z-index:100");
+}
+
+function donate(){
+    
 }
 
 

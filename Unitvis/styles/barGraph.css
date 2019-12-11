@@ -144,6 +144,15 @@ html,
     background-size: cover;
     background-size:100%;
   }
+
+  /* #person
+  {
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('./../images/sahar.PNG');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size:100%;
+  } */
+
   .label{
     color: rgb(219, 23, 23);
     font-weight: bold;
