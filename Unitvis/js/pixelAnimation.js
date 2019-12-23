@@ -20,7 +20,7 @@ function showPerson() {
         .append("svg:image")
 
     person = person.merge(personEnter)
-        .attr("xlink:href", function (d) { return "./person.png" })
+        .attr("xlink:href", function (d) { return "./images/person.png" })
         .attr("class", "personImg")
         .attr('x', 100)
         .attr('y', height / 2)
@@ -31,8 +31,7 @@ function showPerson() {
 
 //step 2
 function show100Persons() {
-    console.log("show 100 persons")
-    //d3.selectAll('.personImg').remove();
+
     d3.selectAll('.equals').remove();
     d3.selectAll('.pixel').remove();
 
@@ -41,7 +40,7 @@ function show100Persons() {
     pixelCols = Math.round(Math.sqrt(imgRatio))
     yStart = height / 2 - (initialSize * pixelCols / 2);
 
-    var personData = d3.range(0, imgRatio);
+    var personData = d3.range(0, imgRatio).map(d => { return {} });
 
     var images = svg.selectAll('.personImg')
         .data(personData)
@@ -57,7 +56,7 @@ function show100Persons() {
         // .delay(function (d, i) {
         //     return i * 10;
         // })
-        .attr("xlink:href", function (d) { return "./person.png" })
+        .attr("xlink:href", function (d) { return "./images/person.png" })
         .attr("class", "personImg")
         .attr('x', function (d, i) {
             return (i % pixelCols) * initialSize + xStart
@@ -68,12 +67,21 @@ function show100Persons() {
         .attr("height", initialSize - 5)
         .attr("width", initialSize - 5)
 
+
+    // var simulation = d3.forceSimulation(personData)
+    //     .force('charge', d3.forceManyBody().strength(5))
+    //     .force('center', d3.forceCenter(width / 4, height / 2))
+    //     .force('collision', d3.forceCollide().radius(function (d) {
+    //         return 5
+    //     }))
+    //     .on('tick', ticked)
+
 }
 
 
 //step 3
 function shift100Persons() {
-    console.log("shift")
+
     initialSize = 15;
     xStart = 100;
     pixelCols = Math.round(Math.sqrt(imgRatio))
@@ -89,8 +97,8 @@ function shift100Persons() {
         .enter()
         .append("svg:image")
 
-    images = images.merge(imagesEnter)       
-        .attr("xlink:href", function (d) { return "./person.png" })
+    images = images.merge(imagesEnter)
+        .attr("xlink:href", function (d) { return "./images/person.png" })
         .attr("class", "personImg")
         .attr('y', function (d, i) {
             return (Math.floor((i / pixelCols)) * initialSize) + yStart
@@ -99,14 +107,14 @@ function shift100Persons() {
         .attr("width", initialSize - 5)
 
         .transition()
-        .duration(1000)
+        .duration(500)
         .attr('x', function (d, i) {
             return (i % pixelCols) * initialSize + xStart + 100;
         })
 
         .transition()
         .duration(1000)
-        .delay(1000)
+        .delay(500)
         .attr('x', function (d, i) {
             return 100;
         })
@@ -115,6 +123,107 @@ function shift100Persons() {
         })
         .attr("height", 0)
         .attr("width", 0)
+
+        // //test
+        // .transition()
+        // .duration(0)
+        // .attr('x', function (d, i) {
+        //     return (i % pixelCols) * initialSize + xStart + 100;
+        // })
+        // .attr('y', function (d, i) {
+        //     return (Math.floor((i / pixelCols)) * initialSize) + yStart
+        // })
+        // .attr("height", initialSize - 5)
+        // .attr("width", initialSize - 5)
+
+
+        // .transition()
+        // .duration(1000)
+        // //.delay(1000)
+        // .attr('x', function (d, i) {
+        //     return 100;
+        // })
+        // .attr('y', function (d, i) {
+        //     return (height / 2) - (pixelHeight / 2)
+        // })
+        // .attr("height", 0)
+        // .attr("width", 0)
+
+        // //test
+        // .transition()
+        // .duration(0)
+        // .attr('x', function (d, i) {
+        //     return (i % pixelCols) * initialSize + xStart + 100;
+        // })
+        // .attr('y', function (d, i) {
+        //     return (Math.floor((i / pixelCols)) * initialSize) + yStart
+        // })
+        // .attr("height", initialSize - 5)
+        // .attr("width", initialSize - 5)
+
+
+        // .transition()
+        // .duration(1000)
+        // //.delay(1000)
+        // .attr('x', function (d, i) {
+        //     return 100;
+        // })
+        // .attr('y', function (d, i) {
+        //     return (height / 2) - (pixelHeight / 2)
+        // })
+        // .attr("height", 0)
+        // .attr("width", 0)
+
+        // //test
+        // .transition()
+        // .duration(0)
+        // .attr('x', function (d, i) {
+        //     return (i % pixelCols) * initialSize + xStart + 100;
+        // })
+        // .attr('y', function (d, i) {
+        //     return (Math.floor((i / pixelCols)) * initialSize) + yStart
+        // })
+        // .attr("height", initialSize - 5)
+        // .attr("width", initialSize - 5)
+
+
+        // .transition()
+        // .duration(1000)
+        // //.delay(1000)
+        // .attr('x', function (d, i) {
+        //     return 100;
+        // })
+        // .attr('y', function (d, i) {
+        //     return (height / 2) - (pixelHeight / 2)
+        // })
+        // .attr("height", 0)
+        // .attr("width", 0)
+
+        // //test
+        // .transition()
+        // .duration(0)
+        // .attr('x', function (d, i) {
+        //     return (i % pixelCols) * initialSize + xStart + 100;
+        // })
+        // .attr('y', function (d, i) {
+        //     return (Math.floor((i / pixelCols)) * initialSize) + yStart
+        // })
+        // .attr("height", initialSize - 5)
+        // .attr("width", initialSize - 5)
+
+
+        // .transition()
+        // .duration(1000)
+        // //.delay(1000)
+        // .attr('x', function (d, i) {
+        //     return 100;
+        // })
+        // .attr('y', function (d, i) {
+        //     return (height / 2) - (pixelHeight / 2)
+        // })
+        // .attr("height", 0)
+        // .attr("width", 0)
+
         .remove()
 
 
@@ -127,16 +236,10 @@ function shift100Persons() {
     var pixelEnter = pixel.enter()
         .append("rect")
 
-    
+
     pixel = pixel.merge(pixelEnter)
         .attr("class", "pixel")
         .style("fill", "white")
-        .attr('x', 0)
-        .attr('y', (height / 2) - (pixelHeight / 2))
-
-        .transition()
-        .duration(1000)
-        .delay(1000)
         .attr("height", pixelHeight)
         .attr("width", pixelHeight)
         .attr('x', 100)
@@ -160,7 +263,7 @@ function hide100Persons() {
 
     initialSize = 15;
     xStart = 100;
-    yStart = height / 2 - (initialSize * pixelCols / 2);
+
 
     d3.selectAll('.personImg')
         .transition()
@@ -175,9 +278,11 @@ function hide100Persons() {
         if (p.year <= 2011)
             return true;
     })
-    
+
     var pixelData = d3.range(0, personData2011.length);
     pixelCols = 10;
+    yStart = height / 2 - (initialSize * pixelCols / 2);
+
     var pixel = svg.selectAll('.pixel')
         .data(pixelData)
 
@@ -192,7 +297,6 @@ function hide100Persons() {
         .style("fill", "white")
         .transition()
         .duration(1000)
-        .delay(2000)
         .attr("height", pixelHeight)
         .attr("width", pixelHeight)
         .attr('x', function (d, i) {

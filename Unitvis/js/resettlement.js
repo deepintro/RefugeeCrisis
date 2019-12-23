@@ -6,19 +6,19 @@ var rTimeData = []
 var countryList = []
 var destList = []
 var timeOrigin = "Syrian Arab Rep.";
-var timeDest = "all";
+var timeDest = "USA";
 var dropdown2;
 var dropdown3;
 var submissionData = []
 
-var submittedColor = "rgb(43, 174, 102)";
-var departedColor = "#d0d1e6";
+var submittedColor = "#d0d1e6";
+var departedColor = "rgb(43, 174, 102)";
 
-
-d3.csv("resettlementTimeSeries.csv", function (rdata) {
+var yScaleResettlement = d3.scaleLinear()
+d3.csv("data/resettlementTimeSeries.csv", function (rdata) {
     resettlementCompleteData = rdata
 })
-d3.csv("resettlementSubmissions.csv", function (sdata) {
+d3.csv("data/resettlementSubmissions.csv", function (sdata) {
     submissionData = sdata
     submissionData.forEach(d => {
         if(countryList.indexOf(d.origin)==-1)
@@ -56,7 +56,7 @@ var rtoolTip = d3.tip()
         }
     });
 
-
+//resettlement countries visualization
 function createOriginCountryViz(origin) {
     d3.select('.xAxisSparkline').remove()
     d3.selectAll(".dropdownLabel").remove()
@@ -67,7 +67,7 @@ function createOriginCountryViz(origin) {
 
     svg
     .append("image")
-    .attr('xlink:href','resettlementRatio.png')
+    .attr('xlink:href','images/resettlementRatio.png')
     .attr('width',200)
     .attr('height',200)
     .attr('x',width-3.5*margin.right)
@@ -81,12 +81,12 @@ function createOriginCountryViz(origin) {
         if(obj["origin"] == origin && obj["destination"]!="all")
             return true
     })
-    console.log("originData",originData)
+   
     var totalSubmissions = submissionData.filter(function(obj){
         if(obj["origin"] == origin && obj["destination"]!="all")
             return true
     })
-    console.log("totalSubmissions",totalSubmissions)
+    
     var resettlementCountrywiseYearData = d3.nest()
         .key(function (d) {
             return d["destination"];
@@ -125,8 +125,7 @@ function createOriginCountryViz(origin) {
             return { 'country': d.key, 'years': years, 'total': total };
         })
 
-    console.log("resettlementYearwiseCountryData ", resettlementCountrywiseYearData)
-    console.log("totalDepartures ", totalDepartures) 
+    
 
     resettlementCountrywiseYearData.sort(function (a, b) {
         return b.total - a.total;
@@ -144,6 +143,7 @@ function createOriginCountryViz(origin) {
     svg.selectAll('.resettlementaxis').remove()
     svg.selectAll('.timeaxis').remove()
     xResettlementScale.domain(countries);
+
 
     var xAxis = d3.axisBottom()
         .scale(xResettlementScale)
@@ -172,7 +172,7 @@ function createOriginCountryViz(origin) {
         var accepted = totalDepartures.filter(function(o){
             return o.country == c.country
         })
-        console.log(accepted[0].total)
+        
         var resettlementNodes = d3.range(total).map(function (d, i) {
             return {
                 size: resettlement_size,
@@ -180,8 +180,8 @@ function createOriginCountryViz(origin) {
                 y: height - (Math.floor((i / resettlement_cols)) * resettlement_size),
                 c : c.country,
                 total : c.total,
-                setAccepted : (i < Math.floor(accepted[0].total/resettlement_ratio)) ? true : false,
-                accepted : accepted[0].total,
+                setAccepted : (i < Math.floor(Math.min(accepted[0].total, c.total)/resettlement_ratio)) ? true : false,
+                accepted : Math.min(accepted[0].total, c.total),
                 totalCountries : countries,
                 origin : origin,
                 isTime : false
@@ -191,16 +191,43 @@ function createOriginCountryViz(origin) {
         rpersons = rpersons.concat(resettlementNodes);
 
     })
+
+    //y axis
+    var yMax = d3.max(rpersons, d => {
+        return d.y;
+    })
+    var yMin = d3.min(rpersons, d => {
+        return d.y;
+    })
+    
+    var yScaleRange = yMax - yMin + resettlement_size;
+    yScaleResettlement.range([height, height - yScaleRange]);
+    
+    var yScalePixels = yScaleRange/resettlement_size;
+
+    yScaleResettlement.domain([0,yScalePixels * resettlement_cols * resettlement_ratio]);
+
+    var yAxis = d3.axisLeft()
+        .scale(yScaleResettlement);
+
+    svg.append("g")
+        .call(yAxis.ticks(5))
+        .attr('class','yAxisResettlement')
+
+
+    //remove above if doesn't work
     createResettlementViz(rpersons);
 }
 
-
+//time series visualization
 function createOriginDestDropDown(){
+    document.getElementsByClassName('container')[0].setAttribute("style","z-index:0");
     d3.select(".originDropDownLabel").remove()
     d3.select('.xAxisSparkline').remove()
     d3.selectAll(".originDropDown").remove()
     d3.selectAll(".yearDropdownOrigin").remove()
     d3.select(".yearDropdownDest").remove()
+    d3.selectAll(".yAxisResettlement").remove()
 
     var yearDestDropDownLabel = d3.select('.fixed')
                         .insert("span","svg")
@@ -315,8 +342,8 @@ function createTimeLine(origin, destination){
                 x: (Math.floor((i / resettlement_cols)) * resettlement_size),
                 year : c.year,
                 total : c.submissions,
-                setAccepted : (accepted.length && i < Math.floor(accepted[0].total/resettlement_ratio)) ? true : false,
-                accepted : accepted.length > 0 ? accepted[0].total : 0,
+                setAccepted : (accepted.length && i < Math.ceil(Math.min(accepted[0].total, c.submissions)/resettlement_ratio)) ? true : false,
+                accepted : accepted.length > 0 ? Math.min(accepted[0].total, c.submissions) : 0,
                 origin : origin,
                 isTime : true
             }

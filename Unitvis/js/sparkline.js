@@ -19,7 +19,7 @@ function createSparkline() {
             return { year: leaves[0]["Year"], totalAsylumSeekers: total };
         })
         .entries(data);
-    console.log(yearTotal)
+    
     chartWidth = width/3
     chartHeight = height/4
     positionX = width/1.5
@@ -57,9 +57,9 @@ function buildSparkline(year){
         .attr('class', 'xAxisSparkline')
 
     chartG.append("text")
-    .attr("x", chartWidth/1.3+10)
+    .attr("x", chartWidth/1.3-30)
     .attr("y", chartHeight+50)
-    .text("Refugees: ")
+    .text("Refugees in " + year + ":  ")
     .attr("class","sparklineTextAsylum")
 
     chartG.append("text")
